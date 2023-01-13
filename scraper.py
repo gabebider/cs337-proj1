@@ -22,7 +22,7 @@ def findMovies():
             if link.text != "" and link.text != "\n" and link.text != " \n" and link.text != "  \n":
                 movies[link.text] = 1
 
-    print(movies)
+    # print(movies)
     return movies
 
 
@@ -46,9 +46,9 @@ def findActors():
                 # strip extra spaces
                 actors[actor_name.strip()] = 1
     
-    print(actors)
+    # print(actors)
     return actors
 
 
-findMovies()
-findActors()
+# findMovies()
+# findActors()
