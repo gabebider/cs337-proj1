@@ -18,10 +18,14 @@ sia = SentimentIntensityAnalyzer()
 awards = getNominees()
 
 
-def testAward(award):
+def testAward(award, winner, totalCount, noneCount):
     nomineeNameDict = {}
-    for nominee in award['nominees']:
-        nomineeNameDict[nominee] = 0
+    # print(award)
+    # exit()
+    for nomineeObject in award['nominees']:
+        # print(nominee)
+        # exit()
+        nomineeNameDict[nomineeObject["nominee"]] = 0
     for item in data:
         text = item['text'].lower()
         for nominee in nomineeNameDict:
@@ -30,14 +34,33 @@ def testAward(award):
 
     mostPopular = max(nomineeNameDict, key=nomineeNameDict.get)
     # print(f"Most popular nominee for {award}: {mostPopular}")
-    if award['winner']['nominee'] == mostPopular:
+    # print(award['winner'])
+    # exit()
+    totalCount += 1
+    if award["winner"] is not None and award['winner']['nominee'] == mostPopular:
         return True
-    else:
+    elif award["winner"] is not None:
+        print(f"\nMost popular: {mostPopular}")
+        print(f"True winner: {award['winner']['nominee']}")
+        print(f"Counts: {nomineeNameDict}\n")
         return False
+    else:
+        print(f"None winner for {winner}")
+        noneCount += 1
+        return False
+
+        # print(f"Most popular nominee for {winner}: {mostPopular}")
 
 
 results = []
-for award in awards:
-    results.append(testAward(award))
+# print(awards)
+# exit()
+noneCount = 0
+totalCount = 0
 
+for award in awards.keys():
+    results.append(testAward(awards[award], award, totalCount, noneCount))
+
+print("None count: ", noneCount)
+print("Total count: ", totalCount)
 print(sum(results)/len(results))

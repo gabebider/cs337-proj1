@@ -19,7 +19,7 @@ def getNominees():
         category = row[3].lower()
         nominee = row[4].lower().strip()
         film = row[5].lower().replace("\t", "").strip()
-        win = row[6].lower()
+        win = row[6]
 
         # Check if the award already exists in the dictionary
         if category not in awards:
