@@ -7,26 +7,28 @@ import csv
 import itertools
 from scipy.stats import norm
 import math
+from datetime import datetime
+import spacy
 #import scraper
 
 def find_and_count_names():
     #loads json and name tagger
     data = json.load(open('gg2013.json'))
-    nltk.download('punkt')
-    tagger = StanfordNERTagger('classifiers/stanford-ner/classifiers/english.all.3class.distsim.crf.ser.gz','classifiers/stanford-ner/stanford-ner.jar',encoding='utf-8')
+    langProcesor = spacy.load("en_core_web_sm")
     nameCountArray = []
+    tweetArray = []
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
         # Checks if tweet is relation to a host or hostess
-        if re.match(r".* host | hostess .*", text):
+        if re.search(r"\s*[Hh]ost.*", text) and not text in tweetArray:
+            tweetArray.append(text)
             addNames = []
-            tokenizedText = nltk.word_tokenize(text)
-            classifiedText = tagger.tag(tokenizedText)
+            classifiedText = langProcesor(text)
             # adds name to list
-            for name in classifiedText:
-                if name[1] == 'PERSON':
-                    addNames.append(name[0])
+            for name in classifiedText.ents:
+                if name.label_ == "PERSON":
+                    addNames.append(name.text)
             # updates count if name exists or adds name if does not exist yet
             for name in addNames:
                 exists = False
@@ -42,23 +44,31 @@ def find_full_names(nameCountArray):
     #scraper.findActors()
     # load actors csv (scraped from imdb)
     fullNameArray = []
+    singleNameArray = []
+    finalNamesArray = []
+    # create array of full names and single names
+    for names in nameCountArray:
+        if re.search(r".* .*", names[0]):
+            fullNameArray.append([names[0], names[1]])
+        else:
+            singleNameArray.append([names[0], names[1]])
     with open('actors.csv', 'r', encoding='utf-8') as actorCSV:
         reader = csv.reader(actorCSV)
         actorsArray = list(next(reader))
-        # find all possible name combinations
-        for i in range(len(nameCountArray)):
-            for j in range(len(nameCountArray)):
-                currentName = nameCountArray[i][0] + " " + nameCountArray[j][0]
-                count = nameCountArray[i][1] + nameCountArray[j][1]
-                # check if name combination is an actor
-                for actor in actorsArray:
-                    if currentName == actor:
-                        fullNameArray.append([actor, count])
+        # find full names that are actors
+        for actor in fullNameArray:
+            if actor[0] in actorsArray:
+                finalNamesArray.append([actor[0], actor[1]])
+    for name in singleNameArray:
+        for x in range(len(finalNamesArray)):
+            if name[0] in finalNamesArray[x][0]:
+                if finalNamesArray[x][1] > name[1]:
+                    finalNamesArray[x][1] = finalNamesArray[x][1] + name[1]
     # remove duplicate names
-    fullNameArray = [x[0] for x in itertools.groupby(fullNameArray)]
-    return fullNameArray
+    finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
+    return finalNamesArray
 
-def find_name_percentage(actorCount):
+def find_name_pvalue(actorCount):
     totalCount = 0
     highest_percent = ["", 0.0]
     # find total
@@ -68,7 +78,7 @@ def find_name_percentage(actorCount):
     for entries in actorCount:
         percentage = entries[1] / totalCount
         percentage = round(percentage, 3)
-        #print(entries[0] + "'s Percentage: " + str(percentage))
+        print(entries[0] + "'s Percentage: " + str(percentage))
         if percentage > highest_percent[1]:
             highest_percent = [entries[0], percentage]
     # use z-score to determine if count is significantly different to highest percent (which should be host) to determine if more than one host
@@ -79,21 +89,26 @@ def find_name_percentage(actorCount):
         zScore = (percentage - highest_percent[1]) / stError
         p_value = 2 * (1 - norm.cdf(abs(zScore)))
         #print(entries[0] + "'s P-Value: " +  str(p_value) + " and Z-Score: " + str(zScore))
-        if p_value > 0.05:
+        if p_value != 0.0:
             host_array.append(entries[0])
     return host_array
 
 def find_host():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("Find Host process started at =", dt_string)
     nameCountArray = find_and_count_names()
-    #nameCountArray = [['Tina', 277], ['Fey', 152], ['Amy', 285], ['Poehler', 150], ['Pohler', 4], ['VanityFair', 3], ['Ricky', 3], ['Gervais', 3], ['Oscar', 1], ['Hathaway', 1], ['Franko', 1], ['Al', 1], ['Roker', 1], ['poehler', 2], ['fey', 3], ['Kaley', 1], ['Cuoco', 1], ['AntDeRosa', 1], ['Fay', 1], ['KreeBeau', 1], ['Poehlr', 1], ['JayHandelman', 1], ['Elmo', 2], ['Matt', 1], ['Pinfield', 1], ['Toby', 1], ['Rudd', 47], ['Selma', 1], ['Hayek', 1], ['Paul', 46], ['Seth', 1], ['Poleher', 1], ['Kristin', 3], ['Wigg', 1], ['Clinton', 3], ['Maggie', 7], ['Smith', 3], ['Bill', 2], ['Rodham', 1], ['GoldenGlobes', 1], ['Rebel', 3], ['Wilson', 3], ['Fat', 3], ['Ellen', 2], ['Wiig', 124], ['Ferrell', 124], ['Smi', 4], ['Will', 123], ['Kristen', 126], ['Maya', 1], ['DeGeneres', 1], ['Wig', 2], ['Farrell', 1]]
     fullNameCountArray = find_full_names(nameCountArray)
-    hosts = find_name_percentage(fullNameCountArray)
+    hosts = find_name_pvalue(fullNameCountArray)
     if len(hosts) == 1:
         print("The host of the award show is: " + hosts[0])
     else:
         print("The hosts of the award show are:")
         for host in hosts:
             print(host)
+    now = datetime.now()
+    dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("Find Host process ended at =", dt_string2)
     return hosts
 
 find_host()
