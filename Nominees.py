@@ -4,7 +4,7 @@ import csv
 
 def getNominees():
     # Open the CSV file and read the data into a list
-    with open("golden_globe_awards.csv", "r") as f:
+    with open("golden_globe_awards.csv", "r", encoding='utf-8') as f:
         reader = csv.reader(f)
         data = list(reader)
 
