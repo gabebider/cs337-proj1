@@ -16,6 +16,7 @@ printCount = 0
 sia = SentimentIntensityAnalyzer()
 
 awards = getNominees()
+# Get winner for each award given nominees and award name
 
 
 def NomineesToWinner(award, winner, totalCount, noneCount):

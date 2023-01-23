@@ -11,8 +11,9 @@ from datetime import datetime
 import spacy
 #import scraper
 
+
 def find_and_count_names():
-    #loads json and name tagger
+    # loads json and name tagger
     data = json.load(open('gg2013.json'))
     langProcesor = spacy.load("en_core_web_sm")
     nameCountArray = []
@@ -40,8 +41,9 @@ def find_and_count_names():
                     nameCountArray.append([name, 1])
     return nameCountArray
 
+
 def find_full_names(nameCountArray):
-    #scraper.findActors()
+    # scraper.findActors()
     # load actors csv (scraped from imdb)
     fullNameArray = []
     singleNameArray = []
@@ -68,6 +70,7 @@ def find_full_names(nameCountArray):
     finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
     return finalNamesArray
 
+
 def find_name_pvalue(actorCount):
     totalCount = 0
     highest_percent = ["", 0.0]
@@ -82,7 +85,8 @@ def find_name_pvalue(actorCount):
         if percentage > highest_percent[1]:
             highest_percent = [entries[0], percentage]
     # use z-score to determine if count is significantly different to highest percent (which should be host) to determine if more than one host
-    stError = math.sqrt(highest_percent[1] * (1 - highest_percent[1]) / totalCount)
+    stError = math.sqrt(
+        highest_percent[1] * (1 - highest_percent[1]) / totalCount)
     host_array = []
     for entries in actorCount:
         percentage = entries[1] / totalCount
@@ -92,6 +96,7 @@ def find_name_pvalue(actorCount):
         if p_value != 0.0:
             host_array.append(entries[0])
     return host_array
+
 
 def find_host():
     now = datetime.now()
@@ -110,5 +115,6 @@ def find_host():
     dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
     print("Find Host process ended at =", dt_string2)
     return hosts
+
 
 find_host()
