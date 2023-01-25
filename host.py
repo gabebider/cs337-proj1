@@ -2,7 +2,6 @@
 import re
 import csv
 import itertools
-from scipy.stats import norm
 from datetime import datetime
 import spacy
 import numpy as np
@@ -69,7 +68,6 @@ def find_full_names(nameCountArray):
 
 def find_name_std(actorCount):
     totalCount = 0
-    highest_percent = ["", 0.0]
     # find total
     for entries in actorCount:
         totalCount = totalCount + entries[1]
@@ -96,7 +94,7 @@ def find_name_std(actorCount):
 def find_host(tweets):
     # now = datetime.now()
     # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    #print("Find Host process started at =", dt_string)
+    # print("Find Host process started at =", dt_string)
     nameCountArray = find_and_count_names(tweets)
     fullNameCountArray = find_full_names(nameCountArray)
     hosts = find_name_std(fullNameCountArray)
