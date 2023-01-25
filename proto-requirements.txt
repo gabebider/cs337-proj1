@@ -1,0 +1,6 @@
+!! packages that we are currently using -- this is not in proper requirements.txt form !!
+python-decouple
+nltk
+spacey
+scipi
+numpy
