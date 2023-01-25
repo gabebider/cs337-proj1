@@ -3,3 +3,4 @@ python-decouple
 nltk
 spacey
 scipi
+numpy
