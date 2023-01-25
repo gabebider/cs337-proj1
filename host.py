@@ -68,7 +68,7 @@ def find_full_names(nameCountArray):
     return finalNamesArray
 
 
-def find_name_pvalue(actorCount):
+def find_name_std(actorCount):
     totalCount = 0
     highest_percent = ["", 0.0]
     # find total
@@ -88,26 +88,26 @@ def find_name_pvalue(actorCount):
     mean = np.mean(percentageArray)
     stanDev = np.std(percentageArray)
     for entries in actorPercentArray:
-        print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
+        #print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
         if abs(entries[1] - mean) > 2 * stanDev:
             host_array.append(entries[0])
     return host_array
 
 
 def find_host(tweets):
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Host process started at =", dt_string)
+    # now = datetime.now()
+    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    #print("Find Host process started at =", dt_string)
     nameCountArray = find_and_count_names(tweets)
     fullNameCountArray = find_full_names(nameCountArray)
-    hosts = find_name_pvalue(fullNameCountArray)
-    if len(hosts) == 1:
-        print("The host of the award show is: " + hosts[0])
-    else:
-        print("The hosts of the award show are:")
-        for host in hosts:
-            print(host)
-    now = datetime.now()
-    dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Host process ended at =", dt_string2)
+    hosts = find_name_std(fullNameCountArray)
+    # if len(hosts) == 1:
+    #     print("The host of the award show is: " + hosts[0])
+    # else:
+    #     print("The hosts of the award show are:")
+    #     for host in hosts:
+    #         print(host)
+    # now = datetime.now()
+    # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
+    # print("Find Host process ended at =", dt_string2)
     return hosts
