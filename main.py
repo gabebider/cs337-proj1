@@ -2,6 +2,8 @@ from decouple import config
 from Award import Award
 from Mocks import Mocks
 import logging
+import host
+import json
 
 MOCK_AWARD_CATEGORIES = config(
     'MOCK_AWARD_CATEGORIES', cast=bool, default=False)
@@ -15,6 +17,7 @@ MOCK_HOSTS = config('MOCK_HOSTS', cast=bool, default=False)
 class Main:
     def __init__(self):
         self.mocks = Mocks()
+        self.tweets = json.load(open('gg2013.json'))
 
     def run(self):
         self.get_award_categories()
@@ -88,7 +91,7 @@ class Main:
         else:
             logging.info("Not mocking hosts")
             # TODO - implement actual code
-            # self.hosts = self.GetHosts()
+            self.hosts = host.find_host(self.tweets)
 
 
 if __name__ == '__main__':
