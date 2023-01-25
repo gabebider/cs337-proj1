@@ -6,6 +6,8 @@ Install the requirements:
 
 ```bash
 pip install -r requirements.txt
+python -m spacy download en_core_web_md
+python -m spacy download en_core_web_sm
 ```
 
 To Run the autograder(Might be broken):
