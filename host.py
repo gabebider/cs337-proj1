@@ -10,7 +10,7 @@ import numpy as np
 
 def find_and_count_names(data):
     # loads name processor
-    langProcesor = spacy.load("en_core_web_sm")
+    langProcesor = spacy.load("en_core_web_md")
     nameCountArray = []
     tweetArray = []
     # Iterates through tweets
@@ -78,7 +78,7 @@ def find_name_std(actorCount):
     for entries in actorCount:
         percentage = entries[1] / totalCount
         percentage = round(percentage, 3)
-        #print(entries[0] + "'s Percentage: " + str(percentage))
+        # print(entries[0] + "'s Percentage: " + str(percentage))
         percentageArray.append(percentage)
         actorPercentArray.append([entries[0], percentage])
     # use standard deviation to determine if count is significantly different (outside 95% of data) to determine who the hosts are

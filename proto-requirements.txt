@@ -1,0 +1,9 @@
+!! packages that we are currently using -- this is not in proper requirements.txt form !!
+python-decouple
+nltk
+spacey
+scipi
+numpy
+unidecode
+python -m spacy download en_core_web_md
+python -m spacy download en_core_web_sm
