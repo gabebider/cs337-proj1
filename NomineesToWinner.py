@@ -3,6 +3,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import json
 import re
 import nltk
+from AccentRemover import remove_accents
 import csv
 
 from Nominees import getNominees
@@ -28,7 +29,7 @@ def NomineesToWinner(award, winner, totalCount, noneCount):
         # exit()
         nomineeNameDict[nomineeObject["nominee"]] = 0
     for item in data:
-        text = item['text'].lower()
+        text = remove_accents(item['text'])
         for nominee in nomineeNameDict:
             if re.match(r".*"+nominee+".*", text):
                 nomineeNameDict[nominee] += 1
