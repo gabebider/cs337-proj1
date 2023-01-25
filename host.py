@@ -6,6 +6,7 @@ from scipy.stats import norm
 import math
 from datetime import datetime
 import spacy
+import numpy as np
 #import scraper
 
 
@@ -67,46 +68,46 @@ def find_full_names(nameCountArray):
     return finalNamesArray
 
 
-def find_name_pvalue(actorCount):
+def find_name_std(actorCount):
     totalCount = 0
     highest_percent = ["", 0.0]
     # find total
     for entries in actorCount:
         totalCount = totalCount + entries[1]
     # display each percentage
-    for entries in actorCount:
-        percentage = entries[1] / totalCount
-        percentage = round(percentage, 3)
-        print(entries[0] + "'s Percentage: " + str(percentage))
-        if percentage > highest_percent[1]:
-            highest_percent = [entries[0], percentage]
-    # use z-score to determine if count is significantly different to highest percent (which should be host) to determine if more than one host
-    stError = math.sqrt(highest_percent[1] * (1 - highest_percent[1]) / totalCount)
+    percentageArray = []
+    actorPercentArray = []
     host_array = []
     for entries in actorCount:
         percentage = entries[1] / totalCount
-        zScore = (percentage - highest_percent[1]) / stError
-        p_value = 2 * (1 - norm.cdf(abs(zScore)))
-        #print(entries[0] + "'s P-Value: " +  str(p_value) + " and Z-Score: " + str(zScore))
-        if p_value != 0.0:
+        percentage = round(percentage, 3)
+        #print(entries[0] + "'s Percentage: " + str(percentage))
+        percentageArray.append(percentage)
+        actorPercentArray.append([entries[0], percentage])
+    # use standard deviation to determine if count is significantly different (outside 95% of data) to determine who the hosts are
+    mean = np.mean(percentageArray)
+    stanDev = np.std(percentageArray)
+    for entries in actorPercentArray:
+        #print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
+        if abs(entries[1] - mean) > 2 * stanDev:
             host_array.append(entries[0])
     return host_array
 
 
 def find_host(tweets):
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Host process started at =", dt_string)
+    # now = datetime.now()
+    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    #print("Find Host process started at =", dt_string)
     nameCountArray = find_and_count_names(tweets)
     fullNameCountArray = find_full_names(nameCountArray)
-    hosts = find_name_pvalue(fullNameCountArray)
-    if len(hosts) == 1:
-        print("The host of the award show is: " + hosts[0])
-    else:
-        print("The hosts of the award show are:")
-        for host in hosts:
-            print(host)
-    now = datetime.now()
-    dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Host process ended at =", dt_string2)
+    hosts = find_name_std(fullNameCountArray)
+    # if len(hosts) == 1:
+    #     print("The host of the award show is: " + hosts[0])
+    # else:
+    #     print("The hosts of the award show are:")
+    #     for host in hosts:
+    #         print(host)
+    # now = datetime.now()
+    # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
+    # print("Find Host process ended at =", dt_string2)
     return hosts
