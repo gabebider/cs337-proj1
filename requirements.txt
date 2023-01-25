@@ -1,0 +1,6 @@
+python-decouple
+nltk
+spacey
+numpy
+unidecode
+!! need to do this: `python -m spacy download en_core_web_sm`
