@@ -4,3 +4,4 @@ nltk
 spacey
 scipi
 numpy
+unidecode

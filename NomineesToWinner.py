@@ -5,6 +5,7 @@ import re
 import nltk
 from AccentRemover import remove_accents
 import csv
+from unidecode import unidecode
 
 from Nominees import getNominees
 nltk.download('vader_lexicon')
@@ -22,22 +23,17 @@ awards = getNominees()
 
 def NomineesToWinner(award, winner, totalCount, noneCount):
     nomineeNameDict = {}
-    # print(award)
-    # exit()
     for nomineeObject in award['nominees']:
-        # print(nominee)
-        # exit()
         nomineeNameDict[nomineeObject["nominee"]] = 0
     for item in data:
-        text = remove_accents(item['text'])
+        text = unidecode(item['text']).lower()
         for nominee in nomineeNameDict:
-            if re.match(r".*"+nominee+".*", text):
+            normalizedNominee = unidecode(nominee).lower()
+            if re.match(r".*"+normalizedNominee+".*", text):
                 nomineeNameDict[nominee] += 1
 
+    print(nomineeNameDict)
     mostPopular = max(nomineeNameDict, key=nomineeNameDict.get)
-    # print(f"Most popular nominee for {award}: {mostPopular}")
-    # print(award['winner'])
-    # exit()
     totalCount += 1
     if award["winner"] is not None and award['winner']['nominee'] == mostPopular:
         return True
@@ -50,8 +46,6 @@ def NomineesToWinner(award, winner, totalCount, noneCount):
         print(f"None winner for {winner}")
         noneCount += 1
         return False
-
-        # print(f"Most popular nominee for {winner}: {mostPopular}")
 
 
 results = []
