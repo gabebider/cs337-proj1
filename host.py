@@ -1,7 +1,5 @@
 # finds the host (or hosts) of the award show
-from nltk.tag import StanfordNERTagger
 import re
-import nltk
 import csv
 import itertools
 from scipy.stats import norm
