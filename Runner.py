@@ -2,8 +2,9 @@ from decouple import config
 from Award import Award
 import logging
 from host import find_host
+from AwardCategoriesToPresenters import find_presenters
 import json
-import gg_apifake
+from autograder import gg_apifake
 
 # https://www.geeksforgeeks.org/singleton-method-python-design-patterns/
 
@@ -58,8 +59,7 @@ class Runner:
                 award.SetPresenters(self.get_presenter_for_award(award))
 
     def get_presenter_for_award(self, award):
-        # TODO - implement actual code
-        return ""
+        return find_presenters(self.tweets,award)
 
     def get_award_nominees(self, year):
         if MOCK_AWARD_NOMINEES:
@@ -138,3 +138,11 @@ class Runner:
 
 if __name__ == '__main__':
     main = Runner()
+    main.get_hosts('2013')
+    main.get_award_categories('2013')
+    main.get_all_award_presenters('2013')
+    print(main.hosts)
+    for award in main.awards:
+        print(award)
+    
+

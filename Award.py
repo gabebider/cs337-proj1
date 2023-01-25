@@ -4,9 +4,12 @@ import logging
 class Award:
     def __init__(self, award_category):
         self.award_category = award_category
+        self.presenters = []
+        self.winner = ""
+        self.nominees = []
 
     def __str__(self):
-        return self.name
+        return f"Award: {self.award_category}\n Presenters: {self.presenters}\n Nominees: {self.nominees}\n Winner: {self.winner}"
 
     def SetPresenters(self, presenters):
         self.presenters = presenters
