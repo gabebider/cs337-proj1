@@ -3,7 +3,8 @@ from Award import Award
 import logging
 from host import find_host
 import json
-import gg_apifake
+from autograder import gg_apifake
+import AwardToNominees
 
 # https://www.geeksforgeeks.org/singleton-method-python-design-patterns/
 
@@ -70,12 +71,12 @@ class Runner:
                     if award.award_category == category:
                         award.SetNominees(nominees[category])
         else:
+            print("Not mocking award nominees")
             for award in self.awards:
-                print("Not mocking award nominees")
                 award.SetNominees(self.get_nominees_for_award(award))
 
-    def get_nominees_for_award(self, award):
-        # TODO - implement actual code
+    def get_nominees_for_award(self, award: Award):
+        AwardToNominees.get_nominees_for_award(self.tweets, award.award_category)
         return []
 
     def get_awards(self, year):
@@ -108,27 +109,32 @@ class Runner:
             # TODO - implement actual code
             self.hosts = find_host(self.tweets)
 
+    # Done - Spencer
     def export_hosts(self):
         return self.hosts
 
+    # In Progress - Eli
     def export_presenters(self):
         presenters = {}
         for award in self.awards:
             presenters[award.award_category] = award.presenters
         return presenters
 
+    # In Progress - Isaac
     def export_nominees(self):
         nominees = {}
         for award in self.awards:
             nominees[award.award_category] = award.nominees
         return nominees
 
+    # Done - Gabe
     def export_winners(self):
         winners = {}
         for award in self.awards:
             winners[award.award_category] = award.winner
         return winners
 
+    # In Progress - Spencer
     def export_award_categories(self):
         awards = {}
         for award in self.awards:
