@@ -8,49 +8,123 @@ from nltk.corpus import wordnet
 from datetime import datetime
 from collections import defaultdict
 
-def truncate_punctuation(text):
-    puncSearch = re.search(r":|@|#",text)
-    if puncSearch != None:
-        text = text[:puncSearch.span()[0]]
-    return text
+def clean_str(text):
+    httpSearch = re.search(r"http",text)
+    if httpSearch is not None:
+        text = text[:httpSearch.span()[0]]
+    text = re.sub(r'/',' or ',text)
+    text = re.sub(r'- ','',text)
+    return re.sub(r'[^A-Za-z\' ]+','',text)
+
+## truncates at the first instance of a part of speech in the pos_array
+## if delete is `True`, returns an empty string
+def pos_truncate(nlp_model,text,pos_array):
+    doc = nlp_model(text)
+    truncInd = len(doc)
+    for ind, token in enumerate(doc):
+        if token.pos_ in pos_array:
+            truncInd = ind
+            break
+    return doc[0:truncInd].text.strip()
+
+def pos_check(nlp_model,text,pos_array,index):
+    if text == "":
+        return ""
+    doc = nlp_model(text)
+    if index >= len(doc):
+        return text
+    return "" if doc[index].pos_ in pos_array else text
+
+def get_first_noun(nlp_model,text):
+    doc = nlp_model(text)
+    for token in doc:
+        if token.pos_ == "NOUN":
+            return (text,token.text)
+    return ("",None)
+    
+
+## prints out the parts of speech of a string
+def pos_ify(nlp_model,text):
+    doc = nlp_model(text)
+    print("\n",text)
+    for ind, token in enumerate(doc):
+        print(ind,token.text,token.pos_)
+
 
 def find_award_array(tweetData):
-    # creates spacy model that can do a lot of fancy things
-    langProcessor = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+    nlp.add_pipe("merge_entities")
+    # nlp.add_pipe("merge_noun_chunks")
     uniqueAwards = defaultdict(int)
-    #sia = SentimentIntensityAnalyzer()
-    # loop through all our tweets
+    seenTweets = set()
     for tweet in tweetData:
-        # get the text of the tweet
-        text = tweet['text']
-        # init an empty set to store tweets that we have seen and start with "[bB]est"
-        seenTweets = set()
-        # find all tweets that mention "best " or "Best " and we havent viewed yet
-        bestSearch = re.search(r"\s*[Bb]est .*", text)
+        text = tweet['text'].lower()
+        bestSearch = re.search(r"\s[Bb]est .*",text)
         if bestSearch != None and not text in seenTweets:
-            # add to set of viewed tweets
             seenTweets.add(text)
-            # find the index where the "[Bb]est" starts
-            startIndex = int(bestSearch.span()[0])
-            # extract the tweet from best to the end
-            subTweet = truncate_punctuation(text[startIndex:])
-            # load tweet into our classifier and remove trailing/leading white space
-            classifiedText = langProcessor(subTweet.strip())
-            # loop through the entities of the Doc
-            # https://spacy.io/api/doc
-            # ents: A list of strings, of the same length of words, to assign the token-based IOB tag. Defaults to None.
-            for entity in classifiedText.ents:
-                # print(f"Classified Ent: \"{awards.text}\"")
-                # see if token has the word best and if so we increase its count by 1
-                if re.search(r"\s*[Bb]est .*", entity.text):
-                    uniqueAwards[entity.text.strip()] += 1
+            startIndex = bestSearch.span()[0]
+            subTweet = clean_str(text[startIndex:].strip())
+
+            text = pos_truncate(nlp,subTweet,['PROPN','PRON','VERB','AUX','INTJ','NUM','PART','SCONJ','SYM'])
+            text = pos_check(nlp,text,['ADP','AUX','DET','CCONJ'],-1)
+            text = pos_check(nlp,text,['ADP','AUX','DET'],1)
+            text, firstNoun = get_first_noun(nlp,text)
+
+            if text == "best":
+                text = ""
+
+            if text:
+                uniqueAwards[text] += 1
+    
+
     finalAwardsArray = []
     # loop through each award that we have found
     for entity, frequency in uniqueAwards.items():
         # if it has at least 1 vote add it to the final array
         if frequency > 1:
             finalAwardsArray.append([ entity, frequency ])
-    return finalAwardsArray
+    return finalAwardsArray       
+
+
+        
+
+# def find_award_array(tweetData):
+#     # creates spacy model that can do a lot of fancy things
+#     langProcessor = spacy.load("en_core_web_sm")
+#     uniqueAwards = defaultdict(int)
+#     seenTweets = set()
+#     #sia = SentimentIntensityAnalyzer()
+#     # loop through all our tweets
+#     for tweet in tweetData:
+#         # get the text of the tweet
+#         text = tweet['text']
+#         # init an empty set to store tweets that we have seen and start with "[bB]est"
+#         # find all tweets that mention "best " or "Best " and we havent viewed yet
+#         bestSearch = re.search(r"\s*[Bb]est .*", text)
+#         if bestSearch != None and not text in seenTweets:
+#             # add to set of viewed tweets
+#             seenTweets.add(text)
+#             # find the index where the "[Bb]est" starts
+#             startIndex = int(bestSearch.span()[1])
+#             # extract the tweet from best to the end
+#             subTweet = truncate_punctuation(text[startIndex:])
+#             # load tweet into our classifier and remove trailing/leading white space
+#             classifiedText = langProcessor(subTweet.strip())
+#             # loop through the entities of the Doc
+#             # https://spacy.io/api/doc
+#             # ents: A list of strings, of the same length of words, to assign the token-based IOB tag. Defaults to None.
+#             for entity in classifiedText.ents:
+#                 # print(f"Classified Ent: \"{awards.text}\"")
+#                 # see if token has the word best and if so we increase its count by 1
+#                 if re.search(r"\s*[Bb]est .*", entity.text):
+#                     uniqueAwards[entity.text.strip()] += 1
+#     finalAwardsArray = []
+#     # loop through each award that we have found
+#     for entity, frequency in uniqueAwards.items():
+#         # if it has at least 1 vote add it to the final array
+#         if frequency > 1:
+#             finalAwardsArray.append([ entity, frequency ])
+#     return finalAwardsArray
 
 def clean_award_array(arr):
     """
@@ -92,7 +166,7 @@ def clean_award_array(arr):
                 if currentTweet.similarity(comparedTweet) > 0.9:
                     # if we have not placed the tweet yet
                     if not placed:
-                        final_dict[entry[0]] = [entry[1] + tweets[1], [(entry[0],entry[1]),(tweets[0],tweets[1])]]
+                        final_dict[entry[0]] = [entry[1] + tweets[1], [entry[0],tweets[0]]]
                         # create entry for dict where 
                         # index = [award name, count of votes, [list of tweets]]
                         placed = True
@@ -100,7 +174,7 @@ def clean_award_array(arr):
                         # add the count of the tweet we are comparing to the index of the entry we just made
                         final_dict[entry[0]][0] += tweets[1]
                         # add the tweet text we are comparing to the list of tweets that are similar
-                        final_dict[entry[0]][1].append((tweets[0],tweets[1]))
+                        final_dict[entry[0]][1].append(tweets[0])
     
     # print out the final dict
     for name, elements in final_dict.items():
