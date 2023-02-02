@@ -54,7 +54,6 @@ def pos_ify(nlp_model,text):
 def find_award_array(tweetData):
     nlp = spacy.load("en_core_web_sm")
     nlp.add_pipe("merge_entities")
-    # nlp.add_pipe("merge_noun_chunks")
     uniqueAwards = defaultdict(int)
     seenTweets = set()
     for tweet in tweetData:
@@ -69,7 +68,7 @@ def find_award_array(tweetData):
             text = pos_check(nlp,text,['ADP','AUX','DET','CCONJ'],-1)
             text = pos_check(nlp,text,['ADP','AUX','DET'],1)
             text, firstNoun = get_first_noun(nlp,text)
-
+            
             if text == "best":
                 text = ""
 
@@ -83,48 +82,6 @@ def find_award_array(tweetData):
         # if it has at least 1 vote add it to the final array
         if frequency > 1:
             finalAwardsArray.append([ entity, frequency ])
-    return finalAwardsArray       
-
-
-        
-
-# def find_award_array(tweetData):
-#     # creates spacy model that can do a lot of fancy things
-#     langProcessor = spacy.load("en_core_web_sm")
-#     uniqueAwards = defaultdict(int)
-#     seenTweets = set()
-#     #sia = SentimentIntensityAnalyzer()
-#     # loop through all our tweets
-#     for tweet in tweetData:
-#         # get the text of the tweet
-#         text = tweet['text']
-#         # init an empty set to store tweets that we have seen and start with "[bB]est"
-#         # find all tweets that mention "best " or "Best " and we havent viewed yet
-#         bestSearch = re.search(r"\s*[Bb]est .*", text)
-#         if bestSearch != None and not text in seenTweets:
-#             # add to set of viewed tweets
-#             seenTweets.add(text)
-#             # find the index where the "[Bb]est" starts
-#             startIndex = int(bestSearch.span()[1])
-#             # extract the tweet from best to the end
-#             subTweet = truncate_punctuation(text[startIndex:])
-#             # load tweet into our classifier and remove trailing/leading white space
-#             classifiedText = langProcessor(subTweet.strip())
-#             # loop through the entities of the Doc
-#             # https://spacy.io/api/doc
-#             # ents: A list of strings, of the same length of words, to assign the token-based IOB tag. Defaults to None.
-#             for entity in classifiedText.ents:
-#                 # print(f"Classified Ent: \"{awards.text}\"")
-#                 # see if token has the word best and if so we increase its count by 1
-#                 if re.search(r"\s*[Bb]est .*", entity.text):
-#                     uniqueAwards[entity.text.strip()] += 1
-#     finalAwardsArray = []
-#     # loop through each award that we have found
-#     for entity, frequency in uniqueAwards.items():
-#         # if it has at least 1 vote add it to the final array
-#         if frequency > 1:
-#             finalAwardsArray.append([ entity, frequency ])
-#     return finalAwardsArray
 
 def clean_award_array(arr):
     """
