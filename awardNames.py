@@ -8,6 +8,12 @@ from nltk.corpus import wordnet
 from datetime import datetime
 from collections import defaultdict
 
+def truncate_punctuation(text):
+    puncSearch = re.search(r":|@|#",text)
+    if puncSearch != None:
+        text = text[:puncSearch.span()[0]]
+    return text
+
 def find_award_array(tweetData):
     # creates spacy model that can do a lot of fancy things
     langProcessor = spacy.load("en_core_web_sm")
@@ -27,7 +33,7 @@ def find_award_array(tweetData):
             # find the index where the "[Bb]est" starts
             startIndex = int(bestSearch.span()[0])
             # extract the tweet from best to the end
-            subTweet = text[startIndex:]
+            subTweet = truncate_punctuation(text[startIndex:])
             # load tweet into our classifier and remove trailing/leading white space
             classifiedText = langProcessor(subTweet.strip())
             # loop through the entities of the Doc
@@ -86,7 +92,7 @@ def clean_award_array(arr):
                 if currentTweet.similarity(comparedTweet) > 0.9:
                     # if we have not placed the tweet yet
                     if not placed:
-                        final_dict[entry[0]] = [entry[1] + tweets[1], [entry[0],tweets[0]]]
+                        final_dict[entry[0]] = [entry[1] + tweets[1], [(entry[0],entry[1]),(tweets[0],tweets[1])]]
                         # create entry for dict where 
                         # index = [award name, count of votes, [list of tweets]]
                         placed = True
@@ -94,7 +100,7 @@ def clean_award_array(arr):
                         # add the count of the tweet we are comparing to the index of the entry we just made
                         final_dict[entry[0]][0] += tweets[1]
                         # add the tweet text we are comparing to the list of tweets that are similar
-                        final_dict[entry[0]][1].append(tweets[0])
+                        final_dict[entry[0]][1].append((tweets[0],tweets[1]))
     
     # print out the final dict
     for name, elements in final_dict.items():
