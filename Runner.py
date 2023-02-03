@@ -55,6 +55,7 @@ class Runner:
                         award.SetPresenters(presenters[category])
         else:
             for award in self.awards:
+                # print(award)
                 # print("Not mocking award presenters")
                 award.SetPresenters(self.get_presenter_for_award(award))
 

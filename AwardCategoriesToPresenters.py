@@ -2,30 +2,58 @@ import re
 import csv
 import itertools
 from datetime import datetime
+from collections import defaultdict
 import spacy
 import numpy as np
+from aliases import award_aliases, standardize
+
+def wrap_regex(award_name):
+    return r"(\s*" + re.escape(standardize(award_name)) + r".*)"
+
+def build_iterative_regex(aliases):
+    regexes = []
+    for alias in aliases:
+        regexes.append(wrap_regex(alias))
+        regexes.append(r"|")
+    regexes.pop()
+    return ''.join(regexes)
+        
 
 def find_and_count_names_for_award(data,award_name):
     # loads name processor
-    langProcesor = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_md")
+    nlp.add_pipe("merge_entities")
     nameCountArray = []
+    nameCountDict = defaultdict(int)
+    properNounDict = defaultdict(int)
     tweetArray = []
+    aliases = award_aliases[award_name.award_category]
+    award_regex = build_iterative_regex(aliases)
+    print("")
+    print(award_name.award_category)
     # Iterates through tweets
     for tweet in data:
-        text = tweet['text']
+        text = standardize(tweet['text'].lower())
         # Checks if tweet is relation to a presenter and a specific award
-        award_regex = r"\s*" + re.escape(award_name.award_category) + r".*"
-        if re.search(r"\s*[Pp]resent.*", text) and re.search(award_regex, text) and not text in tweetArray:
+        ## re.search(r"\s*[Nn]omin.*", text) and
+        if re.search(award_regex, text) and not text in tweetArray:
             tweetArray.append(text)
-            print(text)
+            # print(text)
             addNames = []
-            classifiedText = langProcesor(text)
-            # adds name to list
-            for name in classifiedText.ents:
+            doc = nlp(text)
+
+            for token in doc:
+                if token.pos_ == "PROPN":
+                    # print(token, token.pos_)
+                    properNounDict[token.text] += 1
+
+            for name in doc.ents:
                 if name.label_ == "PERSON":
+                    # print(name.text)
                     addNames.append(name.text)
             # updates count if name exists or adds name if does not exist yet
             for name in addNames:
+                nameCountDict[name] += 1
                 exists = False
                 for entries in nameCountArray:
                     if entries[0] == name:
@@ -33,6 +61,16 @@ def find_and_count_names_for_award(data,award_name):
                         entries[1] = entries[1] + 1
                 if exists == False:
                     nameCountArray.append([name, 1])
+
+    for pm, count in list(properNounDict.items()):
+        if count <= 1:
+            del properNounDict[pm]
+
+    for name, count in list(nameCountDict.items()):
+        if count <= 1:
+            del nameCountDict[name]
+    print(properNounDict)
+    print(nameCountDict)
     return nameCountArray
 
 
