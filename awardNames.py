@@ -83,6 +83,11 @@ def find_award_array(tweetData):
         if frequency > 1:
             finalAwardsArray.append([ entity, frequency ])
 
+    u = dict(sorted(uniqueAwards.items(), key=lambda item: -item[1]))
+    for award in u:
+        if u[award] > 1:
+            print(award, u[award])
+
 def clean_award_array(arr):
     """
         Cleans our final award array by combining similar names
