@@ -36,8 +36,8 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     start_time = tweets_with_award_name[start]['timestamp_ms']
     end_time = tweets_with_award_name[end]['timestamp_ms']
 
-    print(f"The length of the tweets_with_award_name list is: {len(tweets_with_award_name)}")
-    print(f"The length of all tweets is: {len(tweets)}")
+    # print(f"The length of the tweets_with_award_name list is: {len(tweets_with_award_name)}")
+    # print(f"The length of all tweets is: {len(tweets)}")
 
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
     return [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
@@ -45,4 +45,4 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
 if __name__ == '__main__':
     tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'])
     # print(tweets_by_time)
-    print("The length of the tweets_by_time list is: ", len(tweets_by_time))
+    # print("The length of the tweets_by_time list is: ", len(tweets_by_time))
