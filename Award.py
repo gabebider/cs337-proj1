@@ -1,8 +1,8 @@
 import logging
-
+from AwardCategory import AwardCategory
 
 class Award:
-    def __init__(self, award_category):
+    def __init__(self, award_category:AwardCategory):
         self.award_category = award_category
         self.presenters = []
         self.winner = ""

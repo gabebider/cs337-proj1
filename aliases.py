@@ -1,5 +1,6 @@
 import json
 import re
+from utils import standardize
 
 award_aliases = {
     'best motion picture - drama': [
@@ -145,15 +146,6 @@ award_aliases = {
         'best supporting actor television',
     ]
 }
-'''
-removes small distincitions like '-', '/' vs 'or', and 'television' vs 'tv'
-removes links and retweet indicators, hashtags
-'''
-def standardize(text):
-    text = re.sub(r'(- )|(-)|(http[^\ ]*)|(rt[\ ]*)|(#[^\ ]*)|(@[^\ ]*)','',text)
-    text = re.sub(r'/',' or ',text)
-    text = re.sub(r'television','tv',text)
-    return text
 
 def counts_to_json(award_aliases):
     tweets = json.load(open('gg2013.json'))

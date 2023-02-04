@@ -5,10 +5,8 @@ from datetime import datetime
 from collections import defaultdict
 import spacy
 import numpy as np
-from aliases import award_aliases, standardize
-
-def wrap_regex(award_name):
-    return r"(\s*" + re.escape(standardize(award_name)) + r".*)"
+from aliases import award_aliases
+from utils import standardize, wrap_regex
 
 def build_iterative_regex(aliases):
     regexes = []
