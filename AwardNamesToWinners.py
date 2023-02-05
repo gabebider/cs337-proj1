@@ -180,9 +180,9 @@ def AwardNamesToWinners(tweets, awards: list[Award]):
         winner = max(award_winner_canidates[award], key=lambda x: (award_winner_canidates[award].count(x), len(x)))
 
         if len(award_winner_canidates[award]) == 0:
-            print(f"The winner of \"{award}\":\nnot found")
+            print(f"The winner of \"{award}\": \nnot found")
         else:
-            print(f"The winner of \"{award}\"\n{winner}")
+            print(f"The winner of \"{award}\": \n{winner}")
         print("")
         # update Award
         for award_obj in awards:
