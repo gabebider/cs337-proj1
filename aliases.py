@@ -20,24 +20,31 @@ award_aliases = {
         'best actor motion picture',
         'best actor motion picture drama',
     ],
-    'best motion picture - comedy or musical': [
+    'best motion picture - musical or comedy': [
+        'best motion picture - musical or comedy',
         'best motion picture - comedy or musical',
         'best picture comedy or musical',
+        'best picture musical or comedy',
         'best comedy or musical',
+        'best musical or comedy',
     ],
-    'best performance by an actress in a motion picture - comedy or musical': [
+    'best performance by an actress in a motion picture - musical or comedy': [
+        'best performance by an actress in a motion picture - musical or comedy',
         'best performance by an actress in a motion picture - comedy or musical',
         'best actress motion picture comedy or musical',
         'best actress comedy or musical',
-        'best actress in a comedy or musical',
-        'best actress in a motion picture - comedy or musical'
+        'best actress in a musical or comedy',
+        'best actress in a motion picture - comedy or musical',
+        'best actress in a motion picture - musical or comedy',
     ],
-    'best performance by an actor in a motion picture - comedy or musical': [
+    'best performance by an actor in a motion picture - musical or comedy': [
         'best performance by an actor in a motion picture - comedy or musical',
+        'best performance by an actor in a motion picture - musical or comedy',
         'best actor motion picture comedy or musical',
         'best actor in a motion picture - comedy or musical',
         'best actor comedy or musical',
-        'best actor in a comedy or musical',
+        'best actor musical or comedy',
+        'best actor in a musical or comedy',
     ],
     'best animated feature film': [
         'best animated feature film',
@@ -146,6 +153,9 @@ award_aliases = {
         'best supporting actor television',
     ]
 }
+
+def get_aliases():
+    return award_aliases
 
 def counts_to_json(award_aliases):
     tweets = json.load(open('gg2013.json'))

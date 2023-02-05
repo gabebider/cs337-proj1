@@ -9,7 +9,7 @@ class Award:
         self.nominees = []
 
     def __str__(self):
-        return f"Award: {self.award_category}\n Presenters: {self.presenters}\n Nominees: {self.nominees}\n Winner: {self.winner}"
+        return f"Award: {self.award_category.award_name}\n Presenters: {self.presenters}\n Nominees: {self.nominees}\n Winner: {self.winner}"
 
     def SetPresenters(self, presenters):
         self.presenters = presenters
