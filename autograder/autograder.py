@@ -7,7 +7,6 @@ import json
 import difflib
 from pprint import pprint
 from collections import Counter
-
 from nltk.metrics import edit_distance
 import gg_api
 

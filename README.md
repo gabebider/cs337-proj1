@@ -1,4 +1,5 @@
-# this is impossible wtf
+# CS 337 - Project 1
+### By: Gabe Bider, Spencer Rothfleicsch, Eli Barlow, and Isaac Miller
 
 To Run:
 
@@ -6,27 +7,28 @@ Install the requirements:
 
 ```bash
 pip install -r requirements.txt
-python -m spacy download en_core_web_md
-python -m spacy download en_core_web_sm
+```
+or
+```bash
+pip3 install -r requirements.txt
 ```
 
-To Run the autograder(Might be broken):
+To Configure the mocks edit the .env file
+By default the mocks are set to the following:
 
 ```bash
-python autograder.py
+MOCK_AWARD_CATEGORIES=False
+MOCK_AWARD_PRESENTERS=False
+MOCK_AWARD_WINNERS=False
+MOCK_AWARD_NOMINEES=False
+MOCK_HOSTS=False
 ```
+Turning these on will enable the mocks and will use the data from gg_apifake.py
 
 To Run the program:
+Supplying no arguments will run the program with the default values
+You need to either supply --output_results or --autograde in order to get results
 
 ```bash
-python main.py
+python Runner.py --output_results --autograde --year 2013
 ```
-
-## Plan
-
-- [ ] winner, given award names and nominees
-- [ ] winners, given award names and nominees
-- [ ] nominees, given award names
-- [ ] award names, given ceremony
-- [ ] presenter, given award names
-- [ ] host, given ceremony

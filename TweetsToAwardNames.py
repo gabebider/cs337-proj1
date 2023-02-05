@@ -10,7 +10,7 @@ from collections import defaultdict
 
 def find_award_array(tweetData):
     # creates spacy model that can do a lot of fancy things
-    langProcessor = spacy.load("en_core_web_sm")
+    langProcessor = spacy.load("en_core_web_md")
     uniqueAwards = defaultdict(int)
     #sia = SentimentIntensityAnalyzer()
     # loop through all our tweets
@@ -102,7 +102,7 @@ def clean_award_array(arr):
     return final_dict
 
 def test():
-    # langProcesor = spacy.load("en_core_web_sm")
+    # langProcesor = spacy.load("en_core_web_md")
     # str1 = "Best Motion Picture for Comedy/Musical"
     # str2 = "Best Motion Picture - Musical or Comedy"
     # num = edit_distance(str1, str2)

@@ -22,3 +22,15 @@ class Award:
 
     def print_for_autograder(self):
         logging.info(self.name)
+
+    def __str__(self):
+        result = f"Award Name: {self.award_category}"
+        if self.presenters:
+            result += f"\nPresenters: {self.presenters}"
+        if self.nominees:
+            result += f"\nNominees:"
+            for nominee in self.nominees:
+                result += f"\n\t{nominee}"
+        if self.winner:
+            result += f"\nWinner: {self.winner}"
+        return result
