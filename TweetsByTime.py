@@ -26,6 +26,7 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     for tweet in tweets:
         text = standardize(tweet['text'].lower())
         for alias in award_name_aliases:
+            alias = standardize(alias)
             if alias in text:
                 tweets_with_award_name.append(tweet)
                 break
@@ -48,24 +49,24 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     return [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
 
 if __name__ == '__main__':
-    # tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'])
+    tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'])
     # print(tweets_by_time)
     # print("The length of the tweets_by_time list is: ", len(tweets_by_time))
     
     # some code to try to find the optimal range
-    floats_list = np.arange(0, 1.00, 0.02).tolist()
-    length_of_tweets = []
-    for range in floats_list:
-        print(f"Finding tweets for range: {range}")
-        tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'], range)
-        length_of_tweets.append( (range, len(tweets_by_time)) )
+    # floats_list = np.arange(0, 1.00, 0.02).tolist()
+    # length_of_tweets = []
+    # for range in floats_list:
+    #     print(f"Finding tweets for range: {range}")
+    #     tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'], range)
+    #     length_of_tweets.append( (range, len(tweets_by_time)) )
 
-    x, y = zip(*length_of_tweets)
-    plt.plot(x, y)
-    plt.xlabel('Range')
-    plt.ylabel('Len of list returned')
-    plt.title('Tweets returned vs range')
+    # x, y = zip(*length_of_tweets)
+    # plt.plot(x, y)
+    # plt.xlabel('Range')
+    # plt.ylabel('Len of list returned')
+    # plt.title('Tweets returned vs range')
 
-    # Showing the plot
-    plt.show()
+    # # Showing the plot
+    # plt.show()
 
