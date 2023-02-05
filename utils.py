@@ -8,41 +8,31 @@ def standardize(text):
     ## (@[^\ ]*)|
     ## |(rt\ @[^\ ]*)
     ## |(#[^\ ]*)
-    text = re.sub(r'(-)|(in a)|(golden globe[^\ ]*)|(golden[^\ ]*)|(,)|(:)','',text)
-    text = re.sub(r'/',' or ',text)
-    text = re.sub(r'television','tv',text)
+    ## (-)|
+    text = re.sub(r'(golden globe[^\ ]*)|(golden[^\ ]*)|(:)|(#)','',text)
+    text = text.replace("television","tv")
+    text = text.replace("tv series","series")
+    text = text.replace("mini ","mini")
+    text = text.replace("/"," or ")
     text = re.sub(' +',' ',text).strip()
     return text
 
 # removes all keys with a value less than min_count, then sorts the dict alphabetically if alpha = True, decreasing by value if alpha = False
-def filter_and_sort_dict(dictionary,minCount=0,alpha=False):
-    d = {k: v for k,v in dictionary.items() if v >= minCount}
-    return dict(sorted(d.items(), key=lambda x: -x[1])) if not alpha else dict(sorted(d.items(), key=lambda x: x[0]))
+def filter_dict(d,minCount=0):
+    return {k: v for k,v in d.items() if v >= minCount}
 
+def sort_dict_decreasing_count(d):
+    return dict(sorted(d.items(), key=lambda x: -x.count))
+
+def sort_dict_alpha(d):
+    return dict(sorted(d.items(), key=lambda x: x[0]))
 # wrap text in regex
 def wrap_regex(text):
     return r"(\s*" + re.escape(standardize(text)) + r".*)"
 
-def dict_to_json(dictionary,jsonName):
+def dict_to_json(dictionary,jsonName,award=False):
+    if award:
+        dictionary = {k: (v.count, list(v.aliases)) for k,v in dictionary.items()}
     jsonob = json.dumps(dictionary, indent = 4)
-    with open(f"{jsonName}.json",'w') as outfile:
+    with open(f"test_files/{jsonName}.json",'w') as outfile:
         outfile.write(jsonob)
-
-def combine_permutations(d):
-    word_count = {key: len(key.split()) for key in d.keys()}
-    keys = list(d.keys())
-    processed_keys = set()
-    result = {}
-    for key in keys:
-        if key in processed_keys:
-            continue
-        key_permutations = [(k, d[k]) for k in keys if len(k.split()) == len(key.split()) and set(k.split()) == set(key.split())]
-        if len(key_permutations) > 1:
-            key_permutations.sort(key=lambda x: x[0])
-            primary_key = max(key_permutations, key=lambda x: len(x[0].split()))[0]
-            result[primary_key] = sum([v for k, v in key_permutations])
-            processed_keys.update([k for k, v in key_permutations])
-        else:
-            result[key] = d[key]
-            processed_keys.add(key)
-    return result

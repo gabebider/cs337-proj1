@@ -13,7 +13,7 @@ OFFICIAL_AWARDS_1819 = ['best motion picture - drama', 'best motion picture - mu
 def get_hosts(year):
     '''Hosts is a list of one or more strings. Do NOT change the name
     of this function or what it returns.'''
-    runner = Runner.getInstance()
+    runner = Runner.getInstance(year)
     runner.get_hosts(year)
     hosts = runner.export_hosts()
 
@@ -23,7 +23,7 @@ def get_hosts(year):
 def get_awards(year):
     '''Awards is a list of strings. Do NOT change the name
     of this function or what it returns.'''
-    runner = Runner.getInstance()
+    runner = Runner.getInstance(year)
     runner.get_award_categories(year)
     awards = runner.export_award_categories()
 
@@ -34,7 +34,7 @@ def get_nominees(year):
     '''Nominees is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change
     the name of this function or what it returns.'''
-    runner = Runner.getInstance()
+    runner = Runner.getInstance(year)
     runner.get_award_nominees(year)
     nominees = runner.export_nominees()
 
@@ -46,7 +46,7 @@ def get_winner(year):
     names as keys, and each entry containing a single string.
     Do NOT change the name of this function or what it returns.'''
     # Your code here
-    runner = Runner.getInstance()
+    runner = Runner.getInstance(year)
     runner.get_award_winners(year)
     winners = runner.export_winners()
     return winners
@@ -57,11 +57,15 @@ def get_presenters(year):
     names as keys, and each entry a list of strings. Do NOT change the
     name of this function or what it returns.'''
     # Your code here
-    runner = Runner.getInstance()
+    runner = Runner.getInstance(year)
     runner.get_all_award_presenters(year)
     presenters = runner.export_presenters()
     return presenters
 
+def get_award_objects(year):
+    runner = Runner.getInstance(year)
+    
+    return runner.get_awards(year)
 
 def pre_ceremony():
     '''This function loads/fetches/processes any data your program
@@ -80,7 +84,7 @@ def main():
     run when grading. Do NOT change the name of this function or
     what it returns.'''
     # Your code here
-    runner = Runner()
+    runner = Runner.getInstance()
     # results = runner.export_results()
 
     return
