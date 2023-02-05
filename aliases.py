@@ -28,7 +28,7 @@ award_aliases = {
         'best comedy or musical',
         'best musical or comedy',
     ],
-    'best performance by an actress in a motion picture - musical or comedy': [
+    'best performance by an actress in a motion picture - comedy or musical': [
         'best performance by an actress in a motion picture - musical or comedy',
         'best performance by an actress in a motion picture - comedy or musical',
         'best actress motion picture comedy or musical',
@@ -37,7 +37,7 @@ award_aliases = {
         'best actress in a motion picture - comedy or musical',
         'best actress in a motion picture - musical or comedy',
     ],
-    'best performance by an actor in a motion picture - musical or comedy': [
+    'best performance by an actor in a motion picture - comedy or musical': [
         'best performance by an actor in a motion picture - comedy or musical',
         'best performance by an actor in a motion picture - musical or comedy',
         'best actor motion picture comedy or musical',
