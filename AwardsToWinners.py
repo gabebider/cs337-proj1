@@ -8,43 +8,7 @@ import spacy
 import itertools
 import re
 
-# gets the nominees from the csv file, for testing purposes
-def getNominees():
-    # Open the CSV file and read the data into a list
-    with open("golden_globe_awards.csv", "r", encoding='utf-8') as f:
-        reader = csv.reader(f)
-        data = list(reader)
-
-    # Filter the data to only include films from 2013
-    filtered_data = [row for row in data if row[1] == "2013"]
-
-    # Create a dictionary to store the award information
-    awards = {}
-
-    # Loop through the filtered data and add the award information to the dictionary
-    for row in filtered_data:
-        category = row[3].lower()
-        nominee = row[4].lower().strip()
-        film = row[5].lower().replace("\t", "").strip()
-        win = row[6]
-
-        # Check if the award already exists in the dictionary
-        if category not in awards:
-            # If it doesn't, create a new entry for the award
-            awards[category] = {"winner": None, "nominees": []}
-
-        # Add the nominee information to the dictionary
-        awards[category]["nominees"].append(
-            {"nominee": nominee, "film": film})
-
-        # If the nominee won, update the winner property
-        if win == "True":
-            awards[category]["winner"] = {"nominee": nominee, "film": film}
-
-    # print(awards)
-    return awards
-
-# returns list of awards, used for testing purposes
+# for testing purposes
 def getAwards():
     awards = []
     addedAwards = []
@@ -59,31 +23,43 @@ def getAwards():
             awards.append(awardStruct)
     return awards
 
-# finds the nominees given a list of awards
-def findNominees(awards, tweets):
+# finds the winner given a list of awards
+def findWinner(awards, tweets):
     for index in range(len(awards)):
         aliases = awards[index].award_category.aliases
         if re.search(r"\b(actor|actress|director|score)\b", aliases[0]):
-            print(awards[index].__str__())
-            timedTweets = Tweets_By_Time(tweets, aliases, 0.6)
-            print(r"\b(" + "|".join(aliases) + r")\b")
-            name_array = find_full_names(find_and_count_names(timedTweets, aliases))
-            print(name_array)
+            #timedTweets = Tweets_By_Time(tweets, aliases, 0.1)
+            name_array = find_full_names(find_and_count_names(tweets, aliases))
+            index2 = -1
+            count = 0
+            curr = -1
+            for names in name_array:
+                curr = curr + 1
+                if names[1] > count:
+                    index2 = curr
+                    count = names[1]
+            if index2 == -1:
+                index2 = 0
+                name_array.append(["no winner found", 0])
+            awards[index].winner = name_array[index2][0]
         else:
-            print("movie names")
-            print(awards[index].__str__())
+            awards[index].winner = "movie placeholder"
+    for a in awards:
+        print(a.__str__())
+    return awards
 
 def find_and_count_names(data, aliases):
     # loads name processor
     langProcesor = spacy.load("en_core_web_sm")
+    regex = r'\b(wins|win|winner|winning|won)\b.*\b({})\b|\b({})\b.*\b(wins|win|winner|winning|won)\b'.format('|'.join(aliases),'|'.join(aliases))
+    #regex = r"\b(" + "|".join(aliases) + r")\b"
     nameCountArray = []
     tweetArray = []
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
         # Checks if tweet is relation to a host or hostess
-        if  not text in tweetArray and re.search(r"\b(" + "|".join(aliases) + "|nominee|nominees|nominated|nominate|nomination" + r")\b", text.lower()):
-            print(text)
+        if  not text in tweetArray and re.search(regex, text.lower()):
             tweetArray.append(text)
             addNames = []
             classifiedText = langProcesor(text)
@@ -101,7 +77,6 @@ def find_and_count_names(data, aliases):
                 if exists == False:
                     nameCountArray.append([name, 1])
     return nameCountArray
-
 
 def find_full_names(nameCountArray):
     # scraper.findActors()
@@ -131,4 +106,4 @@ def find_full_names(nameCountArray):
     finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
     return finalNamesArray
 
-findNominees(getAwards(), json.load(open('gg2013.json')))
+findWinner(getAwards(), json.load(open('gg2013.json')))
