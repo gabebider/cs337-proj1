@@ -63,15 +63,20 @@ def getAwards():
 def findNominees(awards, tweets):
     for index in range(len(awards)):
         aliases = awards[index].award_category.aliases
+        # check if the award is a movie or a person
         if re.search(r"\b(actor|actress|director|score)\b", aliases[0]):
-            print(awards[index].__str__())
-            timedTweets = Tweets_By_Time(tweets, aliases, 0.6)
-            print(r"\b(" + "|".join(aliases) + r")\b")
+            # print(awards[index].__str__())
+            timedTweets = Tweets_By_Time(tweets, aliases, 0.30)
+            # print(r"\b(" + "|".join(aliases) + r")\b")
             name_array = find_full_names(find_and_count_names(timedTweets, aliases))
+            name_array = sorted(name_array, key=lambda x: x[1])
+            print(awards[index].award_category.award_name)
             print(name_array)
+            print("")
         else:
             print("movie names")
             print(awards[index].__str__())
+            print("")
 
 def find_and_count_names(data, aliases):
     # loads name processor
@@ -83,7 +88,7 @@ def find_and_count_names(data, aliases):
         text = tweet['text']
         # Checks if tweet is relation to a host or hostess
         if  not text in tweetArray and re.search(r"\b(" + "|".join(aliases) + "|nominee|nominees|nominated|nominate|nomination" + r")\b", text.lower()):
-            print(text)
+            # print(text)
             tweetArray.append(text)
             addNames = []
             classifiedText = langProcesor(text)
