@@ -1,398 +1,107 @@
 
-best actor 
-    best: ADJ
-    actor: NOUN
-best actor drama 
-    best: ADJ
-    actor: NOUN
-    drama: NOUN
-best actor for tv drama 
-    best: ADJ
-    actor: NOUN
-    for: ADP
-    tv: NOUN
-    drama: NOUN
-best actor in a comedy 
-    best: ADJ
-    actor: NOUN
-    in: ADP
-    a: DET
-    comedy: NOUN
-best actor in a drama 
-    best: ADJ
-    actor: NOUN
-    in: ADP
-    a: DET
-    drama: NOUN
-best actor in a miniseries or tv movie 
-    best: ADJ
-    actor: NOUN
-    in: ADP
-    a: DET
-    miniseries: NOUN
-    or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best actor in a motion picture drama 
-    best: ADJ
-    actor: NOUN
-    in: ADP
-    a: DET
-    motion: NOUN
-    picture: NOUN
-    drama: NOUN
+best actor comedy 
+    actor comedy: NOUN
+best actor drama film 
+    actor drama film: NOUN
 best actor in comedy or musical 
-    best: ADJ
     actor: NOUN
     in: ADP
     comedy: NOUN
     or: CCONJ
     musical: ADJ
-best actor, drama for film 
-    best: ADJ
-    actor: NOUN
-    ,: PUNCT
-    drama: NOUN
-    for: ADP
-    film: NOUN
-best actress 
-    best: ADJ
-    actress: NOUN
+best actor miniseries or tv movie 
+    actor miniseries: NOUN
+    or: CCONJ
+    tv movie: NOUN
+best actor motion picture drama 
+    actor motion picture drama: NOUN
+best actor tv drama 
+    actor tv drama: NOUN
+best actress comedy or musical 
+    actress comedy: NOUN
+    or: CCONJ
+    musical: ADJ
 best actress drama 
-    best: ADJ
-    actress: NOUN
-    drama: NOUN
-best actress for comedy or musical 
-    best: ADJ
-    actress: NOUN
-    for: ADP
-    comedy: NOUN
+    actress drama: NOUN
+best actress miniseries or tv movie 
+    actress miniseries: NOUN
+    or: CCONJ
+    tv movie: NOUN
+best actress motion picture drama 
+    actress motion picture drama: NOUN
+best actress tv comedy or musical 
+    actress tv comedy: NOUN
     or: CCONJ
     musical: ADJ
-best actress for motion picture- drama- 
-    best: ADJ
-    actress: NOUN
-    for: ADP
-    motion: NOUN
-    picture-: VERB
-    drama-: NOUN
-best actress in a comedy 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    comedy: NOUN
-best actress in a mini series or tv movie 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    mini: ADJ
-    series: NOUN
-    or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best actress in a mini-series or tv movie 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    mini: NOUN
-    -: NOUN
-    series: NOUN
-    or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best actress in a miniseries or tv movie 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    miniseries: NOUN
-    or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best actress in a motion picture drama 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    motion: NOUN
-    picture: NOUN
-    drama: NOUN
-best actress in a tv comedy or musical 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    tv: NOUN
-    comedy: NOUN
-    or: CCONJ
-    musical: ADJ
-best actress in a tv drama 
-    best: ADJ
-    actress: NOUN
-    in: ADP
-    a: DET
-    tv: NOUN
-    drama: NOUN
+best actress tv drama 
+    actress tv drama: NOUN
 best animated feature film 
-    best: ADV
-    animated: VERB
-    feature: NOUN
-    film: NOUN
+    animated feature film: NOUN
 best animated film 
-    best: ADV
-    animated: VERB
-    film: NOUN
+    animated film: NOUN
 best comedy or musical 
-    best: ADJ
     comedy: NOUN
     or: CCONJ
     musical: ADJ
-best director 
-    best: ADJ
-    director: NOUN
-best director - motion picture 
-    best: ADJ
-    director: NOUN
-    -: PUNCT
-    motion: NOUN
-    picture: NOUN
-best director for motion picture 
-    best: ADJ
-    director: NOUN
-    for: ADP
-    motion: NOUN
-    picture: NOUN
-best drama 
-    best: ADJ
-    drama: NOUN
+best director motion picture 
+    director motion picture: NOUN
+best drama series 
+    drama series: NOUN
 best foreign film 
-    best: ADJ
-    foreign: ADJ
-    film: NOUN
+    foreign film: NOUN
 best foreign language film 
-    best: ADJ
-    foreign: ADJ
-    language: NOUN
-    film: NOUN
-best mini series or tv movie 
-    best: ADJ
-    mini: ADJ
-    series: NOUN
-    or: CCONJ
-    tv: NOUN
-    movie: NOUN
+    foreign language film: NOUN
 best miniseries or tv movie 
-    best: ADJ
     miniseries: NOUN
     or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best motion picture 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-best motion picture - comedy or musical 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    -: PUNCT
-    comedy: NOUN
-    or: CCONJ
-    musical: ADJ
-best motion picture - drama 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    -: PUNCT
-    drama: NOUN
+    tv movie: NOUN
 best motion picture comedy or musical 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    comedy: NOUN
+    motion picture comedy: NOUN
     or: CCONJ
     musical: ADJ
 best motion picture drama 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    drama: NOUN
+    motion picture drama: NOUN
 best motion picture or comedy or musical 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
+    motion picture: NOUN
     or: CCONJ
     comedy: NOUN
     or: CCONJ
     musical: ADJ
 best motion picture screenplay 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    screenplay: NOUN
-best motion picture, comedy or musical 
-    best: ADJ
-    motion: NOUN
-    picture: NOUN
-    ,: PUNCT
-    comedy: NOUN
-    or: CCONJ
-    musical: ADJ
+    motion picture screenplay: NOUN
 best original score 
-    best: ADJ
-    original: ADJ
-    score: NOUN
-best original song 
-    best: ADJ
-    original: ADJ
-    song: NOUN
-best original song at the 
-    best: ADJ
-    original: ADJ
-    song: NOUN
-    at: ADP
-    the: PRON
-best original song in a motion picture 
-    best: ADJ
-    original: ADJ
-    song: NOUN
-    in: ADP
-    a: DET
-    motion: NOUN
-    picture: NOUN
+    original score: NOUN
 best original song motion picture 
-    best: ADJ
-    original: ADJ
-    song: NOUN
-    motion: NOUN
-    picture: NOUN
-best picture - drama 
-    best: ADJ
-    picture: NOUN
-    -: PUNCT
-    drama: NOUN
-best screenplay 
-    best: ADJ
+    original song motion picture: NOUN
+best screenplay motion picture 
     screenplay: VERB
-best screenplay - motion picture 
-    best: ADJ
-    screenplay: VERB
-    -: PUNCT
-    motion: NOUN
-    picture: NOUN
-best screenplay, motion picture 
-    best: ADJ
-    screenplay: NOUN
-    ,: PUNCT
-    motion: NOUN
-    picture: NOUN
-best supporting actor 
-    best: ADV
-    supporting: VERB
-    actor: NOUN
-best supporting actor in a motion picture 
-    best: ADV
-    supporting: VERB
-    actor: NOUN
-    in: ADP
-    a: DET
-    motion: NOUN
-    picture: NOUN
+    motion picture: NOUN
+best series drama 
+    series drama: NOUN
 best supporting actor in tv 
-    best: ADV
     supporting: VERB
     actor: NOUN
     in: ADP
     tv: NOUN
-best supporting actor, motion picture 
-    best: ADV
+best supporting actor motion picture 
     supporting: VERB
-    actor: NOUN
-    ,: PUNCT
-    motion: NOUN
-    picture: NOUN
-best supporting actress 
-    best: ADV
-    supporting: VERB
-    actress: NOUN
-best supporting actress in a motion picture 
-    best: ADV
-    supporting: VERB
-    actress: NOUN
-    in: ADP
-    a: DET
-    motion: NOUN
-    picture: NOUN
-best supporting actress in a tv movie, series, or miniseries 
-    best: ADV
-    supporting: VERB
-    actress: NOUN
-    in: ADP
-    a: DET
-    tv: NOUN
-    movie: NOUN
-    ,: PUNCT
-    series: NOUN
-    ,: PUNCT
-    or: CCONJ
-    miniseries: NOUN
-best supporting actress in a tv series 
-    best: ADV
-    supporting: VERB
-    actress: NOUN
-    in: ADP
-    a: DET
-    tv: NOUN
-    series: NOUN
+    actor motion picture: NOUN
 best supporting actress motion picture 
-    best: ADV
     supporting: VERB
-    actress: NOUN
-    motion: NOUN
-    picture: NOUN
-best supporting actress tv series, miniseries, or tv movie 
-    best: ADV
+    actress motion picture: NOUN
+best supporting actress series miniseries or tv movie 
     supporting: VERB
-    actress: NOUN
-    tv: PROPN
-    series: PROPN
-    ,: PUNCT
-    miniseries: NOUN
-    ,: PUNCT
+    actress series miniseries: NOUN
     or: CCONJ
-    tv: NOUN
-    movie: NOUN
-best supporting actress, tv 
-    best: ADV
+    tv movie: NOUN
+best supporting actress tv movie series or miniseries 
     supporting: VERB
-    actress: NOUN
-    ,: PUNCT
-    tv: NOUN
+    actress tv movie series: NOUN
+    or: CCONJ
+    miniseries: NOUN
 best tv comedy or musical 
-    best: ADJ
-    tv: NOUN
-    comedy: NOUN
+    tv comedy: NOUN
     or: CCONJ
     musical: ADJ
 best tv drama 
-    best: ADJ
-    tv: NOUN
-    drama: NOUN
-best tv series 
-    best: ADJ
-    tv: NOUN
-    series: NOUN
-best tv series - drama 
-    best: ADJ
-    tv: NOUN
-    series: NOUN
-    -: PUNCT
-    drama: NOUN
-best tv series drama 
-    best: ADJ
-    tv: NOUN
-    series: NOUN
-    drama: NOUN
+    tv drama: NOUN

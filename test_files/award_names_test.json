@@ -1,848 +1,191 @@
 {
-    "best actor": [
-        787,
-        [
-            "s",
-            " ",
-            "e",
-            "b",
-            "a",
-            "o",
-            "c",
-            "t",
-            "r"
-        ]
-    ],
-    "best actor comedy": [
-        31,
-        [
-            "e",
-            "b",
-            "i",
-            "t",
-            "y",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m"
-        ]
-    ],
     "best actor drama film": [
-        71,
+        10,
         [
-            ",",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "l",
-            "f",
-            "o",
-            "c",
-            "r",
-            "m"
+            "best actor, drama for film",
+            "best actor drama film"
         ]
     ],
     "best actor in comedy or musical": [
-        7,
+        38,
         [
-            "i",
-            "y",
-            "d",
-            " ",
-            "n",
-            "o",
-            "m",
-            "u",
-            "e",
-            "b",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
+            "best actor in comedy or musical",
+            "best actor comedy",
+            "best actor in a comedy"
         ]
     ],
     "best actor miniseries or tv movie": [
         12,
         [
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m"
+            "best actor in a miniseries or tv movie",
+            "best actor miniseries or tv movie"
         ]
     ],
     "best actor motion picture drama": [
         29,
         [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best actor in a motion picture drama",
+            "best picture - drama",
+            "best actor drama",
+            "best actor motion picture drama",
+            "best motion picture drama",
+            "best actor in a drama",
+            "best motion picture - drama",
+            "best actor, drama"
         ]
     ],
     "best actor tv drama": [
         5,
         [
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "f",
-            "o",
-            "c",
-            "r",
-            "m"
-        ]
-    ],
-    "best actress": [
-        678,
-        [
-            "s",
-            " ",
-            "e",
-            "b",
-            "a",
-            "c",
-            "t",
-            "r"
-        ]
-    ],
-    "best actress comedy or musical": [
-        68,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "y",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "l",
-            "f",
-            "o",
-            "c",
-            "r",
-            "m"
-        ]
-    ],
-    "best actress drama": [
-        35,
-        [
-            "e",
-            "b",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "c",
-            "r",
-            "m"
-        ]
-    ],
-    "best actress mini series or tv movie": [
-        6,
-        [
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m"
-        ]
-    ],
-    "best actress miniseries or tv movie": [
-        27,
-        [
-            "e",
-            "b",
-            "v",
-            "i",
-            "-",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m"
+            "best actor tv drama",
+            "best actor for tv drama"
         ]
     ],
     "best actress motion picture drama": [
         20,
         [
-            "u",
-            "e",
-            "b",
-            "i",
-            "-",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "f",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best actress motion picture drama",
+            "best actress drama",
+            "best actress in a motion picture drama",
+            "best actress for motion picture- drama-"
         ]
     ],
     "best actress tv comedy or musical": [
-        31,
+        111,
         [
-            "i",
-            "y",
-            "d",
-            " ",
-            "n",
-            "o",
-            "m",
-            "u",
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
+            "best actress in a tv comedy",
+            "best actress for comedy or musical",
+            "best actress in a comedy",
+            "best actress tv comedy or musical",
+            "best actress in a tv comedy or musical",
+            "best actress comedy",
+            "best actress comedy or musical",
+            "best tv comedy or musical",
+            "best actress tv comedy"
         ]
     ],
     "best actress tv drama": [
         15,
         [
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "c",
-            "r",
-            "m"
+            "best actress in a tv drama",
+            "best actress tv drama"
         ]
     ],
     "best animated feature film": [
-        147,
+        218,
         [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "l",
-            "f",
-            "r",
-            "m"
-        ]
-    ],
-    "best animated film": [
-        71,
-        [
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "l",
-            "f",
-            "m"
-        ]
-    ],
-    "best comedy or musical": [
-        64,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "y",
-            "s",
-            "d",
-            " ",
-            "a",
-            "l",
-            "o",
-            "c",
-            "r",
-            "m"
+            "best animated film",
+            "best animated feature",
+            "best animated feature film"
         ]
     ],
     "best director motion picture": [
         569,
         [
-            "u",
-            "e",
-            "b",
-            "i",
-            "-",
-            "t",
-            "s",
-            "d",
-            " ",
-            "n",
-            "f",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best director motion picture",
+            "best director - motion picture",
+            "best director",
+            "best director for motion picture"
         ]
     ],
-    "best drama": [
-        166,
+    "best foreign language film": [
+        139,
         [
-            "s",
-            "d",
-            " ",
-            "e",
-            "b",
-            "a",
-            "t",
-            "r",
-            "m"
-        ]
-    ],
-    "best eign film": [
-        91,
-        [
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "n",
-            "l",
-            "g",
-            "f",
-            "o",
-            "r",
-            "m"
-        ]
-    ],
-    "best eign language film": [
-        48,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "l",
-            "g",
-            "f",
-            "o",
-            "r",
-            "m"
-        ]
-    ],
-    "best mini series or tv movie": [
-        10,
-        [
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "n",
-            "o",
-            "r",
-            "m"
-        ]
-    ],
-    "best miniseries or tv movie": [
-        15,
-        [
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "n",
-            "o",
-            "r",
-            "m"
-        ]
-    ],
-    "best motion picture": [
-        171,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
-        ]
-    ],
-    "best motion picture comedy or musical": [
-        107,
-        [
-            ",",
-            "i",
-            "y",
-            "d",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "-",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
-        ]
-    ],
-    "best motion picture drama": [
-        168,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "-",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "n",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best foreign film",
+            "best foreign language film"
         ]
     ],
     "best motion picture or comedy or musical": [
-        3,
+        110,
         [
-            "i",
-            "y",
-            "d",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
-        ]
-    ],
-    "best motion picture screenplay": [
-        7,
-        [
-            "i",
-            "y",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
+            "best motion picture, comedy or musical",
+            "best motion picture or comedy or musical",
+            "best motion picture comedy or musical",
+            "best motion picture - comedy or musical",
+            "best comedy or musical"
         ]
     ],
     "best original score": [
         142,
         [
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "l",
-            "g",
-            "o",
-            "c",
-            "r"
+            "best original score"
         ]
     ],
     "best original song motion picture": [
         384,
         [
-            "i",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "h",
-            "t",
-            "s",
-            "a",
-            "l",
-            "g",
-            "c",
-            "r"
-        ]
-    ],
-    "best picture drama": [
-        356,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "-",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best motion picture",
+            "best picture",
+            "best original song in a motion picture",
+            "best original song motion picture",
+            "best original song",
+            "best original song at the"
         ]
     ],
     "best screenplay motion picture": [
-        270,
+        277,
         [
-            ",",
-            "i",
-            "y",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "-",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
-        ]
-    ],
-    "best supporting actor": [
-        279,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "p"
+            "best screenplay - motion picture",
+            "best screenplay",
+            "best screenplay motion picture",
+            "best motion picture screenplay",
+            "best screenplay, motion picture"
         ]
     ],
     "best supporting actor in tv": [
-        7,
+        5,
         [
-            "u",
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "p"
+            "best supporting actor in tv"
         ]
     ],
     "best supporting actor motion picture": [
         61,
         [
-            "u",
-            ",",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
-        ]
-    ],
-    "best supporting actress": [
-        246,
-        [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "p"
+            "best supporting actor in a motion picture",
+            "best actor",
+            "best supporting actor motion picture",
+            "best supporting actor",
+            "best supporting actor, motion picture"
         ]
     ],
     "best supporting actress motion picture": [
         125,
         [
-            "u",
-            "e",
-            "b",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "m",
-            "p"
+            "best supporting actress in a motion picture",
+            "best actress",
+            "best supporting actress",
+            "best supporting actress motion picture"
         ]
     ],
-    "best supporting actress tv": [
-        13,
+    "best supporting actress tv movie tv series or miniseries": [
+        86,
         [
-            "u",
-            ",",
-            "e",
-            "b",
-            "v",
-            "i",
-            "t",
-            "s",
-            " ",
-            "a",
-            "n",
-            "g",
-            "o",
-            "c",
-            "r",
-            "p"
-        ]
-    ],
-    "best supporting actress tv movie series or miniseries": [
-        18,
-        [
-            ",",
-            "i",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "a",
-            "g",
-            "c",
-            "r"
-        ]
-    ],
-    "best supporting actress tv series miniseries or tv movie": [
-        14,
-        [
-            ",",
-            "i",
-            " ",
-            "n",
-            "o",
-            "m",
-            "p",
-            "u",
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "a",
-            "g",
-            "c",
-            "r"
-        ]
-    ],
-    "best tv comedy or musical": [
-        12,
-        [
-            "i",
-            "y",
-            "d",
-            " ",
-            "o",
-            "m",
-            "u",
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "a",
-            "l",
-            "c",
-            "r"
-        ]
-    ],
-    "best tv drama": [
-        56,
-        [
-            "e",
-            "b",
-            "v",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "r",
-            "m"
+            "best miniseries or tv movie",
+            "best supporting actress series, miniseries, or tv movie",
+            "best supporting actress in a series",
+            "best actress in a miniseries or tv movie",
+            "best actress in a mini-series or tv movie",
+            "best supporting actress tv movie tv series or miniseries",
+            "best supporting actress tv series miniseries or tv movie",
+            "best supporting actress in a tv movie, series, or miniseries",
+            "best supporting actress tv",
+            "best actress miniseries or tv movie",
+            "best supporting actress, tv",
+            "best supporting actress tv series"
         ]
     ],
     "best tv series drama": [
-        265,
+        103,
         [
-            "e",
-            "b",
-            "v",
-            "i",
-            "-",
-            "t",
-            "s",
-            "d",
-            " ",
-            "a",
-            "r",
-            "m"
+            "best series",
+            "best tv drama",
+            "best tv series drama",
+            "best tv series",
+            "best series - drama",
+            "best drama",
+            "best drama series",
+            "best drama tv series",
+            "best series drama"
         ]
     ]
 }

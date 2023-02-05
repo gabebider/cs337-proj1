@@ -10,8 +10,10 @@ def standardize(text):
     ## |(#[^\ ]*)
     ## (-)|
     text = re.sub(r'(golden globe[^\ ]*)|(golden[^\ ]*)|(:)|(#)','',text)
-    text = re.sub(r'/',' or ',text)
-    text = re.sub(r'television','tv',text)
+    text = text.replace("television","tv")
+    text = text.replace("tv series","series")
+    text = text.replace("mini ","mini")
+    text = text.replace("/"," or ")
     text = re.sub(' +',' ',text).strip()
     return text
 
