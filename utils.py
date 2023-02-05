@@ -30,9 +30,9 @@ def sort_dict_alpha(d):
 def wrap_regex(text):
     return r"(\s*" + re.escape(standardize(text)) + r".*)"
 
-def dict_to_json(dictionary,jsonName,award=False):
+def dict_to_json(dictionary,jsonName,award=False,folderName="test_files"):
     if award:
         dictionary = {k: (v.count, list(v.aliases)) for k,v in dictionary.items()}
     jsonob = json.dumps(dictionary, indent = 4)
-    with open(f"test_files/{jsonName}.json",'w') as outfile:
+    with open(f"{folderName}/{jsonName}.json",'w') as outfile:
         outfile.write(jsonob)

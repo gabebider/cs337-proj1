@@ -51,25 +51,32 @@ def find_awards(tweets):
     return {k: AwardCategory(k,v) for k, v in uniqueAwards.items() if is_award_topic(k)}
 
 def merge_identical(d):
+    with open("saved_jsons/clean_aliases.json", "r") as file:
+        cleaned_award_names = json.load(file)
+
     new_d = dict()
     d = dict(sorted(d.items(), key= lambda x: -len(x[0].split())))
+    set_to_name = {}
 
     for awardName, awardCategory in d.items():
-        cleanedAwardName = clean_award_name(awardName)
-        if cleanedAwardName not in new_d:
-            new_d[cleanedAwardName] = AwardCategory(cleanedAwardName)
+        cleanedAwardName = cleaned_award_names[awardName]
+        cleanedAwardNameWords = tuple(sorted(tuple(set(cleanedAwardName.split()))))
+        set_to_name[cleanedAwardNameWords] = cleanedAwardName
+        if cleanedAwardNameWords not in new_d:
+            new_d[cleanedAwardNameWords] = AwardCategory(cleanedAwardName)
         else:
             print(f"merging {awardName} into {cleanedAwardName}")
-        new_d[cleanedAwardName].count += awardCategory.count
-        new_d[cleanedAwardName].aliases |= awardCategory.aliases
-    
+        new_d[cleanedAwardNameWords].count += awardCategory.count
+        new_d[cleanedAwardNameWords].aliases |= awardCategory.aliases
+    new_d = {set_to_name[k]:v for k,v in new_d.items()}
+    clean_aliases(new_d)
     return new_d
-
-
 
 def merge_substrings(d):
     new_d = dict()
     d = dict(sorted(d.items(), key= lambda x: -len(x[0].split())))
+    with open("saved_jsons/clean_aliases.json", "r") as file:
+        cleaned_award_names = json.load(file)
 
     for awardName, awardCategory in d.items():
         merged = False
@@ -77,7 +84,7 @@ def merge_substrings(d):
         substringOfValues = []
         for mergedName in new_d:
                 for alias in new_d[mergedName].aliases:
-                    if set(awardName.replace(",","").split()).issubset(set(alias.replace(",","").split())):
+                    if cleaned_award_names[awardName] in cleaned_award_names[alias]:
                         substringOf.append(mergedName)
                         substringOfValues.append(new_d[mergedName].count)
                         break
@@ -93,6 +100,13 @@ def merge_substrings(d):
             new_d[awardName] = awardCategory
 
     return new_d
+
+def clean_aliases(d):
+    cleaned_dict = {}
+    for award in d:
+        for alias in d[award].aliases:
+            cleaned_dict[alias] = clean_award_name(alias)
+    dict_to_json(cleaned_dict,"clean_aliases",folderName="saved_jsons")
 
 def clean_award_name(awardName:str)-> str:
     awardName = awardName.replace("for ","")
@@ -134,24 +148,24 @@ def noun_identification(d):
 #             for chunk in doc.noun_chunks:
 #                 f.write(f"\n    {chunk.text},{chunk.root.text},{chunk.root.dep_},{chunk.root.head.text}")
 
-def combine_based_on_similarity(d):
-    nlp = spacy.load("en_core_web_sm")
-    similarity_dict = {}
-    for award1 in d:
-        print(award1)
-        award1_dict = {}
-        similarity_dict[award1] = award1_dict
-        for award2 in d:
-            print(award2)
-            similarities = []
-            for alias1 in d[award1].aliases:
-                for alias2 in d[award2].aliases:
-                    doc1 = nlp(alias1[5:])
-                    doc2 = nlp(alias2[5:])
-                    similarities.append(doc1.similarity(doc2))
-            print(sum(similarities)/len(similarities))
-            award1_dict[award2] = sum(similarities)/len(similarities)
-    dict_to_json(similarity_dict,"similarity")
+# def combine_based_on_similarity(d):
+#     nlp = spacy.load("en_core_web_sm")
+#     similarity_dict = {}
+#     for award1 in d:
+#         print(award1)
+#         award1_dict = {}
+#         similarity_dict[award1] = award1_dict
+#         for award2 in d:
+#             print(award2)
+#             similarities = []
+#             for alias1 in d[award1].aliases:
+#                 for alias2 in d[award2].aliases:
+#                     doc1 = nlp(alias1[5:])
+#                     doc2 = nlp(alias2[5:])
+#                     similarities.append(doc1.similarity(doc2))
+#             print(sum(similarities)/len(similarities))
+#             award1_dict[award2] = sum(similarities)/len(similarities)
+#     dict_to_json(similarity_dict,"similarity")
     
 
 def print_keys(d):
@@ -187,25 +201,23 @@ def test_or(d):
             for word in orWords:
                 f.write(f"    {word}")
 
-def test():
+def get_award_categories():
     startTime = datetime.now()
     dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
     print("Find Award Names process started at =", dt_string)
+
     awards = find_awards(json.load(open('gg2013.json')))
+    clean_aliases(awards)
     awards = merge_identical(awards)
     awards = merge_substrings(awards)
-    # award_counts = {k:v.count for k,v in awards.items()}
     awards = sort_dict_alpha(awards)
+
     dict_to_json(awards,"award_names_test",award=True)
-    # noun_identification(awards)
-    # test_or(awards)
     print_keys(awards)
-    # test_noun_chunks(awards)
+
     endTime = datetime.now()
     dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
     print("Find Award Names process ended at =", dt_string)
     print("Duration =",str(endTime-startTime))
-    # perm_awards = combine_permutations(awards)
-    # dict_to_json(perm_awards,"award_names_test_comb")
 
-test()
+get_award_categories()

@@ -1,13 +1,8 @@
 import spacy
-
+import re
 class AwardCategory:
     def __init__(self, award_name,count=0):
         self.award_name = award_name
         self.count = count
         self.aliases = set([self.award_name])
-        nlp = spacy.load("en_core_web_sm")
-        doc = nlp(self.award_name)
-        self.name_pos = {}
-        for token in doc:
-            self.name_pos[token.text] = token.pos_
-
+        self.isPerson = re.search(r"(actor)|(actress)|(director)",self.award_name) != None
