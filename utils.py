@@ -36,3 +36,11 @@ def dict_to_json(dictionary,jsonName,award=False,folderName="test_files"):
     jsonob = json.dumps(dictionary, indent = 4)
     with open(f"{folderName}/{jsonName}.json",'w') as outfile:
         outfile.write(jsonob)
+
+def build_iterative_regex(aliases):
+    regexes = []
+    for alias in aliases:
+        regexes.append(wrap_regex(alias))
+        regexes.append(r"|")
+    regexes.pop()
+    return ''.join(regexes)
