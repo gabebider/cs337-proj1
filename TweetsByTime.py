@@ -1,7 +1,8 @@
 '''
 This file is meant to find the middle ((range))% of tweets that mention a given award name
 '''
-from aliases import award_aliases, standardize
+from aliases import award_aliases
+from utils import standardize
 import json
 import numpy as np
 import matplotlib.pyplot as plt
