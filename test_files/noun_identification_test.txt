@@ -1,0 +1,398 @@
+
+best actor 
+    best: ADJ
+    actor: NOUN
+best actor drama 
+    best: ADJ
+    actor: NOUN
+    drama: NOUN
+best actor for tv drama 
+    best: ADJ
+    actor: NOUN
+    for: ADP
+    tv: NOUN
+    drama: NOUN
+best actor in a comedy 
+    best: ADJ
+    actor: NOUN
+    in: ADP
+    a: DET
+    comedy: NOUN
+best actor in a drama 
+    best: ADJ
+    actor: NOUN
+    in: ADP
+    a: DET
+    drama: NOUN
+best actor in a miniseries or tv movie 
+    best: ADJ
+    actor: NOUN
+    in: ADP
+    a: DET
+    miniseries: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best actor in a motion picture drama 
+    best: ADJ
+    actor: NOUN
+    in: ADP
+    a: DET
+    motion: NOUN
+    picture: NOUN
+    drama: NOUN
+best actor in comedy or musical 
+    best: ADJ
+    actor: NOUN
+    in: ADP
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best actor, drama for film 
+    best: ADJ
+    actor: NOUN
+    ,: PUNCT
+    drama: NOUN
+    for: ADP
+    film: NOUN
+best actress 
+    best: ADJ
+    actress: NOUN
+best actress drama 
+    best: ADJ
+    actress: NOUN
+    drama: NOUN
+best actress for comedy or musical 
+    best: ADJ
+    actress: NOUN
+    for: ADP
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best actress for motion picture- drama- 
+    best: ADJ
+    actress: NOUN
+    for: ADP
+    motion: NOUN
+    picture-: VERB
+    drama-: NOUN
+best actress in a comedy 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    comedy: NOUN
+best actress in a mini series or tv movie 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    mini: ADJ
+    series: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best actress in a mini-series or tv movie 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    mini: NOUN
+    -: NOUN
+    series: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best actress in a miniseries or tv movie 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    miniseries: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best actress in a motion picture drama 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    motion: NOUN
+    picture: NOUN
+    drama: NOUN
+best actress in a tv comedy or musical 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    tv: NOUN
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best actress in a tv drama 
+    best: ADJ
+    actress: NOUN
+    in: ADP
+    a: DET
+    tv: NOUN
+    drama: NOUN
+best animated feature film 
+    best: ADV
+    animated: VERB
+    feature: NOUN
+    film: NOUN
+best animated film 
+    best: ADV
+    animated: VERB
+    film: NOUN
+best comedy or musical 
+    best: ADJ
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best director 
+    best: ADJ
+    director: NOUN
+best director - motion picture 
+    best: ADJ
+    director: NOUN
+    -: PUNCT
+    motion: NOUN
+    picture: NOUN
+best director for motion picture 
+    best: ADJ
+    director: NOUN
+    for: ADP
+    motion: NOUN
+    picture: NOUN
+best drama 
+    best: ADJ
+    drama: NOUN
+best foreign film 
+    best: ADJ
+    foreign: ADJ
+    film: NOUN
+best foreign language film 
+    best: ADJ
+    foreign: ADJ
+    language: NOUN
+    film: NOUN
+best mini series or tv movie 
+    best: ADJ
+    mini: ADJ
+    series: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best miniseries or tv movie 
+    best: ADJ
+    miniseries: NOUN
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best motion picture 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+best motion picture - comedy or musical 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    -: PUNCT
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best motion picture - drama 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    -: PUNCT
+    drama: NOUN
+best motion picture comedy or musical 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best motion picture drama 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    drama: NOUN
+best motion picture or comedy or musical 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    or: CCONJ
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best motion picture screenplay 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    screenplay: NOUN
+best motion picture, comedy or musical 
+    best: ADJ
+    motion: NOUN
+    picture: NOUN
+    ,: PUNCT
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best original score 
+    best: ADJ
+    original: ADJ
+    score: NOUN
+best original song 
+    best: ADJ
+    original: ADJ
+    song: NOUN
+best original song at the 
+    best: ADJ
+    original: ADJ
+    song: NOUN
+    at: ADP
+    the: PRON
+best original song in a motion picture 
+    best: ADJ
+    original: ADJ
+    song: NOUN
+    in: ADP
+    a: DET
+    motion: NOUN
+    picture: NOUN
+best original song motion picture 
+    best: ADJ
+    original: ADJ
+    song: NOUN
+    motion: NOUN
+    picture: NOUN
+best picture - drama 
+    best: ADJ
+    picture: NOUN
+    -: PUNCT
+    drama: NOUN
+best screenplay 
+    best: ADJ
+    screenplay: VERB
+best screenplay - motion picture 
+    best: ADJ
+    screenplay: VERB
+    -: PUNCT
+    motion: NOUN
+    picture: NOUN
+best screenplay, motion picture 
+    best: ADJ
+    screenplay: NOUN
+    ,: PUNCT
+    motion: NOUN
+    picture: NOUN
+best supporting actor 
+    best: ADV
+    supporting: VERB
+    actor: NOUN
+best supporting actor in a motion picture 
+    best: ADV
+    supporting: VERB
+    actor: NOUN
+    in: ADP
+    a: DET
+    motion: NOUN
+    picture: NOUN
+best supporting actor in tv 
+    best: ADV
+    supporting: VERB
+    actor: NOUN
+    in: ADP
+    tv: NOUN
+best supporting actor, motion picture 
+    best: ADV
+    supporting: VERB
+    actor: NOUN
+    ,: PUNCT
+    motion: NOUN
+    picture: NOUN
+best supporting actress 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+best supporting actress in a motion picture 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    in: ADP
+    a: DET
+    motion: NOUN
+    picture: NOUN
+best supporting actress in a tv movie, series, or miniseries 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    in: ADP
+    a: DET
+    tv: NOUN
+    movie: NOUN
+    ,: PUNCT
+    series: NOUN
+    ,: PUNCT
+    or: CCONJ
+    miniseries: NOUN
+best supporting actress in a tv series 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    in: ADP
+    a: DET
+    tv: NOUN
+    series: NOUN
+best supporting actress motion picture 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    motion: NOUN
+    picture: NOUN
+best supporting actress tv series, miniseries, or tv movie 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    tv: PROPN
+    series: PROPN
+    ,: PUNCT
+    miniseries: NOUN
+    ,: PUNCT
+    or: CCONJ
+    tv: NOUN
+    movie: NOUN
+best supporting actress, tv 
+    best: ADV
+    supporting: VERB
+    actress: NOUN
+    ,: PUNCT
+    tv: NOUN
+best tv comedy or musical 
+    best: ADJ
+    tv: NOUN
+    comedy: NOUN
+    or: CCONJ
+    musical: ADJ
+best tv drama 
+    best: ADJ
+    tv: NOUN
+    drama: NOUN
+best tv series 
+    best: ADJ
+    tv: NOUN
+    series: NOUN
+best tv series - drama 
+    best: ADJ
+    tv: NOUN
+    series: NOUN
+    -: PUNCT
+    drama: NOUN
+best tv series drama 
+    best: ADJ
+    tv: NOUN
+    series: NOUN
+    drama: NOUN

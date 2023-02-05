@@ -1,0 +1,170 @@
+
+best actor 
+    actor,actor,ROOT,actor
+best actor drama 
+    actor drama,drama,ROOT,drama
+best actor for tv drama 
+    actor,actor,ROOT,actor
+    tv drama,drama,pobj,for
+best actor in a comedy 
+    actor,actor,ROOT,actor
+    a comedy,comedy,pobj,in
+best actor in a drama 
+    actor,actor,ROOT,actor
+    a drama,drama,pobj,in
+best actor in a miniseries or tv movie 
+    actor,actor,ROOT,actor
+    a miniseries,miniseries,pobj,in
+    tv movie,movie,conj,miniseries
+best actor in a motion picture drama 
+    actor,actor,ROOT,actor
+    a motion picture drama,drama,pobj,in
+best actor in comedy or musical 
+    actor,actor,ROOT,actor
+    comedy,comedy,pobj,in
+best actor, drama for film 
+    actor,actor,ROOT,actor
+    drama,drama,appos,actor
+    film,film,pobj,for
+best actress 
+    actress,actress,ROOT,actress
+best actress drama 
+    actress drama,drama,ROOT,drama
+best actress for comedy or musical 
+    actress,actress,ROOT,actress
+    comedy,comedy,pobj,for
+best actress for motion picture- drama- 
+    actress,actress,ROOT,actress
+    motion,motion,pobj,for
+best actress in a comedy 
+    actress,actress,ROOT,actress
+    a comedy,comedy,pobj,in
+best actress in a mini series or tv movie 
+    actress,actress,ROOT,actress
+    a mini series,series,pobj,in
+    tv movie,movie,appos,actress
+best actress in a mini-series or tv movie 
+    actress,actress,ROOT,actress
+    a mini,mini,pobj,in
+    -,-,pobj,in
+    series or tv movie,movie,pobj,in
+best actress in a miniseries or tv movie 
+    actress,actress,ROOT,actress
+    a miniseries,miniseries,pobj,in
+    tv movie,movie,conj,miniseries
+best actress in a motion picture drama 
+    actress,actress,ROOT,actress
+    a motion picture drama,drama,pobj,in
+best actress in a tv comedy or musical 
+    actress,actress,ROOT,actress
+    a tv comedy,comedy,pobj,in
+best actress in a tv drama 
+    actress,actress,ROOT,actress
+    a tv drama,drama,pobj,in
+best animated feature film 
+    animated feature film,film,ROOT,film
+best animated film 
+    animated film,film,ROOT,film
+best comedy or musical 
+    comedy,comedy,ROOT,comedy
+best director 
+    director,director,ROOT,director
+best director - motion picture 
+    director - motion picture,picture,ROOT,picture
+best director for motion picture 
+    director,director,ROOT,director
+    motion picture,picture,pobj,for
+best drama 
+    drama,drama,ROOT,drama
+best foreign film 
+    foreign film,film,ROOT,film
+best foreign language film 
+    foreign language film,film,ROOT,film
+best mini series or tv movie 
+    mini series,series,ROOT,series
+    tv movie,movie,conj,series
+best miniseries or tv movie 
+    miniseries,miniseries,ROOT,miniseries
+    tv movie,movie,conj,miniseries
+best motion picture 
+    motion picture,picture,ROOT,picture
+best motion picture - comedy or musical 
+    motion picture - comedy,comedy,ROOT,comedy
+best motion picture - drama 
+    motion picture - drama,drama,ROOT,drama
+best motion picture comedy or musical 
+    motion picture comedy,comedy,ROOT,comedy
+best motion picture drama 
+    motion picture drama,drama,ROOT,drama
+best motion picture or comedy or musical 
+    motion picture,picture,ROOT,picture
+    comedy,comedy,conj,picture
+best motion picture screenplay 
+    motion picture screenplay,screenplay,ROOT,screenplay
+best motion picture, comedy or musical 
+    motion picture,picture,ROOT,picture
+    comedy,comedy,conj,picture
+best original score 
+    original score,score,ROOT,score
+best original song 
+    original song,song,ROOT,song
+best original song at the 
+    original song,song,ROOT,song
+    the,the,pobj,at
+best original song in a motion picture 
+    original song,song,ROOT,song
+    a motion picture,picture,pobj,in
+best original song motion picture 
+    original song motion picture,picture,ROOT,picture
+best picture - drama 
+    picture - drama,drama,ROOT,drama
+best screenplay 
+best screenplay - motion picture 
+    screenplay - motion picture,picture,ROOT,picture
+best screenplay, motion picture 
+    screenplay,screenplay,ROOT,screenplay
+    motion picture,picture,appos,screenplay
+best supporting actor 
+    supporting actor,actor,ROOT,actor
+best supporting actor in a motion picture 
+    actor,actor,dobj,supporting
+    a motion picture,picture,pobj,in
+best supporting actor in tv 
+    actor,actor,dobj,supporting
+    tv,tv,pobj,in
+best supporting actor, motion picture 
+    supporting actor,actor,ROOT,actor
+    motion picture,picture,appos,actor
+best supporting actress 
+    supporting actress,actress,ROOT,actress
+best supporting actress in a motion picture 
+    actress,actress,dobj,supporting
+    a motion picture,picture,pobj,in
+best supporting actress in a tv movie, series, or miniseries 
+    actress,actress,dobj,supporting
+    a tv movie,movie,pobj,in
+    series,series,conj,movie
+    miniseries,miniseries,conj,series
+best supporting actress in a tv series 
+    actress,actress,dobj,supporting
+    a tv series,series,pobj,in
+best supporting actress motion picture 
+    actress motion picture,picture,dobj,supporting
+best supporting actress tv series, miniseries, or tv movie 
+    actress tv series,series,dobj,supporting
+    miniseries,miniseries,conj,series
+    tv movie,movie,conj,miniseries
+best supporting actress, tv 
+    supporting actress,actress,ROOT,actress
+    tv,tv,appos,actress
+best tv comedy or musical 
+    tv comedy,comedy,ROOT,comedy
+best tv drama 
+    tv drama,drama,ROOT,drama
+best tv series 
+    tv series,series,ROOT,series
+best tv series - drama 
+    tv series,series,ROOT,series
+    drama,drama,appos,series
+best tv series drama 
+    tv series drama,drama,ROOT,drama
