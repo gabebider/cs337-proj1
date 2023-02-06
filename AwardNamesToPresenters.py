@@ -28,8 +28,8 @@ def find_and_count_names_for_award(data,award_name):
     nlp.add_pipe("merge_entities")
     nameCountArray = []
     tweetArray = []
-    aliases = award_aliases[award_name.award_category]
-    award_regex = build_iterative_regex(aliases)
+    aliases = award_name.award_category.aliases
+    data = Tweets_By_Time(data, aliases, 0.01)
     print("")
     print(award_name.award_category)
     # Iterates through tweets
