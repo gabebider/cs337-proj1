@@ -1,13 +1,10 @@
 import json
 import re
-import csv
-import itertools
+from collections import Counter
 from Award import Award
 from AwardCategory import AwardCategory
 from datetime import datetime
 from collections import defaultdict
-import spacy
-import numpy as np
 from aliases import award_aliases, get_aliases
 from utils import standardize, build_iterative_regex
 
@@ -113,9 +110,9 @@ def AwardNameToNominees(tweets, award):
     tracker = 0
      # loop through all tweets
     for tweet in tweets:
-        if tracker % 5000 == 0:
-            print(f"Looking at tweet {tracker} of {len(tweets)}")
-        tracker += 1
+        # if tracker % 5000 == 0:
+        #     print(f"Looking at tweet {tracker} of {len(tweets)}")
+        # tracker += 1
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])
@@ -124,21 +121,32 @@ def AwardNameToNominees(tweets, award):
             alias = ultra_standardize(alias)
             check_for_pattern(alias, tweet, award, "should win", False)
             check_for_pattern(alias, tweet, award, "should have won", False)
-            check_for_pattern(alias, tweet, award, "should have been", False)
+            check_for_pattern(alias, tweet, award, "should have been", True)
             check_for_pattern(alias, tweet, award, "should have gotten", False)
             check_for_pattern(alias, tweet, award, "robbed", False)
+            check_for_pattern(alias, tweet, award, "was robbed", False)
+            check_for_pattern(alias, tweet, award, "was nominated for", False)
+            check_for_pattern(alias, tweet, award, "is nominated for", False)
+            check_for_pattern(alias, tweet, award, "nominees are", True)
+            check_for_pattern(alias, tweet, award, "lost", False)
+            check_for_pattern(alias, tweet, award, "to win", False)
+            check_for_pattern(alias, tweet, award, "should have been", True)
+            check_for_pattern(alias, tweet, award, "deserved", False)
+            check_for_pattern(alias, tweet, award, "deserves", False)
             
             # check_for_goes_to_pattern(alias, tweet, award)
             # check_for_wins_pattern(alias, tweet, award)
 
-    winner = max(nominee_canidates, key=lambda x: (nominee_canidates.count(x), len(x)))
-    if len(nominee_canidates) == 0:
-        winner = "No winner found"
-        award.winner = winner
+    candidate_counts = Counter(nominee_canidates)
+    top_five = candidate_counts.most_common(5)
+    if len(top_five) == 0:
+        nominees = "No winner found"
+        award.nominees = [nominees]
     else:
-        award.winner = winner
+        award.nominees = top_five
+    # print(nominee_canidates)
 
-    return winner
+    return top_five
             
 
 
@@ -156,97 +164,11 @@ def getAwards():
             awards.append(awardStruct)
     return awards
 
-print(AwardNameToNominees(json.load(open('gg2013.json')), getAwards()[0]))
+awards = getAwards()
+# print(awards[0].award_category.award_name)
+# print(AwardNameToNominees(json.load(open('gg2013.json')), awards[0]))
 
-
-
-
-# def AwardNamesToNominees(tweets, awards, actors, movies):
-#     '''
-#     Finds the nominees for each award category
-
-#     Parameters
-#     ----------
-#     tweets : list[dict] (not sure if this is the right type, but the json file opened yknow)
-#     award_names : list[Award]
-#     actors : list[str]
-#     movies : list[str]
-
-#     Returns
-#     -------
-#     awards : list[Award]
-#     '''
-#     # init dictionary to store votes for potential nominees
-#     nominee_votes = {}
-#     for award in awards:
-#         nominee_votes[award.award_category.award_name] = defaultdict(int)
-
-#     count = 0
-#     for tweet in tweets:
-#         if count % 100 == 0:
-#             print(f"Checking tweet {count} of {len(tweets)}")
-#         count +=1 
-#         tweet = standardize(tweet['text']).lower()
-#         for award in awards:
-#             aliases = award.award_category.aliases
-#             award_regex = build_iterative_regex(aliases)
-#             for award_alias in award.award_category.aliases:
-#                 if award_alias in tweet:
-#                 # we found a tweet that mentions the given award
-#                     if award.award_category.isPerson:
-#                         # find an actor
-#                         for actor in actors:
-#                             try:
-#                                 actor = standardize(actor).lower()
-#                                 if re.search(rf"\b{actor}\b", tweet):
-#                                     nominee_votes[award.award_category.award_name][actor] += 1
-#                                     # break
-#                             except:
-#                                 continue
-#                     else:
-#                         # find a movie
-#                         for movie in movies:
-#                             # check if the movie is in the tweet with regex boundaries
-#                             try:
-#                                 movie = standardize(movie).lower()
-#                                 if re.search(rf"\b{movie}\b", tweet):
-#                                     nominee_votes[award.award_category.award_name][movie] += 1
-#                                     # break
-#                             except:
-#                                 continue
-                        
-#     print("we done")
-#     with open('test_files/nominees_pre_sort.json', 'w') as file:
-#         json.dump(nominee_votes, file)
-
-#     result = {k: dict(sorted(v.items(), key=lambda x: x[1], reverse=True)[:5]) for k, v in nominee_votes.items()}
-#     print(result)
-#     with open('test_files/nominees.json', 'w') as file:
-#         json.dump(result, file)
-
-
-# with open('actors.csv', 'r') as file:
-#     reader = csv.reader(file)
-#     actors = list(reader)
-#     actors = actors.pop()
-
-# with open('movies.csv', 'r') as file:
-#     reader = csv.reader(file)
-#     movies = list(reader)
-#     movies = movies.pop()
-
-# def getAwards():
-#     awards = []
-#     addedAwards = []
-#     aliases = get_aliases()
-
-#     # create list of awards
-#     for cat in aliases:
-#         if cat not in addedAwards:
-#             addedAwards.append(cat)
-#             awardStruct = Award(AwardCategory(cat))
-#             awardStruct.award_category.aliases = aliases[cat]
-#             awards.append(awardStruct)
-#     return awards
-
-# AwardNamesToNominees(json.load(open("gg2013.json")), getAwards(), actors, movies)
+data = json.load(open('gg2013.json'))
+for award in awards:
+    print(award.award_category.award_name)
+    print(AwardNameToNominees(data, award))
