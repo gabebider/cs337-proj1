@@ -64,21 +64,21 @@ def AwardNameToNominees(tweets, award):
                     for j in range(nominated_index + 1, i + 1):
                         nominee += tweet.split()[j] + " "
                     nominee = nominee.strip()
-                    nominee_canidates[nominee] += 1
+                    nominee_candidates[nominee] += 1
             else:
                 for i in range(nominated_index - 1, -1, -1):
                     nominee = ""
                     for j in range(i, nominated_index):
                         nominee += tweet.split()[j] + " "
                     nominee = nominee.strip()
-                    nominee_canidates[nominee] += 1
+                    nominee_candidates[nominee] += 1
 
     def check_for_people(tweet):
         nlp = spacy.load("en_core_web_sm")
         doc = nlp(ultra_standardize(tweet))
         for ent in doc.ents:
             if ent.label_ == "PERSON":
-                nominee_canidates[ent.text] += 1
+                nominee_candidates[ent.text] += 1
 
     
     award_aliases = award.award_category.aliases
@@ -94,7 +94,7 @@ def AwardNameToNominees(tweets, award):
     # now we have a set of unique tweets to work with
     tweets = unique_tweets
 
-    nominee_canidates = defaultdict(int)
+    nominee_candidates = defaultdict(int)
     tracker = 0
      # loop through all tweets
     for tweet in tweets:
@@ -189,10 +189,7 @@ def test():
     
         # if i == 5:
         #     break
-    dict_to_json(aaaa,"aaaa",False,"test_files")
-
-test()
-    
+    dict_to_json(aaaa,"aaaa",False,"test_files")    
 
 
 # def getAwards():
