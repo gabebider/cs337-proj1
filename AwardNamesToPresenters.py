@@ -6,7 +6,12 @@ from collections import defaultdict
 import spacy
 import numpy as np
 from aliases import award_aliases
+from aliases import get_aliases
+from Award import Award
+from AwardCategory import AwardCategory
 from utils import standardize, wrap_regex
+import json
+from TweetsByTime import Tweets_By_Time
 
 def build_iterative_regex(aliases):
     regexes = []
@@ -19,39 +24,27 @@ def build_iterative_regex(aliases):
 
 def find_and_count_names_for_award(data,award_name):
     # loads name processor
-    nlp = spacy.load("en_core_web_md")
+    nlp = spacy.load("en_core_web_sm")
     nlp.add_pipe("merge_entities")
     nameCountArray = []
-    nameCountDict = defaultdict(int)
-    properNounDict = defaultdict(int)
     tweetArray = []
-    aliases = award_aliases[award_name.award_category]
-    award_regex = build_iterative_regex(aliases)
-    print("")
-    print(award_name.award_category)
+    aliases = award_name.award_category.aliases
+    data = Tweets_By_Time(data, aliases, 0.01)
     # Iterates through tweets
     for tweet in data:
-        text = standardize(tweet['text'].lower())
+        text = tweet['text']
         # Checks if tweet is relation to a presenter and a specific award
         ## re.search(r"\s*[Nn]omin.*", text) and
-        if re.search(award_regex, text) and not text in tweetArray:
+        if not text in tweetArray:
             tweetArray.append(text)
-            # print(text)
             addNames = []
-            doc = nlp(text)
-
-            for token in doc:
-                if token.pos_ == "PROPN":
-                    # print(token, token.pos_)
-                    properNounDict[token.text] += 1
-
-            for name in doc.ents:
+            classifiedText = nlp(text)
+            # adds name to list
+            for name in classifiedText.ents:
                 if name.label_ == "PERSON":
-                    # print(name.text)
                     addNames.append(name.text)
             # updates count if name exists or adds name if does not exist yet
             for name in addNames:
-                nameCountDict[name] += 1
                 exists = False
                 for entries in nameCountArray:
                     if entries[0] == name:
@@ -59,17 +52,7 @@ def find_and_count_names_for_award(data,award_name):
                         entries[1] = entries[1] + 1
                 if exists == False:
                     nameCountArray.append([name, 1])
-
-    for pm, count in list(properNounDict.items()):
-        if count <= 1:
-            del properNounDict[pm]
-
-    for name, count in list(nameCountDict.items()):
-        if count <= 1:
-            del nameCountDict[name]
-    print(properNounDict)
-    print(nameCountDict)
-    return nameCountArray
+    return [nameCountArray, tweetArray]
 
 
 def find_full_names(nameCountArray):
@@ -100,39 +83,52 @@ def find_full_names(nameCountArray):
     finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
     return finalNamesArray
 
+def find_potential_presenters(actorArray, tweets):
+    potentialPresenters = []
+    award_regex = r'(present|presents|presenter|presenting)'
+    for actor in actorArray:
+        name1 = actor[0].lower()
+        name2 = actor[0].lower().replace(" ", "")
+        pattern = f"{name1}|{name2}"
+        for tweet in tweets:
+            if re.search(pattern, tweet.lower()):
+                if re.search(award_regex, tweet.lower()):
+                    potentialPresenters.append(actor[0])
+    return potentialPresenters
 
-def find_name_std(actorCount):
-    totalCount = 0
-    # find total
-    for entries in actorCount:
-        totalCount = totalCount + entries[1]
-    # display each percentage
-    percentageArray = []
-    actorPercentArray = []
-    presenter_array = []
-    for entries in actorCount:
-        percentage = entries[1] / totalCount
-        percentage = round(percentage, 3)
-        print(entries[0] + "'s Percentage: " + str(percentage))
-        percentageArray.append(percentage)
-        actorPercentArray.append([entries[0], percentage])
-    # use standard deviation to determine if count is significantly different (outside 95% of data) to determine who the presenters are
-    mean = np.mean(percentageArray)
-    stanDev = np.std(percentageArray)
-    for entries in actorPercentArray:
-        print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
-        if abs(entries[1] - mean) > 2 * stanDev:
-            presenter_array.append(entries[0])
-    return presenter_array
+# def find_name_std(actorCount):
+#     totalCount = 0
+#     # find total
+#     for entries in actorCount:
+#         totalCount = totalCount + entries[1]
+#     # display each percentage
+#     percentageArray = []
+#     actorPercentArray = []
+#     presenter_array = []
+#     for entries in actorCount:
+#         percentage = entries[1] / totalCount
+#         percentage = round(percentage, 3)
+#         print(entries[0] + "'s Percentage: " + str(percentage))
+#         percentageArray.append(percentage)
+#         actorPercentArray.append([entries[0], percentage])
+#     # use standard deviation to determine if count is significantly different (outside 95% of data) to determine who the presenters are
+#     mean = np.mean(percentageArray)
+#     stanDev = np.std(percentageArray)
+#     for entries in actorPercentArray:
+#         print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
+#         if abs(entries[1] - mean) > 2 * stanDev:
+#             presenter_array.append(entries[0])
+#     return presenter_array
 
 
 def find_presenters(tweets,award_name):
     # now = datetime.now()
     # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find presenter process started at =", dt_string)
-    nameCountArray = find_and_count_names_for_award(tweets,award_name)
-    fullNameCountArray = find_full_names(nameCountArray)
-    presenters = find_name_std(fullNameCountArray)
+    nameCountAndTweetArray = find_and_count_names_for_award(tweets,award_name)
+    fullNameCountArray = find_full_names(nameCountAndTweetArray[0])
+    presenters = find_potential_presenters(fullNameCountArray, nameCountAndTweetArray[1])
+    #presenters = find_name_std(potential_presenters)
     # if len(presenters) == 1:
     #     print("The presenter of the award show is: " + presenters[0])
     # else:
@@ -142,10 +138,28 @@ def find_presenters(tweets,award_name):
     # now = datetime.now()
     # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find presenter process ended at =", dt_string2)
-
-    print(award_name.award_category, ":", presenters)
+    print(award_name.award_category.award_name, ":", presenters)
     # presenterStringArr = [f"{presenters[i]}" for i in range(len(presenters)-1)]
     # presenterStringArr.append(f"and {presenters[-1]}")
     # presenterString = ''.join(presenterStringArr)
     # print("The presenters of the",award_name,"are",presenterString)
     return presenters
+
+# for testing purposes
+def getAwards():
+    awards = []
+    addedAwards = []
+    aliases = get_aliases()
+
+    # create list of awards
+    for cat in aliases:
+        if cat not in addedAwards:
+            addedAwards.append(cat)
+            awardStruct = Award(AwardCategory(cat))
+            awardStruct.award_category.aliases = aliases[cat]
+            awards.append(awardStruct)
+    return awards
+
+awards = getAwards()
+for award in awards:
+    pres = find_presenters(json.load(open('gg2013.json')), award)
