@@ -30,8 +30,6 @@ def find_and_count_names_for_award(data,award_name):
     tweetArray = []
     aliases = award_name.award_category.aliases
     data = Tweets_By_Time(data, aliases, 0.01)
-    print("")
-    print(award_name.award_category)
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
@@ -149,20 +147,20 @@ def find_presenters(tweets,award_name):
     return presenters
 
 # for testing purposes
-def getAwards():
-    awards = []
-    addedAwards = []
-    aliases = get_aliases()
+# def getAwards():
+#     awards = []
+#     addedAwards = []
+#     aliases = get_aliases()
 
-    # create list of awards
-    for cat in aliases:
-        if cat not in addedAwards:
-            addedAwards.append(cat)
-            awardStruct = Award(AwardCategory(cat))
-            awardStruct.award_category.aliases = aliases[cat]
-            awards.append(awardStruct)
-    return awards
+#     # create list of awards
+#     for cat in aliases:
+#         if cat not in addedAwards:
+#             addedAwards.append(cat)
+#             awardStruct = Award(AwardCategory(cat))
+#             awardStruct.award_category.aliases = aliases[cat]
+#             awards.append(awardStruct)
+#     return awards
 
-awards = getAwards()
-for award in awards:
-    pres = find_presenters(json.load(open('gg2013.json')), award)
+# awards = getAwards()
+# for award in awards:
+#     pres = find_presenters(json.load(open('gg2013.json')), award)
