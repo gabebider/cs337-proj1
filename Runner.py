@@ -10,6 +10,7 @@ from AwardNamesToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
+from TweetsToRedCarpet import find_redcarpet
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
 import gg_apifake
@@ -107,6 +108,9 @@ class Runner:
 
     def get_winner_for_award(self, award):
         return AwardNameToWinners(self.tweets,award)
+    
+    def get_red_carpet(self, year):
+        self.red_carpet_results = find_redcarpet(self.tweets)
 
     def get_hosts(self, year):
         if MOCK_HOSTS:
@@ -143,6 +147,9 @@ class Runner:
         for award in self.awards:
             awards[award.award_category] = award
         return awards
+    
+    def export_red_carpet(self):
+        return self.red_carpet_results
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -193,22 +200,35 @@ if __name__ == '__main__':
         for key in mocks.keys():
             print("{}: {}".format(key, mocks[key]))
         print("")
-        # Save it to a file
+        
         autograder.main([year], functions)
 
     if args.output_results:
+        runner.get_red_carpet(year)
         if not autograde:
             runner.get_award_categories(year)
             runner.get_hosts(year)
             runner.get_all_award_presenters(year)
             runner.get_award_nominees(year)
             runner.get_award_winners(year)
-
-            for award in runner.get_awards(year):
-                print(str(award) + "\n")
+            awards = runner.get_awards(year)
         else:
-            for award in gg_api.get_award_objects(year):
-                print(str(award) + "\n")
+            awards = gg_api.get_award_objects(year)
+                
+        print("Hosts: " + str(runner.export_hosts()) + "\n")
+        for award in awards:
+            print(str(award) + "\n")
+
+        print("Red Carpet Results:")
+        red_carpet_results = runner.export_red_carpet()
+    #     redCarpetResults["Three Most Discussed"] = threeMostDiscussed
+    # redCarpetResults["Best Dressed"] = bestWorstDressed[0]
+    # redCarpetResults["Worst Dressed"] = bestWorstDressed[1]
+    # redCarpetResults["Most Controversial"] = mostControversial
+        print("\tThree Most Discussed: " + str(red_carpet_results["Three Most Discussed"]))
+        print("\tBest Dressed: " + str(red_carpet_results["Best Dressed"]))
+        print("\tWorst Dressed: " + str(red_carpet_results["Worst Dressed"]))
+        print("\tMost Controversial: " + str(red_carpet_results["Most Controversial"]))
     
     if args.save_json:
         if not autograde and not args.output_results:
