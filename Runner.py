@@ -69,8 +69,7 @@ class Runner:
         else:
             print("Not mocking award presenters")
             for award in self.awards:
-                # award.SetPresenters(self.get_presenter_for_award(award))
-                award.SetPresenters(["Larry Birnbaum", "Guo Ye"])
+                award.SetPresenters(self.get_presenter_for_award(award))
 
     def get_presenter_for_award(self, award):
         return find_presenters(self.tweets,award)
