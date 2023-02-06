@@ -5,7 +5,7 @@ class AwardCategory:
         self.award_name = str(award_name)
         self.count = count
         self.aliases = set([self.award_name])
-        self.isPerson = re.search(r"(actor)|(actress)|(director)",self.award_name) != None
+        self.isPerson = re.search(r"(actor)|(actress)|(director)|(song)",self.award_name) != None
 
     def __str__(self):
-        return f"{self.award_name}"
+            return f"{self.award_name}"
