@@ -149,7 +149,7 @@ def most_controversial(actorCount, tweets):
     return name
 
 def find_redcarpet(tweets):
-    nltk.download("vader_lexicon")
+    nltk.download("vader_lexicon", quiet=True)
     # now = datetime.now()
     # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find Red Carpet Outfits process started at =", dt_string)
