@@ -61,11 +61,11 @@ def merge_identical(d):
     for awardName, awardCategory in d.items():
         cleanedAwardName = cleaned_award_names[awardName]
         cleanedAwardNameWords = tuple(sorted(tuple(set(cleanedAwardName.split()))))
-        set_to_name[cleanedAwardNameWords] = cleanedAwardName
+        set_to_name[cleanedAwardNameWords] = awardName
         if cleanedAwardNameWords not in new_d:
-            new_d[cleanedAwardNameWords] = AwardCategory(cleanedAwardName)
-        else:
-            print(f"merging {awardName} into {cleanedAwardName}")
+            new_d[cleanedAwardNameWords] = AwardCategory(awardName)
+        # else:
+            # print(f"merging {awardName} into {cleanedAwardName}")
         new_d[cleanedAwardNameWords].count += awardCategory.count
         new_d[cleanedAwardNameWords].aliases |= awardCategory.aliases
     new_d = {set_to_name[k]:v for k,v in new_d.items()}
@@ -89,135 +89,147 @@ def merge_substrings(d):
                         substringOfValues.append(new_d[mergedName].count)
                         break
 
-        if len(substringOf) > 0:
-            word = substringOf[substringOfValues.index(max(substringOfValues))]
-            print(f"merging {awardName} into {word}")
-            if len(substringOf) == 1:
-                new_d[word].count += awardCategory.count
-            new_d[word].aliases |= awardCategory.aliases
+        if len(substringOf) == 1:
+            new_d[substringOf[0]].count += awardCategory.count
+            new_d[substringOf[0]].aliases |= awardCategory.aliases
             merged = True
-        if not merged:
+
+        if not merged and len(substringOf) == 0:
             new_d[awardName] = awardCategory
 
     return new_d
 
-def clean_aliases(d):
+def merge_simplify(d,simplify_dict):
+    with open("saved_jsons/clean_aliases.json", "r") as file:
+        cleaned_award_names = json.load(file)
+
+    simplify_keys = simplify_dict.keys()
+
+    new_d = dict()
+    d = dict(sorted(d.items(), key= lambda x: -len(x[0].split())))
+    set_to_name = {}
+
+    for awardName, awardCategory in d.items():
+        cleanedAwardName = cleaned_award_names[awardName]
+        for key in simplify_keys:
+            if key in cleanedAwardName:
+                cleanedAwardName = cleanedAwardName.replace(key,simplify_dict[key])
+        
+        cleanedAwardNameWords = tuple(sorted(tuple(set(cleanedAwardName.split()))))
+        set_to_name[cleanedAwardNameWords] = awardName
+        if cleanedAwardNameWords not in new_d:
+            new_d[cleanedAwardNameWords] = AwardCategory(awardName)
+        # else:
+            # print(f"merging {awardName} into {cleanedAwardName}")
+        new_d[cleanedAwardNameWords].count += awardCategory.count
+        new_d[cleanedAwardNameWords].aliases |= awardCategory.aliases
+    new_d = {set_to_name[k]:v for k,v in new_d.items()}
+    clean_aliases(new_d)
+    return new_d
+
+
+def get_word_neighbors(d):
+    with open("saved_jsons/clean_aliases.json", "r") as file:
+        cleaned_award_names = json.load(file)
+
+    word_neighbors = dict()
+
+    for k in d.keys():
+        cleaned_name = cleaned_award_names[k]
+        split = cleaned_name[5:].split()
+        for idx, word in enumerate(split):
+            if word not in word_neighbors: 
+                word_neighbors[word] = set()
+            word_set = word_neighbors[word]
+
+            if idx < len(split)-1:
+                following_word = split[idx+1]
+                if following_word not in ["or","and","in","for","to"]:
+                    word_set.add(split[idx+1])
+    for word in word_neighbors:
+        word_neighbors[word] = list(word_neighbors[word])
+    
+    dict_to_json(word_neighbors,"word_neighbors",folderName="saved_jsons")
+    return word_neighbors
+
+def get_simplification_dict(word_neighbors):
+    simplification_dict = {}
+    for word, following_words in word_neighbors.items():
+        if len(following_words) == 1:
+            following_word = following_words[0]
+            if len(word_neighbors[following_word]) != 1:
+                simplification_dict[f"{word} {following_word}"] = following_word
+    dict_to_json(simplification_dict,"simplification_dict",folderName="saved_jsons")
+    return simplification_dict
+
+def clean_aliases(d,pos=False):
+    startTime = datetime.now()
+    dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+    print(f"Clean_aliases pos={pos} process started at =", dt_string)
+
     cleaned_dict = {}
     for award in d:
         for alias in d[award].aliases:
-            cleaned_dict[alias] = clean_award_name(alias)
+            cleaned_dict[alias] = clean_award_name(alias,pos=pos)
     dict_to_json(cleaned_dict,"clean_aliases",folderName="saved_jsons")
 
-def clean_award_name(awardName:str)-> str:
+    endTime = datetime.now()
+    dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+    print(f"Clean_aliases pos={pos} process ended at =", dt_string," ||| duration:",str(endTime-startTime))
+
+def clean_award_name(awardName:str,pos=False)-> str:
     awardName = awardName.replace("for ","")
     awardName = awardName.replace(" in a","")
     awardName = awardName.replace(",","")
     awardName = awardName.replace("-","")
-    # awardName = re.sub(r'(for )|( in a)|(,)|(-)','',awardName)
-    if "picture" in awardName and "motion picture" not in awardName:
-        awardName = awardName.replace("picture","motion picture")
-    if " series" in awardName and "tv series" not in awardName:
-        awardName = awardName.replace(" series"," tv series")
-
+    awardName = awardName.replace(" in "," ")
     awardName = re.sub(' +',' ',awardName).strip()
-    nlp = spacy.load("en_core_web_sm")
-    doc = nlp(awardName)
-    lastidx = 0
-    for idx,token in enumerate(doc):
-        if token.pos_ not in ['ADP','AUX','CCONJ','DET','INTJ','NUM','PRON','SCONJ']:
-            lastidx = idx
-    cleaned = ''.join([token.text  + " " for idx, token in enumerate(doc) if idx <= lastidx]).strip()
-    return cleaned
-    
-def noun_identification(d):
-    with open("test_files/noun_identification_test.txt",'w') as f:
+    if pos:
         nlp = spacy.load("en_core_web_sm")
-        nlp.add_pipe("merge_noun_chunks")
-        for key in d:
-            doc = nlp(key[5:])
-            f.write(f"\n{key:} ")
-            for token in doc:
-                f.write(f"\n    {token.text}: {token.pos_}")
-
-# def test_noun_chunks(d):
-#     with open("test_files/noun_chunk_test.txt","w") as f:
-#         nlp = spacy.load("en_core_web_sm")
-#         for key in d:
-#             doc = nlp(key[5:])
-#             f.write(f"\n{key:} ")
-#             for chunk in doc.noun_chunks:
-#                 f.write(f"\n    {chunk.text},{chunk.root.text},{chunk.root.dep_},{chunk.root.head.text}")
-
-# def combine_based_on_similarity(d):
-#     nlp = spacy.load("en_core_web_sm")
-#     similarity_dict = {}
-#     for award1 in d:
-#         print(award1)
-#         award1_dict = {}
-#         similarity_dict[award1] = award1_dict
-#         for award2 in d:
-#             print(award2)
-#             similarities = []
-#             for alias1 in d[award1].aliases:
-#                 for alias2 in d[award2].aliases:
-#                     doc1 = nlp(alias1[5:])
-#                     doc2 = nlp(alias2[5:])
-#                     similarities.append(doc1.similarity(doc2))
-#             print(sum(similarities)/len(similarities))
-#             award1_dict[award2] = sum(similarities)/len(similarities)
-#     dict_to_json(similarity_dict,"similarity")
-    
+        doc = nlp(awardName)
+        lastidx = 0
+        for idx,token in enumerate(doc):
+            if token.pos_ not in ['ADP','AUX','CCONJ','DET','INTJ','NUM','PRON','SCONJ']:
+                lastidx = idx
+        cleaned = ''.join([token.text  + " " for idx, token in enumerate(doc) if idx <= lastidx]).strip()
+    return cleaned if pos else awardName
 
 def print_keys(d):
     with open("test_files/keys.txt","w") as f:
         for k in d:
             f.write(f"\n{k}")
 
-def test_or(d):
-    alias_set = set()
-    for k in d:
-        alias_set |= d[k].aliases
-    
-    sorted_aliases = sorted(list(alias_set), key= lambda x: len(x.split()))
-
-    with open("test_files/test_or.txt","w") as f:
-        nlp = spacy.load("en_core_web_sm")
-        nlp.add_pipe("merge_noun_chunks")
-        for alias in sorted_aliases:
-            doc = nlp(alias[5:])
-            tokenlist = [token.text for token in doc]
-            if "or" not in tokenlist:
-                continue
-            orInd = tokenlist.index("or")
-            orWords = []
-            if orInd < len(tokenlist)-1:
-                orWords.append(tokenlist[orInd+1])
-            if orInd > 0:
-                orWords.append(tokenlist[orInd-1])
-            if orInd > 3:
-                if tokenlist[orInd-2] == ",":
-                    orWords.append(tokenlist[orInd-3])
-            f.write(f"\nOR: {alias} \n")
-            for word in orWords:
-                f.write(f"    {word}")
-
-def get_award_categories():
+def get_award_categories_from_json(tweets):
     startTime = datetime.now()
     dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("Get Award Categories process started at =", dt_string)
     print("Find Award Names process started at =", dt_string)
 
-    awards = find_awards(json.load(open('gg2013.json')))
-    clean_aliases(awards)
+    awards = find_awards(tweets)
+
+    endFindAwardsTime = datetime.now()
+    dt_string = endFindAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("Find Award Names process ended at =", dt_string, "duration: ",str(endFindAwardsTime-startTime))
+
+    startMergeAwardsTime = datetime.now()
+    dt_string = startMergeAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("Merge Award Names process started at =", dt_string)
+
+    clean_aliases(awards,pos=True)
     awards = merge_identical(awards)
     awards = merge_substrings(awards)
     awards = sort_dict_alpha(awards)
-
+    clean_aliases(awards)
+    word_neighbors = get_word_neighbors(awards)
+    simpl_dict = get_simplification_dict(word_neighbors)
+    awards = merge_simplify(awards,simpl_dict)
+    awards = sort_dict_alpha(awards)
     dict_to_json(awards,"award_names_test",award=True)
     print_keys(awards)
 
     endTime = datetime.now()
     dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Award Names process ended at =", dt_string)
-    print("Duration =",str(endTime-startTime))
+    print("Merge Award Names process ended at =",dt_string," ||| duration: ",str(endTime-startMergeAwardsTime))
+    print("Get Award Categories process ended at =", dt_string, " ||| duration: ",str(endTime-startTime))
+    return awards
 
-get_award_categories()

@@ -24,7 +24,7 @@ class Award:
         logging.info(self.name)
 
     def __str__(self):
-        result = f"Award Name: {self.award_category}"
+        result = f"Award Name: {self.award_category.award_name}"
         if self.presenters:
             result += f"\nPresenters: {self.presenters}"
         if self.nominees:

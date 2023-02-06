@@ -5,7 +5,6 @@ from aliases import award_aliases
 from utils import standardize
 import json
 import numpy as np
-import matplotlib.pyplot as plt
 
 def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     '''

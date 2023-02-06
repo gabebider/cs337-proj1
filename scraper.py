@@ -7,8 +7,9 @@ import csv
 def findMovies():
 
     movies = []
-    for start in range(1, 10001, 250):
-        url = f"https://www.imdb.com/search/title/?release_date=1900-01-01,2022-12-31&view=simple&sort=num_votes,desc&count=250&start={start}&ref_=adv_nxt"
+    for start in range(1, 2500, 250):
+        # url = f"https://www.imdb.com/search/title/?release_date=1900-01-01,2022-12-31&view=simple&sort=num_votes,desc&count=250&start={start}&ref_=adv_nxt"
+        url = f"https://www.imdb.com/search/title/?title_type=feature,tv_movie,tv_series,tv_special,tv_miniseries,documentary,short,video,tv_short&release_date=2000-01-01,2022-12-31&view=simple&count=250&sort=num_votes,desc&start={start}&ref_=adv_nxt"
         # query the page
         html = requests.get(url)
         # parse the html using beautiful soup and store in variable `soup`
@@ -31,9 +32,9 @@ def findMovies():
 def findActors():
     # this also includes actresses
     actors = []
-    for start in range(1, 10001, 100):
+    for start in range(1, 3001, 100):
         # WORK IN Progress
-        url = f"https://www.imdb.com/search/name/?birth_date=1900-01-01,2022-12-31&count=100&start={start}&ref_=rlm"
+        url = f"https://www.imdb.com/search/name/?birth_date=1920-01-01,2022-12-31&count=100&start={start}&ref_=rlm"
         
         html = requests.get(url)
         soup = BeautifulSoup(html.text, "html.parser")
@@ -50,12 +51,12 @@ def findActors():
     return actors
 
 
-movies = findMovies()
+# movies = findMovies()
 actors = findActors()
 
-with open('movies.csv', 'w', newline='') as myfile:
-     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-     wr.writerow(movies)
+# with open('movies2.csv', 'w', newline='') as myfile:
+#      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+#      wr.writerow(movies)
 
 with open('actors.csv', 'w', newline='') as myfile:
      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
