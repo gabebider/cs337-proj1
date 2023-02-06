@@ -247,6 +247,12 @@ if __name__ == '__main__':
             presenters = gg_api.get_presenters(year)
             nominees = gg_api.get_nominees(year)
             winners = gg_api.get_winner(year)
+        elif args.output_results:
+            awards = runner.get_awards(year)
+            hosts = runner.export_hosts()
+            presenters = runner.export_presenters()
+            nominees = runner.export_nominees()
+            winners = runner.export_winners()
         else:
             runner.get_award_categories(year)
             runner.get_hosts(year)
@@ -254,7 +260,7 @@ if __name__ == '__main__':
             runner.get_award_nominees(year)
             runner.get_award_winners(year)
 
-            awards = runner.get_awards()
+            awards = runner.get_awards(year)
             hosts = runner.export_hosts()
             presenters = runner.export_presenters()
             nominees = runner.export_nominees()

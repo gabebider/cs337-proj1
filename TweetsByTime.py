@@ -36,6 +36,10 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     # find the middle ((range))% of tweets from tweets that mention award name
     start = int(len(tweets_with_award_name) * (1 - range) / 2)
     end = int(len(tweets_with_award_name) * (1 + range) / 2)
+    if start < 0:
+        start = 0
+    if end > len(tweets_with_award_name) - 1:
+        end = len(tweets_with_award_name) - 1
 
     # find the time stamp fo the beginning and end of the middle ((range))% of tweets
     start_time = tweets_with_award_name[start]['timestamp_ms']
