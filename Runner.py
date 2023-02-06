@@ -6,6 +6,7 @@ from Award import Award
 import logging
 from TweetsToHost import find_host
 from AwardNamesToPresenters import find_presenters
+from TweetsToAwardNames import get_award_categories_from_json
 import json
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
@@ -46,6 +47,7 @@ class Runner:
             award_categories = gg_apifake.get_awards(year)
         else:
             print("Not mocking award categories")
+            award_categories = [v for k,v in get_award_categories_from_json(self.tweets).items()]
             # award_categories = self.get_award_categories()
         self.awards: list[Award] = []
         for award_category in award_categories:
