@@ -165,13 +165,11 @@ def find_redcarpet(tweets):
     redCarpetResults["Worst Dressed"] = bestWorstDressed[1]
     redCarpetResults["Most Controversial"] = mostControversial
     # Print results
-    print("The three most discussed about people on the red carpet were: " + threeMostDiscussed[0] + ", " + threeMostDiscussed[1] + ", and " + threeMostDiscussed[2])
-    print("The best dressed was: " + bestWorstDressed[0])
-    print("The worst dressed was: " + bestWorstDressed[1])
-    print("The most controversial person on the red carpet was: " + mostControversial)
+
     # now = datetime.now()
     # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find Red Carpet Outfits process ended at =", dt_string2)
+    print("Finished Getting Red Carpet Results")
     return redCarpetResults
 
 #find_redcarpet(json.load(open('gg2013.json')))

@@ -36,6 +36,31 @@ Adding --save_json will save the json files to gg_{year}_generated_answers.json 
 
 
 ```bash
+# This will run the auto grader and print the results
 python Runner.py --output_results --autograde --year 2013 --save_json
+
+# This will run the auto grader and save the json files
+python Runner.py --autograde --year 2013 --save_json
+
+# This will run the auto grader and print the results
+python Runner.py --output_results --autograde --year 2013
+
+# This will save the json files in the format for the auto grader
+python Runner.py --year 2013 --save_json
 ```
 
+## What did we do
+
+### Main Requirements
+- [x] - Hosts
+- [x] - Award Names
+- [ ] - Presenters
+- [x] - Nominees - some missing
+- [x] - Winners
+
+### Extras
+- [x] - Red Carpet
+    - [x] Best Dressed
+    - [x] Worst Dressed
+    - [x] Most Controversial
+    - [x] Three Most Discussed

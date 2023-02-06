@@ -25,7 +25,7 @@ def find_and_count_names_for_award(data,award_name):
     nameCountDict = defaultdict(int)
     properNounDict = defaultdict(int)
     tweetArray = []
-    aliases = award_aliases[award_name.award_category]
+    aliases = award_aliases[award_name.award_category.award_name]
     award_regex = build_iterative_regex(aliases)
     print("")
     print(award_name.award_category)
@@ -143,7 +143,7 @@ def find_presenters(tweets,award_name):
     # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find presenter process ended at =", dt_string2)
 
-    print(award_name.award_category, ":", presenters)
+    print(award_name.award_category.award_name, ":", presenters)
     # presenterStringArr = [f"{presenters[i]}" for i in range(len(presenters)-1)]
     # presenterStringArr.append(f"and {presenters[-1]}")
     # presenterString = ''.join(presenterStringArr)

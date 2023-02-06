@@ -204,7 +204,6 @@ if __name__ == '__main__':
         autograder.main([year], functions)
 
     if args.output_results:
-        runner.get_red_carpet(year)
         if not autograde:
             runner.get_award_categories(year)
             runner.get_hosts(year)
@@ -214,6 +213,7 @@ if __name__ == '__main__':
             awards = runner.get_awards(year)
         else:
             awards = gg_api.get_award_objects(year)
+        runner.get_red_carpet(year)
                 
         print("Hosts: " + str(runner.export_hosts()) + "\n")
         for award in awards:
@@ -221,10 +221,6 @@ if __name__ == '__main__':
 
         print("Red Carpet Results:")
         red_carpet_results = runner.export_red_carpet()
-    #     redCarpetResults["Three Most Discussed"] = threeMostDiscussed
-    # redCarpetResults["Best Dressed"] = bestWorstDressed[0]
-    # redCarpetResults["Worst Dressed"] = bestWorstDressed[1]
-    # redCarpetResults["Most Controversial"] = mostControversial
         print("\tThree Most Discussed: " + str(red_carpet_results["Three Most Discussed"]))
         print("\tBest Dressed: " + str(red_carpet_results["Best Dressed"]))
         print("\tWorst Dressed: " + str(red_carpet_results["Worst Dressed"]))
