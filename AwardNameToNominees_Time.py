@@ -40,7 +40,7 @@ def AwardNameToNominees(tweets, award):
         text = text.lower()
         text = text.replace(" has ", "")
         return text
-    
+
     def check_for_pattern(tweet, award, pattern, forward: bool):
         if not isinstance(forward, bool):
             raise TypeError("forward must be a boolean")
@@ -72,10 +72,17 @@ def AwardNameToNominees(tweets, award):
                         nominee += tweet.split()[j] + " "
                     nominee = nominee.strip()
                     nominee_canidates[nominee] += 1
-        
+
+    def check_for_people(tweet):
+        nlp = spacy.load("en_core_web_sm")
+        doc = nlp(ultra_standardize(tweet))
+        for ent in doc.ents:
+            if ent.label_ == "PERSON":
+                nominee_canidates[ent.text] += 1
+
     
     award_aliases = award.award_category.aliases
-    relevant_tweets = Tweets_By_Time(tweets=tweets,award_name_aliases=award_aliases,range=0.5)
+    relevant_tweets = Tweets_By_Time(tweets=tweets,award_name_aliases=award_aliases,range=0.3)
     # remove all duplicate tweets
     unique_tweets = []
     unique_text = set()
@@ -105,11 +112,30 @@ def AwardNameToNominees(tweets, award):
         check_for_pattern(tweet, award, "should have been", False)
         check_for_pattern(tweet, award, "shouldn't have been", False)
         check_for_pattern(tweet, award, "should have gotten", False)
+
+    # please don't judge me for this
+    if award.award_category.isPerson:
+        SUPERMEGATWEET = ''.join(tweet["text"] + " " for tweet in tweets[:3000])
+        check_for_people(SUPERMEGATWEET)
+
         # check_for_pattern(tweet, award, "robbed", False)
         
         # check_for_goes_to_pattern(alias, tweet, award)
         # check_for_wins_pattern(alias, tweet, award)
-    return nominee_canidates
+
+
+    nominee_candidates = {k:v for k,v in nominee_candidates.items() if v>1}
+    nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
+    
+    actors = get_csv_set("actors.csv")
+    movies = get_csv_set("movies.csv")
+
+    if award.award_category.isPerson:
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors}
+    else:
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies}
+    
+    return [nom for i,nom in enumerate(nominee_candidates.keys()) if i < 5]
 
     # winner = max(nominee_canidates, key=lambda x: (nominee_canidates.count(x), len(x)))
     # if len(nominee_canidates) == 0:
@@ -130,8 +156,6 @@ def get_csv_set(csv_file):
                 csvSet.add(name.lower())
     return csvSet
 
-def filter(d,s):
-    return {k:v for k,v in d.items() if k in s}
 
 
 def test():
@@ -163,9 +187,9 @@ def test():
 
         aaaa[aw.award_category.award_name] = nom_candidates
     
-        if i == 5:
-            break
-    dict_to_json(aaaa,"aaaa.json",False,"test_files")
+        # if i == 5:
+        #     break
+    dict_to_json(aaaa,"aaaa",False,"test_files")
 
 test()
     
