@@ -9,21 +9,21 @@ import spacy
 import re
 from collections import defaultdict
 
-def getAwards():
-    awards = []
-    addedAwards = []
-    aliases = get_aliases()
+# def getAwards():
+#     awards = []
+#     addedAwards = []
+#     aliases = get_aliases()
 
-    # create list of awards
-    for cat in aliases:
-        if cat not in addedAwards:
-            addedAwards.append(cat)
-            awardStruct = Award(AwardCategory(cat))
-            awardStruct.award_category.aliases = aliases[cat]
-            awards.append(awardStruct)
-    return awards
+#     # create list of awards
+#     for cat in aliases:
+#         if cat not in addedAwards:
+#             addedAwards.append(cat)
+#             awardStruct = Award(AwardCategory(cat))
+#             awardStruct.award_category.aliases = aliases[cat]
+#             awards.append(awardStruct)
+#     return awards
 
-def AwardNamesToWinners(tweets, award):
+def AwardNameToWinners(tweets, award):
     '''
     Function to go from award names to winners
     Returns a list of updated Award objects with the winner field filled in
