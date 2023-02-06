@@ -174,4 +174,4 @@ def find_redcarpet(tweets):
     # print("Find Red Carpet Outfits process ended at =", dt_string2)
     return redCarpetResults
 
-find_redcarpet(json.load(open('gg2013.json')))
+#find_redcarpet(json.load(open('gg2013.json')))
