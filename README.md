@@ -2,6 +2,10 @@
 ### By: Gabe Bider, Spencer Rothfleicsch, Eli Barlow, and Isaac Miller
 
 To Run:
+Activate the virtual environment:
+```bash
+source venv/bin/activate
+```
 
 Install the requirements:
 
@@ -27,8 +31,11 @@ Turning these on will enable the mocks and will use the data from gg_apifake.py
 
 To Run the program:
 Supplying no arguments will run the program with the default values
-You need to either supply --output_results or --autograde in order to get results
+You need to either supply --output_results or --autograde in order to get output results
+Adding --save_json will save the json files to gg_{year}_generated_answers.json in the format for the auto grader
+
 
 ```bash
-python Runner.py --output_results --autograde --year 2013
+python Runner.py --output_results --autograde --year 2013 --save_json
 ```
+

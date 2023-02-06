@@ -4,11 +4,13 @@ import sys
 from decouple import config
 from Award import Award
 import logging
+from AwardCategory import AwardCategory
 from TweetsToHost import find_host
 from AwardNamesToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
+from TweetsToRedCarpet import find_redcarpet
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
 import gg_apifake
@@ -46,6 +48,7 @@ class Runner:
         if MOCK_AWARD_CATEGORIES:
             print("Mocking award categories")
             award_categories = gg_apifake.get_awards(year)
+            award_categories = [AwardCategory(category) for category in award_categories]
         else:
             print("Not mocking award categories")
             award_categories = [v for k,v in get_award_categories_from_json(self.tweets).items()]
@@ -60,7 +63,7 @@ class Runner:
             presenters = gg_apifake.get_presenters(year)
             for category in presenters.keys():
                 for award in self.awards:
-                    if award.award_category == category:
+                    if award.award_category.award_name == category:
                         award.SetPresenters(presenters[category])
         else:
             for award in self.awards:
@@ -75,7 +78,7 @@ class Runner:
             nominees = gg_apifake.get_nominees(year)
             for category in nominees.keys():
                 for award in self.awards:
-                    if award.award_category == category:
+                    if award.award_category.award_name == category:
                         award.SetNominees(nominees[category])
         else:
             for award in self.awards:
@@ -95,7 +98,7 @@ class Runner:
             winners = gg_apifake.get_winner(year)
             for category in winners.keys():
                 for award in self.awards:
-                    if award.award_category == category:
+                    if award.award_category.award_name == category:
                         award.SetWinner(winners[category])
 
         else:
@@ -105,6 +108,9 @@ class Runner:
 
     def get_winner_for_award(self, award):
         return AwardNameToWinners(self.tweets,award)
+    
+    def get_red_carpet(self, year):
+        self.red_carpet_results = find_redcarpet(self.tweets)
 
     def get_hosts(self, year):
         if MOCK_HOSTS:
@@ -121,19 +127,19 @@ class Runner:
     def export_presenters(self):
         presenters = {}
         for award in self.awards:
-            presenters[award.award_category] = award.presenters
+            presenters[award.award_category.award_name] = award.presenters
         return presenters
 
     def export_nominees(self):
         nominees = {}
         for award in self.awards:
-            nominees[award.award_category] = award.nominees
+            nominees[award.award_category.award_name] = award.nominees
         return nominees
 
     def export_winners(self):
         winners = {}
         for award in self.awards:
-            winners[award.award_category] = award.winner
+            winners[award.award_category.award_name] = award.winner
         return winners
 
     def export_award_categories(self):
@@ -141,12 +147,17 @@ class Runner:
         for award in self.awards:
             awards[award.award_category] = award
         return awards
+    
+    def export_red_carpet(self):
+        return self.red_carpet_results
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--year', dest='year', action='store', help='the year of the awards to get', nargs=1)
     parser.add_argument("--autograde", nargs='*', default=None, help='call the autograder which will output autograded information')
     parser.add_argument('--output_results', dest='output_results', action='store_true', help='output a human readable version of the awards that have been found')
+    parser.add_argument('--save_json', dest='save_json', action='store_true', help='save the results of the autograder to a json file')
+
     args = parser.parse_args()
     return args
 
@@ -189,19 +200,78 @@ if __name__ == '__main__':
         for key in mocks.keys():
             print("{}: {}".format(key, mocks[key]))
         print("")
-        # Save it to a file
+        
         autograder.main([year], functions)
 
     if args.output_results:
+        runner.get_red_carpet(year)
         if not autograde:
             runner.get_award_categories(year)
             runner.get_hosts(year)
             runner.get_all_award_presenters(year)
             runner.get_award_nominees(year)
             runner.get_award_winners(year)
-
-            for award in runner.get_awards(year):
-                print(str(award) + "\n")
+            awards = runner.get_awards(year)
         else:
-            for award in gg_api.get_award_objects(year):
-                print(str(award) + "\n")
+            awards = gg_api.get_award_objects(year)
+                
+        print("Hosts: " + str(runner.export_hosts()) + "\n")
+        for award in awards:
+            print(str(award) + "\n")
+
+        print("Red Carpet Results:")
+        red_carpet_results = runner.export_red_carpet()
+    #     redCarpetResults["Three Most Discussed"] = threeMostDiscussed
+    # redCarpetResults["Best Dressed"] = bestWorstDressed[0]
+    # redCarpetResults["Worst Dressed"] = bestWorstDressed[1]
+    # redCarpetResults["Most Controversial"] = mostControversial
+        print("\tThree Most Discussed: " + str(red_carpet_results["Three Most Discussed"]))
+        print("\tBest Dressed: " + str(red_carpet_results["Best Dressed"]))
+        print("\tWorst Dressed: " + str(red_carpet_results["Worst Dressed"]))
+        print("\tMost Controversial: " + str(red_carpet_results["Most Controversial"]))
+    
+    if args.save_json:
+        if not autograde and not args.output_results:
+            runner.get_award_categories(year)
+            runner.get_hosts(year)
+            runner.get_all_award_presenters(year)
+            runner.get_award_nominees(year)
+            runner.get_award_winners(year)
+
+            awards = runner.get_awards(year)
+            hosts = runner.export_hosts()
+            presenters = runner.export_presenters()
+            nominees = runner.export_nominees()
+            winners = runner.export_winners()
+        elif autograde and not args.output_results:
+            awards = gg_api.get_award_objects(year)
+            hosts = gg_api.get_hosts(year)
+            presenters = gg_api.get_presenters(year)
+            nominees = gg_api.get_nominees(year)
+            winners = gg_api.get_winner(year)
+        else:
+            runner.get_award_categories(year)
+            runner.get_hosts(year)
+            runner.get_all_award_presenters(year)
+            runner.get_award_nominees(year)
+            runner.get_award_winners(year)
+
+            awards = runner.get_awards()
+            hosts = runner.export_hosts()
+            presenters = runner.export_presenters()
+            nominees = runner.export_nominees()
+            winners = runner.export_winners()
+
+        data = {
+            "Hosts": hosts,
+        }
+        for award in awards:
+            data[award.award_category.award_name] = {
+                "Nominees": award.nominees,
+                "Presenters": award.presenters,
+                "Winner": award.winner
+            }
+        with open('gg_{}_generated_answers.json'.format(year), 'w') as outfile:
+            json.dump(data, outfile)
+
+
