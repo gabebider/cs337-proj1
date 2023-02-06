@@ -1,6 +1,7 @@
 from Award import Award
 import csv
 from AwardCategory import AwardCategory
+from collections import Counter
 from aliases import get_aliases
 from utils import standardize
 from TweetsByTime import Tweets_By_Time
@@ -52,6 +53,18 @@ def AwardNameToWinners(tweets, award):
             unique_tweets.append(tweet)
     # now we have a set of unique tweets to work with
     tweets = unique_tweets
+
+    def get_csv_set(csv_file):
+        csvSet = set()
+        with open(csv_file, 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                for name in row:
+                    csvSet.add(name.lower())
+        return csvSet
+    
+    actors_set = get_csv_set("actors.csv")
+    movies_set = get_csv_set("movies.csv")
 
     # standarize a lot
     def ultra_standardize(text):
@@ -161,11 +174,28 @@ def AwardNameToWinners(tweets, award):
     # now we have a dictionary of canidates for each award
     # go through each canidate for an award and find the most common
     # this picks the most common canidate and breaks ties by picking the longest string (in hopes of getting full name versus just first or last)
-    winner = max(award_winner_canidates, key=lambda x: (award_winner_canidates.count(x), len(x)))
-    if len(award_winner_canidates) == 0:
+    # winner = max(award_winner_canidates, key=lambda x: (award_winner_canidates.count(x), len(x)))
+    candidate_counts = Counter(award_winner_canidates)
+    top_twenty = candidate_counts.most_common(20)
+    if len(candidate_counts) == 0:
         winner = "No winner found"
         award.winner = winner
     else:
-        award.winner = winner
+        found = False
+        if award.award_category.isPerson:
+            for candidate, count in top_twenty:
+                if candidate in actors_set:
+                    winner = candidate
+                    found = True
+                    break
+        else:
+            for candidate, count in top_twenty:
+                if candidate in movies_set:
+                    winner = candidate
+                    found = True
+                    break
+        if not found:
+            winner = top_twenty[0][0]
 
     return winner
+    
