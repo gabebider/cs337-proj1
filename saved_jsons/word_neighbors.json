@@ -1,23 +1,23 @@
 {
     "actor": [
-        "miniseries",
-        "drama",
-        "motion",
         "comedy",
-        "tv"
+        "tv",
+        "motion",
+        "miniseries",
+        "drama"
     ],
     "tv": [
+        "comedy",
         "drama",
-        "movie",
-        "comedy"
+        "movie"
     ],
     "drama": [
         "film"
     ],
     "miniseries": [],
     "or": [
-        "tv",
-        "musical"
+        "musical",
+        "tv"
     ],
     "movie": [],
     "motion": [
@@ -31,16 +31,16 @@
     "musical": [],
     "film": [],
     "actress": [
-        "miniseries",
-        "drama",
-        "motion",
         "series",
         "comedy",
-        "tv"
+        "tv",
+        "motion",
+        "miniseries",
+        "drama"
     ],
     "animated": [
-        "film",
-        "feature"
+        "feature",
+        "film"
     ],
     "feature": [
         "film"
@@ -56,8 +56,8 @@
         "film"
     ],
     "original": [
-        "song",
-        "score"
+        "score",
+        "song"
     ],
     "score": [],
     "song": [
@@ -71,7 +71,7 @@
         "drama"
     ],
     "supporting": [
-        "actress",
-        "actor"
+        "actor",
+        "actress"
     ]
 }
