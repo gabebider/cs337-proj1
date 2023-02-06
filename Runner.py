@@ -5,6 +5,7 @@ from decouple import config
 from Award import Award
 import logging
 from AwardCategory import AwardCategory
+from AwardNameToNominees_Time import AwardNameToNominees
 from TweetsToHost import find_host
 from AwardNamesToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
@@ -66,8 +67,10 @@ class Runner:
                     if award.award_category.award_name == category:
                         award.SetPresenters(presenters[category])
         else:
+            print("Not mocking award presenters")
             for award in self.awards:
-                award.SetPresenters(self.get_presenter_for_award(award))
+                # award.SetPresenters(self.get_presenter_for_award(award))
+                award.SetPresenters(["Larry Birnbaum", "Guo Ye"])
 
     def get_presenter_for_award(self, award):
         return find_presenters(self.tweets,award)
@@ -81,13 +84,12 @@ class Runner:
                     if award.award_category.award_name == category:
                         award.SetNominees(nominees[category])
         else:
+            print("Not mocking award nominees")
             for award in self.awards:
-                print("Not mocking award nominees")
                 award.SetNominees(self.get_nominees_for_award(award))
 
     def get_nominees_for_award(self, award):
-        # TODO - implement actual code
-        return []
+        return AwardNameToNominees(self.tweets,award)
 
     def get_awards(self, year):
         return self.awards
@@ -102,8 +104,8 @@ class Runner:
                         award.SetWinner(winners[category])
 
         else:
+            print("Not mocking award winners")
             for award in self.awards:
-                print("Not mocking award winners")
                 award.SetWinner(self.get_winner_for_award(award))
 
     def get_winner_for_award(self, award):
