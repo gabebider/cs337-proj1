@@ -66,28 +66,27 @@ def findNominees(awards, tweets):
         # check if the award is a movie or a person
         if re.search(r"\b(actor|actress|director|score)\b", aliases[0]):
             # print(awards[index].__str__())
-            timedTweets = Tweets_By_Time(tweets, aliases, 0.30)
-            # print(r"\b(" + "|".join(aliases) + r")\b")
+            timedTweets = Tweets_By_Time(tweets, aliases, 0.6)
             name_array = find_full_names(find_and_count_names(timedTweets, aliases))
-            name_array = sorted(name_array, key=lambda x: x[1])
+            name_array = dict(sorted(name_array.items(), key=lambda item: item[1], reverse=True))
             print(awards[index].award_category.award_name)
             print(name_array)
             print("")
         else:
             print("movie names")
-            print(awards[index].__str__())
+            print(awards[index].award_category.award_name)
             print("")
 
 def find_and_count_names(data, aliases):
     # loads name processor
     langProcesor = spacy.load("en_core_web_sm")
-    nameCountArray = []
+    nameCounts = {}
     tweetArray = []
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
         # Checks if tweet is relation to a host or hostess
-        if  not text in tweetArray and re.search(r"\b(" + "|".join(aliases) + "|nominee|nominees|nominated|nominate|nomination" + r")\b", text.lower()):
+        if  not text in tweetArray and re.search(r"\b(" + "|".join(aliases) + "stole|rob|should have won" + r")\b", text.lower()): # |nominee|nominees|nominated|nominate|nomination
             # print(text)
             tweetArray.append(text)
             addNames = []
@@ -98,42 +97,48 @@ def find_and_count_names(data, aliases):
                     addNames.append(name.text)
             # updates count if name exists or adds name if does not exist yet
             for name in addNames:
-                exists = False
-                for entries in nameCountArray:
-                    if entries[0] == name:
-                        exists = True
-                        entries[1] = entries[1] + 1
-                if exists == False:
-                    nameCountArray.append([name, 1])
-    return nameCountArray
+                if name in nameCounts:
+                    nameCounts[name] = nameCounts[name] + 1
+                else:
+                    nameCounts[name] = 1
+    return nameCounts
 
 
-def find_full_names(nameCountArray):
+def find_full_names(nameCounts):
     # scraper.findActors()
     # load actors csv (scraped from imdb)
-    fullNameArray = []
-    singleNameArray = []
-    finalNamesArray = []
+    fullNames = {}
+    singleNames = {}
+    finalNames = {}
     # create array of full names and single names
-    for names in nameCountArray:
-        if re.search(r".* .*", names[0]):
-            fullNameArray.append([names[0], names[1]])
+    for name in nameCounts.keys():
+        if " " in name:
+            fullNames[name] = nameCounts[name]
         else:
-            singleNameArray.append([names[0], names[1]])
+            singleNames[name] = nameCounts[name]
     with open('actors.csv', 'r', encoding='utf-8') as actorCSV:
         reader = csv.reader(actorCSV)
         actorsArray = list(next(reader))
         # find full names that are actors
-        for actor in fullNameArray:
-            if actor[0] in actorsArray:
-                finalNamesArray.append([actor[0], actor[1]])
-    for name in singleNameArray:
-        for x in range(len(finalNamesArray)):
-            if name[0] in finalNamesArray[x][0]:
-                if finalNamesArray[x][1] > name[1]:
-                    finalNamesArray[x][1] = finalNamesArray[x][1] + name[1]
-    # remove duplicate names
-    finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
-    return finalNamesArray
+        for actor in fullNames.keys():
+            if actor in actorsArray:
+                finalNames[actor] = fullNames[actor]
 
-findNominees(getAwards(), json.load(open('gg2013.json')))
+    for name in singleNames.keys():
+        # find single names that are actors
+        # for actor in actorsArray:
+        #     if name in actor:
+        #         if actor in finalNames:
+        #             finalNames[actor] = finalNames[actor] + singleNames[name]
+        #         else:
+        #             finalNames[actor] = singleNames[name]
+        if name in finalNames:
+            finalNames[name] = finalNames[name] + singleNames[name]
+        else:
+            finalNames[name] = singleNames[name]
+    # remove duplicate names
+    # finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
+    return finalNames
+
+if __name__ == "__main__":
+    findNominees(getAwards(), json.load(open('gg2013.json')))
