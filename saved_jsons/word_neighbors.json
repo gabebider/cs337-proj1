@@ -16,8 +16,8 @@
     ],
     "miniseries": [],
     "or": [
-        "tv",
-        "musical"
+        "musical",
+        "tv"
     ],
     "movie": [],
     "motion": [
@@ -33,14 +33,14 @@
     "actress": [
         "motion",
         "comedy",
-        "drama",
         "miniseries",
-        "series",
-        "tv"
+        "drama",
+        "tv",
+        "series"
     ],
     "animated": [
-        "film",
-        "feature"
+        "feature",
+        "film"
     ],
     "feature": [
         "film"
@@ -56,8 +56,8 @@
         "film"
     ],
     "original": [
-        "song",
-        "score"
+        "score",
+        "song"
     ],
     "score": [],
     "song": [

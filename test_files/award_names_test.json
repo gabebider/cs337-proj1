@@ -27,10 +27,10 @@
     "best actor, drama for film": [
         71,
         [
-            "best actor, drama for film",
-            "best actor in a drama",
             "best actor, drama",
-            "best actor drama"
+            "best actor drama",
+            "best actor in a drama",
+            "best actor, drama for film"
         ]
     ],
     "best actress drama": [
@@ -42,8 +42,8 @@
     "best actress for comedy or musical": [
         68,
         [
-            "best actress for comedy or musical",
-            "best actress in a comedy"
+            "best actress in a comedy",
+            "best actress for comedy or musical"
         ]
     ],
     "best actress for motion picture- drama-": [
@@ -56,8 +56,8 @@
     "best actress in a mini-series or tv movie": [
         33,
         [
-            "best actress in a mini-series or tv movie",
-            "best actress in a miniseries or tv movie"
+            "best actress in a miniseries or tv movie",
+            "best actress in a mini-series or tv movie"
         ]
     ],
     "best actress in a tv comedy or musical": [
@@ -77,8 +77,8 @@
         218,
         [
             "best animated film",
-            "best animated feature film",
-            "best animated feature"
+            "best animated feature",
+            "best animated feature film"
         ]
     ],
     "best comedy or musical": [
@@ -112,8 +112,8 @@
         110,
         [
             "best motion picture or comedy or musical",
-            "best motion picture - comedy or musical",
             "best motion picture, comedy or musical",
+            "best motion picture - comedy or musical",
             "best motion picture comedy or musical"
         ]
     ],
@@ -126,38 +126,38 @@
     "best original song motion picture": [
         384,
         [
-            "best original song motion picture",
-            "best original song in a motion picture",
             "best original song",
-            "best original song at the"
+            "best original song at the",
+            "best original song motion picture",
+            "best original song in a motion picture"
         ]
     ],
     "best picture - drama": [
         524,
         [
-            "best picture",
-            "best picture - drama",
+            "best motion picture drama",
             "best motion picture - drama",
-            "best motion picture drama"
+            "best picture - drama",
+            "best picture"
         ]
     ],
     "best screenplay, motion picture": [
         277,
         [
-            "best screenplay",
+            "best motion picture screenplay",
             "best screenplay, motion picture",
-            "best screenplay - motion picture",
-            "best motion picture screenplay"
+            "best screenplay",
+            "best screenplay - motion picture"
         ]
     ],
     "best series drama": [
         448,
         [
-            "best series - drama",
-            "best series",
             "best drama series",
+            "best series drama",
+            "best series",
             "best drama",
-            "best series drama"
+            "best series - drama"
         ]
     ],
     "best supporting actor in tv": [
@@ -184,9 +184,9 @@
         53,
         [
             "best supporting actress, tv",
-            "best supporting actress in a tv movie, series, or miniseries",
+            "best supporting actress series, miniseries, or tv movie",
             "best supporting actress in a series",
-            "best supporting actress series, miniseries, or tv movie"
+            "best supporting actress in a tv movie, series, or miniseries"
         ]
     ],
     "best tv comedy or musical": [
