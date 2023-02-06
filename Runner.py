@@ -7,6 +7,7 @@ import logging
 from TweetsToHost import find_host
 from AwardNamesToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
+from AwardNameToWinners import AwardNameToWinners
 import json
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
@@ -103,8 +104,7 @@ class Runner:
                 award.SetWinner(self.get_winner_for_award(award))
 
     def get_winner_for_award(self, award):
-        # TODO - implement actual code
-        return ""
+        return AwardNameToWinners(self.tweets,award)
 
     def get_hosts(self, year):
         if MOCK_HOSTS:
