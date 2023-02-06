@@ -11,25 +11,21 @@ import numpy as np
 from aliases import award_aliases, get_aliases
 from utils import standardize, build_iterative_regex
 
-def AwardNameToNominees(tweets, awards, actors, movies):
+def AwardNameToNominees(tweets, award):
     '''
     Finds the nominees for each award category
 
     Parameters
     ----------
     tweets : list[dict] (not sure if this is the right type, but the json file opened yknow)
-    award_names : list[Award]
-    actors : list[str]
-    movies : list[str]
+    award : Award (the award we are trying to find the nominees for)
 
     Returns
     -------
-    awards : list[Award]
+    nominees : list[str] (the names of the nominees)
     '''
-    if not isinstance(awards, list):
-        raise TypeError("award_names must be a list")
-    if not all(isinstance(award, Award) for award in awards):
-        raise TypeError("award_names must be a list of Award objects")
+    if not isinstance(award, Award):
+        raise TypeError("award must be a list")
 
     def ultra_standardize(text):
         text = standardize(text)
@@ -43,11 +39,64 @@ def AwardNameToNominees(tweets, awards, actors, movies):
         text = text.lower()
         text = text.replace(" has ", "")
         return text
-    
-    # init dictionary to store votes for potential nominees
-    nominee_votes = {}
-    for award in awards:
-        nominee_votes[award.award_category.award_name] = []
+
+    # helper function to check for "X" wins "Y" pattern
+    def check_for_should_win_pattern(award_alias, tweet, award):
+        if not isinstance(award_alias, str):
+            raise TypeError("award_alias must be a string")
+        if not isinstance(tweet, str):
+            raise TypeError("tweet must be a string")
+        if not isinstance(award, Award):
+            raise TypeError("award must be an Award object")
+
+        # this covers the "X" should win "Y" case
+        # where "X" is the nominee and "Y" is the award
+        if award_alias in tweet and re.search(r" should win ", tweet):
+            try:
+                nominated_index = tweet.lower().split().index("should")
+            except:
+                return
+            for i in range(nominated_index - 1, -1, -1):
+                nominee = ""
+                for j in range(i, nominated_index):
+                    nominee += tweet.split()[j] + " "
+                nominee = nominee.strip()
+                nominee_canidates.append(nominee)
+
+    def check_for_pattern(award_alias, tweet, award, pattern, forward: bool):
+        if not isinstance(forward, bool):
+            raise TypeError("forward must be a boolean")
+        if not isinstance(award_alias, str):
+            raise TypeError("award_alias must be a string")
+        if not isinstance(tweet, str):
+            raise TypeError("tweet must be a string")
+        if not isinstance(award, Award):
+            raise TypeError("award must be an Award object")
+        
+        if award_alias in tweet and re.search( rf" {pattern} ", tweet):
+            # TODO: add try except here 
+            if len(pattern.split()) > 1 and forward:
+                nominated_index = tweet.lower().split().index(pattern.split()[-1])
+            elif len(pattern.split()) > 1 and not forward:
+                nominated_index = tweet.lower().split().index(pattern.split()[0])
+            else:
+                nominated_index = tweet.lower().split().index(pattern)
+
+            if forward:
+                for i in range(nominated_index + 1, len(tweet.split())):
+                    nominee = ""
+                    for j in range(nominated_index + 1, i + 1):
+                        nominee += tweet.split()[j] + " "
+                    nominee = nominee.strip()
+                    nominee_canidates.append(nominee)
+            else:
+                for i in range(nominated_index - 1, -1, -1):
+                    nominee = ""
+                    for j in range(i, nominated_index):
+                        nominee += tweet.split()[j] + " "
+                    nominee = nominee.strip()
+                    nominee_canidates.append(nominee)
+        
     
     # remove all duplicate tweets
     unique_tweets = []
@@ -60,6 +109,7 @@ def AwardNameToNominees(tweets, awards, actors, movies):
     # now we have a set of unique tweets to work with
     tweets = unique_tweets
 
+    nominee_canidates = []
     tracker = 0
      # loop through all tweets
     for tweet in tweets:
@@ -69,43 +119,44 @@ def AwardNameToNominees(tweets, awards, actors, movies):
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])
-        # loop through all awards
-        for award in awards:
-            # check all aliases for award names
-            for alias in award.award_category.aliases:
-                alias = ultra_standardize(alias)
-                # check for the "X" won "Y" pattern
-                # check_for_won_pattern(alias, tweet, award)
-                # check_for_goes_to_pattern(alias, tweet, award)
-                # check_for_wins_pattern(alias, tweet, award)
-                
+        # check all aliases for award names
+        for alias in award.award_category.aliases:
+            alias = ultra_standardize(alias)
+            check_for_pattern(alias, tweet, award, "should win", False)
+            check_for_pattern(alias, tweet, award, "should have won", False)
+            check_for_pattern(alias, tweet, award, "should have been", False)
+            check_for_pattern(alias, tweet, award, "should have gotten", False)
+            check_for_pattern(alias, tweet, award, "robbed", False)
+            
+            # check_for_goes_to_pattern(alias, tweet, award)
+            # check_for_wins_pattern(alias, tweet, award)
+
+    winner = max(nominee_canidates, key=lambda x: (nominee_canidates.count(x), len(x)))
+    if len(nominee_canidates) == 0:
+        winner = "No winner found"
+        award.winner = winner
+    else:
+        award.winner = winner
+
+    return winner
+            
 
 
-      
+def getAwards():
+    awards = []
+    addedAwards = []
+    aliases = get_aliases()
 
-    # helper function to check for "X" wins "Y" pattern
-    def check_for_wins_pattern(award_alias, tweet, award):
-        if not isinstance(award_alias, str):
-            raise TypeError("award_alias must be a string")
-        if not isinstance(tweet, str):
-            raise TypeError("tweet must be a string")
-        if not isinstance(award, Award):
-            raise TypeError("award must be an Award object")
+    # create list of awards
+    for cat in aliases:
+        if cat not in addedAwards:
+            addedAwards.append(cat)
+            awardStruct = Award(AwardCategory(cat))
+            awardStruct.award_category.aliases = aliases[cat]
+            awards.append(awardStruct)
+    return awards
 
-        # this covers the "X" wins "Y" case
-        # where "X" is the winner and "Y" is the award
-        if award_alias in tweet and re.search(r" [Nn]ominated for ", tweet):
-            try:
-                nominated_index = tweet.lower().split().index("nominated")
-            except:
-                return
-            for i in range(nominated_index - 1, -1, -1):
-                nominee = ""
-                for j in range(i, nominated_index):
-                    nominee += tweet.split()[j] + " "
-                nominee = nominee.strip()
-                nominee_votes[award.award_category.award_name].append(nominee)
-    
+print(AwardNameToNominees(json.load(open('gg2013.json')), getAwards()[0]))
 
 
 
