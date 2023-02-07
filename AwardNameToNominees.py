@@ -116,7 +116,7 @@ def AwardNameToNominees(tweets, award):
     nominee_candidates = {k:v for k,v in nominee_candidates.items() if v>1}
     nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
     
-    actors = get_csv_set("actors.csv")
+    actors = get_csv_set("people.csv")
     movies = get_csv_set("movies.csv")
 
     if award.award_category.isPerson:
@@ -132,7 +132,7 @@ def test():
 
     tweets = json.load(open(f'gg2013.json'))
 
-    actors = get_csv_set("actors.csv")
+    actors = get_csv_set("people.csv")
     movies = get_csv_set("movies.csv")
 
     aaaa = dict()

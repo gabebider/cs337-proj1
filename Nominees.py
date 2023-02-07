@@ -116,7 +116,7 @@ def find_full_names(nameCounts):
             fullNames[name] = nameCounts[name]
         else:
             singleNames[name] = nameCounts[name]
-    with open('actors.csv', 'r', encoding='utf-8') as actorCSV:
+    with open('people.csv', 'r', encoding='utf-8') as actorCSV:
         reader = csv.reader(actorCSV)
         actorsArray = list(next(reader))
         # find full names that are actors

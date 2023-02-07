@@ -33,7 +33,7 @@ def AwardNameToWinners(tweets, award):
     # now we have a set of unique tweets to work with
     tweets = unique_tweets
     
-    actors_set = get_csv_set("actors.csv")
+    actors_set = get_csv_set("people.csv")
     movies_set = get_csv_set("movies.csv")
 
     # standarize a lot

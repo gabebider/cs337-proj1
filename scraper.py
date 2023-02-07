@@ -29,9 +29,9 @@ def findMovies():
 
 
 
-def findActors():
+def findPeople():
     # this also includes actresses
-    actors = []
+    people = []
     for start in range(1, 3001, 100):
         # WORK IN Progress
         url = f"https://www.imdb.com/search/name/?birth_date=1920-01-01,2022-12-31&count=100&start={start}&ref_=rlm"
@@ -46,14 +46,28 @@ def findActors():
                 # remove the \n at end of name
                 actor_name = link.text[:-1]
                 # strip extra spaces
-                actors.append(actor_name.strip())
+                people.append(actor_name.strip())
+
+    url = f"https://www.imdb.com/list/ls048362057/?count=100&ref_=rlm"
+
+    html = requests.get(url)
+    soup = BeautifulSoup(html.text, "html.parser")
+
+    hyperlinks = soup.find_all("a", href=re.compile("name/nm"))
+
+    for link in hyperlinks:
+        if link.text != "" and link.text != "\n" and link.text != " \n" and link.text != "  \n":
+            # remove the \n at end of name
+            singer_name = link.text[:-1]
+            # strip extra spaces
+            people.append(singer_name.strip())
     
-    return actors
+    return people
 
 
-actors = findActors()
+people = findPeople()
 
 
-with open('actors.csv', 'w', newline='') as myfile:
+with open('people.csv', 'w', newline='') as myfile:
      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-     wr.writerow(actors)
+     wr.writerow(people)

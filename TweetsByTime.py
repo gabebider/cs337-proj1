@@ -45,9 +45,6 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     start_time = tweets_with_award_name[start]['timestamp_ms']
     end_time = tweets_with_award_name[end]['timestamp_ms']
 
-    # print(f"The length of the tweets_with_award_name list is: {len(tweets_with_award_name)}")
-    # print(f"The length of all tweets is: {len(tweets)}")
-
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
 
     relevant_tweets = [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
