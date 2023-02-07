@@ -20,6 +20,16 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     if range > 1 or range < 0:
         raise ValueError("Range must be between 0 and 1")
 
+    # remove all tweets with the same text
+    seen_tweets = set()
+    unique_tweets = []
+    for tweet in tweets:
+        if tweet['text'] not in seen_tweets:
+            seen_tweets.add(tweet['text'])
+            unique_tweets.append(tweet)
+    
+    tweets = unique_tweets
+
     # find all tweets that mention the award name
     tweets_with_award_name = []
     for tweet in tweets:
@@ -30,6 +40,8 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
                 tweets_with_award_name.append(tweet)
                 break
 
+    # remove any retweets
+    tweets_with_award_name = [tweet for tweet in tweets_with_award_name if not tweet['text'].startswith('RT ')]
     # sort tweets by time
     tweets_with_award_name.sort(key=lambda x: x['timestamp_ms'])
 
