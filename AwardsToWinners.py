@@ -2,7 +2,6 @@ from Award import Award
 import csv
 from AwardCategory import AwardCategory
 from aliases import get_aliases
-from TweetsByTime import Tweets_By_Time
 import json
 import spacy
 import itertools

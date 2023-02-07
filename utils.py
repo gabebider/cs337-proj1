@@ -3,6 +3,9 @@ import json
 import csv
 from datetime import datetime
 
+def preprocess(tweets):
+    ## get rid of all retweets
+    tweets = {tweet for tweet in tweets if tweet['text'][0:2] != "RT"}
 #! right now I'm getting rid of 'in a' - this means that we aren't going to be able to get the completely correct award name but for right now i dont really care because it makes things easier
 def standardize(text):
     ## (http[^\ ]*)|

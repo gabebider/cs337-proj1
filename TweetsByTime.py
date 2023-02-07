@@ -48,9 +48,6 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
 
     relevant_tweets = [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
-    jsonob = json.dumps(relevant_tweets, indent = 4)
-    with open(f"test_tweets_time/{award_name_aliases[0]}.json",'w') as outfile:
-        outfile.write(jsonob)
     return relevant_tweets
 
 if __name__ == '__main__':
