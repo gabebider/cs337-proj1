@@ -182,18 +182,25 @@ def AwardNameToWinners(tweets, award):
         award.winner = winner
     else:
         found = False
-        if award.award_category.isPerson:
+        if award.award_category.award_type == "PERSON":
             for candidate, count in top_twenty:
                 if candidate in actors_set:
                     winner = candidate
                     found = True
                     break
-        else:
+        elif award.award_category.award_type == "MOVIE":
             for candidate, count in top_twenty:
                 if candidate in movies_set:
                     winner = candidate
                     found = True
                     break
+        else:
+            for candidate, count in top_twenty:
+                if candidate not in actors_set:
+                    winner = candidate
+                    found = True
+                    break
+
         if not found:
             winner = top_twenty[0][0]
 

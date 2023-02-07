@@ -5,7 +5,17 @@ class AwardCategory:
         self.award_name = str(award_name)
         self.count = count
         self.aliases = set([self.award_name])
-        self.isPerson = re.search(r"(actor)|(actress)|(director)|(song)",self.award_name) != None
+        self.set_type()
 
     def __str__(self):
             return f"{self.award_name}"
+    
+    def set_type(self):
+        peopleTypes = ["actor","actress","director"]
+        otherTypes = ["song","series"]
+        if any([kw in self.award_name for kw in peopleTypes]):
+            self.award_type = "PERSON"
+        elif any([kw in self.award_name for kw in otherTypes]):
+            self.award_type = "OTHER"
+        else:
+            self.award_type = "MOVIE"

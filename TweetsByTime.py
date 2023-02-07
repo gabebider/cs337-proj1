@@ -49,7 +49,12 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     # print(f"The length of all tweets is: {len(tweets)}")
 
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
-    return [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
+
+    relevant_tweets = [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
+    jsonob = json.dumps(relevant_tweets, indent = 4)
+    with open(f"test_tweets_time/{award_name_aliases[0]}.json",'w') as outfile:
+        outfile.write(jsonob)
+    return relevant_tweets
 
 if __name__ == '__main__':
     tweets_by_time = Tweets_By_Time(json.load(open('gg2013.json')), award_aliases['best performance by an actress in a motion picture - drama'])

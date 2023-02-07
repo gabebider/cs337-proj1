@@ -5,9 +5,9 @@ from decouple import config
 from Award import Award
 import logging
 from AwardCategory import AwardCategory
-from AwardNameToNominees_Time import AwardNameToNominees
+from AwardNameToNominees import AwardNameToNominees
 from TweetsToHost import find_host
-from AwardNamesToPresenters import find_presenters
+from AwardNameToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
