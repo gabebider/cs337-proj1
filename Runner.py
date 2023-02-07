@@ -3,7 +3,7 @@ import os
 import sys
 from decouple import config
 from Award import Award
-import logging
+from datetime import datetime
 from AwardCategory import AwardCategory
 from AwardNameToNominees import AwardNameToNominees
 from TweetsToHost import find_host
@@ -45,6 +45,10 @@ class Runner:
         self.tweets = json.load(open(f'gg{year}.json'))
 
     def get_award_categories(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Categories] process started at =", dt_string)
+
         award_categories = []
         if MOCK_AWARD_CATEGORIES:
             print("Mocking award categories")
@@ -58,7 +62,17 @@ class Runner:
         for award_category in award_categories:
             self.awards.append(Award(award_category))
 
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Categories] process ended at =", dt_string)
+        print("[Get Award Categories] duration:",str(endTime-startTime))
+ 
+
     def get_all_award_presenters(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Presenters] process started at =", dt_string)
+
         if MOCK_AWARD_PRESENTERS:
             print("Mocking award presenters")
             presenters = gg_apifake.get_presenters(year)
@@ -71,10 +85,36 @@ class Runner:
             for award in self.awards:
                 award.SetPresenters(self.get_presenter_for_award(award))
 
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Presenters] process ended at =", dt_string)
+        print("[Get Award Presenters] duration:",str(endTime-startTime))
+        
+
     def get_presenter_for_award(self, award):
         return find_presenters(self.tweets,award)
 
     def get_award_nominees(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Nominees] process started at =", dt_string)
+
+        if MOCK_AWARD_NOMINEES:
+            print("Mocking award nominees")
+            nominees = gg_apifake.get_nominees(year)
+            for category in nominees.keys():
+                for award in self.awards:
+                    if award.award_category.award_name == category:
+                        award.SetNominees(nominees[category])
+        else:
+            print("Not mocking award nominees")
+            for award in self.awards:
+                award.SetNominees(self.get_nominees_for_award(award))
+
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Nominees] process ended at =", dt_string)
+        print("[Get Award Nominees] duration:",str(endTime-startTime))
         if MOCK_AWARD_NOMINEES:
             print("Mocking award nominees")
             nominees = gg_apifake.get_nominees(year)
@@ -94,6 +134,10 @@ class Runner:
         return self.awards
 
     def get_award_winners(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Winners] process started at =", dt_string)
+        
         if MOCK_AWARD_WINNERS:
             print("Mocking award winners")
             winners = gg_apifake.get_winner(year)
@@ -107,20 +151,45 @@ class Runner:
             for award in self.awards:
                 award.SetWinner(self.get_winner_for_award(award))
 
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Award Winners] process ended at =", dt_string)
+        print("[Get Award Winners] duration:",str(endTime-startTime))
+
+
     def get_winner_for_award(self, award):
         return AwardNameToWinners(self.tweets,award)
     
     def get_red_carpet(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Red Carpet] process started at =", dt_string)
+
         self.red_carpet_results = find_redcarpet(self.tweets)
 
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Red Carpet] process ended at =", dt_string)
+        print("[Get Red Carpet] duration:",str(endTime-startTime))
+        
+
     def get_hosts(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Hosts] process started at =", dt_string)
+
         if MOCK_HOSTS:
             print("Mocking hosts")
             self.hosts = gg_apifake.get_hosts(year)
         else:
             print("Not mocking hosts")
-            # TODO - implement actual code
             self.hosts = find_host(self.tweets)
+
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Hosts] process ended at =", dt_string)
+        print("[Get Hosts] duration:",str(endTime-startTime))       
+
 
     def export_hosts(self):
         return self.hosts
@@ -187,6 +256,11 @@ if __name__ == '__main__':
             functions = args.autograde
 
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    startTime = datetime.now()
+    dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("[RUNNER] process started at =", dt_string)
+
     if autograde:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("Running autograder.py with the following arguments: {} {}".format(year, " ".join(functions)))
@@ -276,5 +350,11 @@ if __name__ == '__main__':
             }
         with open('gg_{}_generated_answers.json'.format(year), 'w') as outfile:
             json.dump(data, outfile)
+
+    endTime = datetime.now()
+    dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("[RUNNER] process ended at =", dt_string)
+    print("[RUNNER] duration:",str(endTime-startTime))
+    
 
 

@@ -51,12 +51,8 @@ def findActors():
     return actors
 
 
-# movies = findMovies()
 actors = findActors()
 
-# with open('movies2.csv', 'w', newline='') as myfile:
-#      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-#      wr.writerow(movies)
 
 with open('actors.csv', 'w', newline='') as myfile:
      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)

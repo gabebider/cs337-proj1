@@ -180,56 +180,5 @@ def counts_to_json(award_aliases):
         outfile.write(jsonob)
 
 
-def counts_to_json_nom(award_aliases):
-    tweets = json.load(open('gg2013.json'))
-
-
-    for award in award_aliases:
-        print(f"STARTING AWARD!!!!!: {award}\n")
-        aliases = award_aliases[award]
-        for ind,alias in enumerate(aliases):
-            seenTweets = set()
-            count = 0
-            cleaned_alias = standardize(alias)
-            for tweet in tweets:
-                text = standardize(tweet['text'].lower())
-                award_regex = r"\s*" + re.escape(cleaned_alias) + r".*"
-                if re.search(award_regex,text) and text not in seenTweets and re.search(r"\s*([[Nn]ominate|[Nn]ominated|[Nn]ominee|[Nn]ominees]).*", text):
-                    seenTweets.add(text)
-                    count += 1
-            if count > 0:
-                aliases[ind] = {alias: count}
-    jsonob = json.dumps(award_aliases, indent = 4)
-    with open("aliases_nominees.json",'w') as outfile:
-        outfile.write(jsonob)
-
-def counts_to_json_pres(award_aliases):
-    tweets = json.load(open('gg2013.json'))
-
-
-    for award in award_aliases:
-        print(f"STARTING AWARD!!!!!: {award}\n")
-        aliases = award_aliases[award]
-        for ind,alias in enumerate(aliases):
-            seenTweets = set()
-            count = 0
-            cleaned_alias = standardize(alias)
-            for tweet in tweets:
-                text = standardize(tweet['text'].lower())
-                award_regex = r"\s*" + re.escape(cleaned_alias) + r".*"
-                if re.search(award_regex,text) and text not in seenTweets and re.search(r"\s*[Pp]resent.*", text):
-                    seenTweets.add(text)
-                    count += 1
-            if count > 0:
-                aliases[ind] = {alias: count}
-    jsonob = json.dumps(award_aliases, indent = 4)
-    with open("aliases_presenters.json",'w') as outfile:
-        outfile.write(jsonob)
-
-# counts_to_json(award_aliases=award_aliases)
-# counts_to_json_nom(award_aliases=award_aliases)
-# counts_to_json_pres(award_aliases=award_aliases)
-
-
         
 

@@ -9,17 +9,9 @@ from aliases import award_aliases
 from aliases import get_aliases
 from Award import Award
 from AwardCategory import AwardCategory
-from utils import standardize, wrap_regex
+from utils import standardize, wrap_regex, build_iterative_regex
 import json
 from TweetsByTime import Tweets_By_Time
-
-def build_iterative_regex(aliases):
-    regexes = []
-    for alias in aliases:
-        regexes.append(wrap_regex(alias))
-        regexes.append(r"|")
-    regexes.pop()
-    return ''.join(regexes)
         
 
 def find_and_count_names_for_award(data,award_name):
@@ -56,12 +48,11 @@ def find_and_count_names_for_award(data,award_name):
 
 
 def find_full_names(nameCountArray):
-    # scraper.findActors()
-    # load actors csv (scraped from imdb)
+
     fullNameArray = []
     singleNameArray = []
     finalNamesArray = []
-    # create array of full names and single names
+
     for names in nameCountArray:
         if re.search(r".* .*", names[0]):
             fullNameArray.append([names[0], names[1]])
@@ -122,28 +113,12 @@ def find_potential_presenters(actorArray, tweets):
 
 
 def find_presenters(tweets,award_name):
-    # now = datetime.now()
-    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    # print("Find presenter process started at =", dt_string)
     nameCountAndTweetArray = find_and_count_names_for_award(tweets,award_name)
     fullNameCountArray = find_full_names(nameCountAndTweetArray[0])
     presenters = find_potential_presenters(fullNameCountArray, nameCountAndTweetArray[1])
-    #presenters = find_name_std(potential_presenters)
-    # if len(presenters) == 1:
-    #     print("The presenter of the award show is: " + presenters[0])
-    # else:
-    #     print("The presenters of the award show are:")
-    #     for presenter in presenters:
-    #         print(presenter)
-    # now = datetime.now()
-    # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
-    # print("Find presenter process ended at =", dt_string2)
 
     print(award_name.award_category, ":", presenters)
-    # presenterStringArr = [f"{presenters[i]}" for i in range(len(presenters)-1)]
-    # presenterStringArr.append(f"and {presenters[-1]}")
-    # presenterString = ''.join(presenterStringArr)
-    # print("The presenters of the",award_name,"are",presenterString)
+
     return presenters
 
 # for testing purposes

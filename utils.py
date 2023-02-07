@@ -1,5 +1,7 @@
 import re
 import json
+import csv
+from datetime import datetime
 
 #! right now I'm getting rid of 'in a' - this means that we aren't going to be able to get the completely correct award name but for right now i dont really care because it makes things easier
 def standardize(text):
@@ -44,3 +46,25 @@ def build_iterative_regex(aliases):
         regexes.append(r"|")
     regexes.pop()
     return ''.join(regexes)
+
+def get_csv_set(csv_file):
+    csvSet = set()
+    with open(csv_file, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            for name in row:
+                csvSet.add(name.lower())
+    return csvSet
+
+## just an example for copypasting
+def example_time():
+    startTime = datetime.now()
+    dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("[FILL IN] process started at =", dt_string)
+
+
+    endTime = datetime.now()
+    dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+    print("[FILL IN] process ended at =", dt_string)
+    print("[FILL IN] duration:",str(endTime-startTime))
+    

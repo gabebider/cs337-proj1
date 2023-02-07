@@ -163,19 +163,11 @@ def get_simplification_dict(word_neighbors):
     return simplification_dict
 
 def clean_aliases(d,pos=False):
-    startTime = datetime.now()
-    dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
-    print(f"Clean_aliases pos={pos} process started at =", dt_string)
-
     cleaned_dict = {}
     for award in d:
         for alias in d[award].aliases:
             cleaned_dict[alias] = clean_award_name(alias,pos=pos)
     dict_to_json(cleaned_dict,"clean_aliases",folderName="saved_jsons/")
-
-    endTime = datetime.now()
-    dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
-    print(f"Clean_aliases pos={pos} process ended at =", dt_string," ||| duration:",str(endTime-startTime))
 
 def clean_award_name(awardName:str,pos=False)-> str:
     awardName = awardName.replace("for ","")
@@ -202,14 +194,14 @@ def print_keys(d):
 def get_award_categories_from_json(tweets):
     startTime = datetime.now()
     dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("Get Award Categories process started at =", dt_string)
     print("Find Award Names process started at =", dt_string)
 
     awards = find_awards(tweets)
 
     endFindAwardsTime = datetime.now()
     dt_string = endFindAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("Find Award Names process ended at =", dt_string, "duration: ",str(endFindAwardsTime-startTime))
+    print("Find Award Names process ended at =", dt_string)
+    print("    duration:",str(endFindAwardsTime-startTime))
 
     startMergeAwardsTime = datetime.now()
     dt_string = startMergeAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
@@ -229,7 +221,7 @@ def get_award_categories_from_json(tweets):
 
     endTime = datetime.now()
     dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("Merge Award Names process ended at =",dt_string," ||| duration: ",str(endTime-startMergeAwardsTime))
-    print("Get Award Categories process ended at =", dt_string, " ||| duration: ",str(endTime-startTime))
+    print("Merge Award Names process ended at =",dt_string)
+    print("    duration:",str(endTime-startMergeAwardsTime))
     return awards
 

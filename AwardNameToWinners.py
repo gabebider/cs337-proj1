@@ -1,28 +1,7 @@
 from Award import Award
-import csv
-from AwardCategory import AwardCategory
 from collections import Counter
-from aliases import get_aliases
-from utils import standardize
-from TweetsByTime import Tweets_By_Time
-import json
-import spacy
+from utils import standardize, get_csv_set
 import re
-from collections import defaultdict
-
-# def getAwards():
-#     awards = []
-#     addedAwards = []
-#     aliases = get_aliases()
-
-#     # create list of awards
-#     for cat in aliases:
-#         if cat not in addedAwards:
-#             addedAwards.append(cat)
-#             awardStruct = Award(AwardCategory(cat))
-#             awardStruct.award_category.aliases = aliases[cat]
-#             awards.append(awardStruct)
-#     return awards
 
 def AwardNameToWinners(tweets, award):
     '''
@@ -53,15 +32,6 @@ def AwardNameToWinners(tweets, award):
             unique_tweets.append(tweet)
     # now we have a set of unique tweets to work with
     tweets = unique_tweets
-
-    def get_csv_set(csv_file):
-        csvSet = set()
-        with open(csv_file, 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                for name in row:
-                    csvSet.add(name.lower())
-        return csvSet
     
     actors_set = get_csv_set("actors.csv")
     movies_set = get_csv_set("movies.csv")
