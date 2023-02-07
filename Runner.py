@@ -11,6 +11,7 @@ from AwardNameToPresenters import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
+from utils import preprocess
 from TweetsToRedCarpet import find_redcarpet
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
@@ -42,7 +43,7 @@ class Runner:
         """virtual private constructor"""
         Runner.__shared_instance = self
 
-        self.tweets = json.load(open(f'gg{year}.json'))
+        self.tweets = preprocess(json.load(open(f'gg{year}.json')))
 
     def get_award_categories(self, year):
         startTime = datetime.now()
