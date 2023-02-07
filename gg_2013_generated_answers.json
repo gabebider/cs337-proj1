@@ -1,60 +1,59 @@
 {
   "Hosts": ["Tina Fey", "Amy Poehler"],
-  "best motion picture - drama": {
-    "Nominees": [
-      "django unchained",
-      "life of pi",
-      "lincoln",
-      "zero dark thirty"
-    ],
-    "Presenters": ["julia roberts"],
-    "Winner": "argo"
+  "best actor for tv drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "damian lewis"
   },
-  "best performance by an actress in a motion picture - drama": {
-    "Nominees": [
-      "marion cotillard",
-      "sally field",
-      "helen mirren",
-      "naomi watts",
-      "rachel weisz"
-    ],
-    "Presenters": ["george clooney"],
+  "best actor in a miniseries or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "kevin costner"
+  },
+  "best actor in a motion picture drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "daniel day lewis"
+  },
+  "best actor in comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "don cheadle"
+  },
+  "best actor, drama for film": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "daniel day lewis"
+  },
+  "best actress drama": {
+    "Nominees": [],
+    "Presenters": [],
     "Winner": "jessica chastain"
   },
-  "best performance by an actor in a motion picture - drama": {
-    "Nominees": [
-      "richard gere",
-      "john hawkes",
-      "joaquin phoenix",
-      "denzel washington"
-    ],
-    "Presenters": ["george clooney"],
-    "Winner": "lewisjust"
+  "best actress for comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "jennifer lawrence"
   },
-  "best motion picture - comedy or musical": {
-    "Nominees": [
-      "the best exotic marigold hotel",
-      "moonrise kingdom",
-      "salmon fishing in the yemen",
-      "silver linings playbook"
-    ],
-    "Presenters": ["dustin hoffman"],
-    "Winner": "les miserables"
+  "best actress for motion picture- drama-": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "jessica chastain"
   },
-  "best performance by an actress in a motion picture - comedy or musical": {
-    "Nominees": ["emily blunt", "judi dench", "maggie smith", "meryl streep"],
-    "Presenters": ["will ferrell", "kristen wiig"],
-    "Winner": "No winner found"
+  "best actress in a mini-series or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "julianne moore"
   },
-  "best performance by an actor in a motion picture - comedy or musical": {
-    "Nominees": [
-      "jack black",
-      "bradley cooper",
-      "ewan mcgregor",
-      "bill murray"
-    ],
-    "Presenters": ["jennifer garner"],
-    "Winner": "No winner found"
+  "best actress in a tv comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "lena dunham"
+  },
+  "best actress in a tv drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "claire danes"
   },
   "best animated feature film": {
     "Nominees": [
@@ -66,30 +65,10 @@
     "Presenters": ["sacha baron cohen"],
     "Winner": "brave"
   },
-  "best foreign language film": {
-    "Nominees": [
-      "the intouchables",
-      "kon tiki",
-      "a royal affair",
-      "rust and bone"
-    ],
-    "Presenters": ["arnold schwarzenegger", "sylvester stallone"],
-    "Winner": "amour"
-  },
-  "best performance by an actress in a supporting role in a motion picture": {
-    "Nominees": ["amy adams", "sally field", "helen hunt", "nicole kidman"],
-    "Presenters": ["megan fox", "jonah hill"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actor in a supporting role in a motion picture": {
-    "Nominees": [
-      "alan arkin",
-      "leonardo dicaprio",
-      "philip seymour hoffman",
-      "tommy lee jones"
-    ],
-    "Presenters": ["bradley cooper", "kate hudson"],
-    "Winner": "No winner found"
+  "best comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "girls"
   },
   "best director - motion picture": {
     "Nominees": [
@@ -101,129 +80,75 @@
     "Presenters": ["halle berry"],
     "Winner": "ben affleck"
   },
-  "best screenplay - motion picture": {
+  "best foreign language film": {
     "Nominees": [
-      "zero dark thirty",
-      "lincoln",
-      "silver linings playbook",
-      "argo"
+      "the intouchables",
+      "kon tiki",
+      "a royal affair",
+      "rust and bone"
     ],
-    "Presenters": ["robert pattinson", "amanda seyfried"],
-    "Winner": "django unchained"
+    "Presenters": ["arnold schwarzenegger", "sylvester stallone"],
+    "Winner": "amour"
   },
-  "best original score - motion picture": {
-    "Nominees": ["argo", "anna karenina", "cloud atlas", "lincoln"],
-    "Presenters": ["jennifer lopez", "jason statham"],
-    "Winner": "lifeofpie"
+  "best miniseries or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "game change"
   },
-  "best original song - motion picture": {
-    "Nominees": [
-      "act of valor",
-      "stand up guys",
-      "the hunger games",
-      "les miserables"
-    ],
-    "Presenters": ["jennifer lopez", "jason statham"],
+  "best motion picture, comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "les miserables"
+  },
+  "best original score": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "life of pi"
+  },
+  "best original song motion picture": {
+    "Nominees": [],
+    "Presenters": [],
     "Winner": "skyfall"
   },
-  "best television series - drama": {
-    "Nominees": [
-      "boardwalk empire",
-      "breaking bad",
-      "downton abbey (masterpiece)",
-      "the newsroom"
-    ],
-    "Presenters": ["salma hayek", "paul rudd"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actress in a television series - drama": {
-    "Nominees": [
-      "connie britton",
-      "glenn close",
-      "michelle dockery",
-      "julianna margulies"
-    ],
-    "Presenters": ["nathan fillion", "lea michele"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actor in a television series - drama": {
-    "Nominees": ["steve buscemi", "bryan cranston", "jeff daniels", "jon hamm"],
-    "Presenters": ["salma hayek", "paul rudd"],
-    "Winner": "No winner found"
-  },
-  "best television series - comedy or musical": {
-    "Nominees": ["the big bang theory", "episodes", "modern family", "smash"],
-    "Presenters": ["jimmy fallon", "jay leno"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actress in a television series - comedy or musical": {
-    "Nominees": [
-      "zooey deschanel",
-      "tina fey",
-      "julia louis-dreyfus",
-      "amy poehler"
-    ],
-    "Presenters": ["aziz ansari", "jason bateman"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actor in a television series - comedy or musical": {
-    "Nominees": ["alec baldwin", "louis c.k.", "matt leblanc", "jim parsons"],
-    "Presenters": ["lucy liu", "debra messing"],
-    "Winner": "No winner found"
-  },
-  "best mini-series or motion picture made for television": {
-    "Nominees": [
-      "the girl",
-      "hatfields & mccoys",
-      "the hour",
-      "political animals"
-    ],
-    "Presenters": ["don cheadle", "eva longoria"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actress in a mini-series or motion picture made for television": {
-    "Nominees": [
-      "nicole kidman",
-      "jessica lange",
-      "sienna miller",
-      "sigourney weaver"
-    ],
-    "Presenters": ["don cheadle", "eva longoria"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actor in a mini-series or motion picture made for television": {
-    "Nominees": [
-      "benedict cumberbatch",
-      "woody harrelson",
-      "toby jones",
-      "clive owen"
-    ],
-    "Presenters": ["jessica alba", "kiefer sutherland"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actress in a supporting role in a series, mini-series or motion picture made for television": {
-    "Nominees": [
-      "hayden panettiere",
-      "archie panjabi",
-      "sarah paulson",
-      "sofia vergara"
-    ],
-    "Presenters": ["dennis quaid", "kerry washington"],
-    "Winner": "No winner found"
-  },
-  "best performance by an actor in a supporting role in a series, mini-series or motion picture made for television": {
-    "Nominees": [
-      "max greenfield",
-      "danny huston",
-      "mandy patinkin",
-      "eric stonestreet"
-    ],
-    "Presenters": ["kristen bell", "john krasinski"],
-    "Winner": "No winner found"
-  },
-  "cecil b. demille award": {
+  "best motion picture drama": {
     "Nominees": [],
-    "Presenters": ["robert downey, jr."],
-    "Winner": "jodie foster"
-  }
+    "Presenters": [],
+    "Winner": "argo"
+  },
+  "best screenplay, motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "django unchained"
+  },
+  "best series drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "homeland"
+  },
+  "best supporting actor in tv": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "ed harris"
+  },
+  "best supporting actor, motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "christoph waltz"
+  },
+  "best supporting actress motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "anne hathaway"
+  },
+  "best supporting actress series, miniseries, or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "maggie smith"
+  },
+  "best tv comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "girls"
+  },
+  "best tv drama": { "Nominees": [], "Presenters": [], "Winner": "homeland" }
 }

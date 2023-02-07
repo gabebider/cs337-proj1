@@ -159,7 +159,7 @@ def get_csv_set(csv_file):
 
 
 def test():
-    with open("test_files/award_names_test.json", "r") as file:
+    with open("award_aliases.json", "r") as file:
         awards = json.load(file)
 
     tweets = json.load(open(f'gg2013.json'))
@@ -189,7 +189,7 @@ def test():
     
         # if i == 5:
         #     break
-    dict_to_json(aaaa,"aaaa",False,"test_files")    
+    dict_to_json(aaaa,"aaaa",False,"test_files/")    
 
 
 # def getAwards():

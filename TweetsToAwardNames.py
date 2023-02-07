@@ -149,7 +149,7 @@ def get_word_neighbors(d):
     for word in word_neighbors:
         word_neighbors[word] = list(word_neighbors[word])
     
-    dict_to_json(word_neighbors,"word_neighbors",folderName="saved_jsons")
+    dict_to_json(word_neighbors,"word_neighbors",folderName="saved_jsons/")
     return word_neighbors
 
 def get_simplification_dict(word_neighbors):
@@ -159,7 +159,7 @@ def get_simplification_dict(word_neighbors):
             following_word = following_words[0]
             if len(word_neighbors[following_word]) != 1:
                 simplification_dict[f"{word} {following_word}"] = following_word
-    dict_to_json(simplification_dict,"simplification_dict",folderName="saved_jsons")
+    dict_to_json(simplification_dict,"simplification_dict",folderName="saved_jsons/")
     return simplification_dict
 
 def clean_aliases(d,pos=False):
@@ -171,7 +171,7 @@ def clean_aliases(d,pos=False):
     for award in d:
         for alias in d[award].aliases:
             cleaned_dict[alias] = clean_award_name(alias,pos=pos)
-    dict_to_json(cleaned_dict,"clean_aliases",folderName="saved_jsons")
+    dict_to_json(cleaned_dict,"clean_aliases",folderName="saved_jsons/")
 
     endTime = datetime.now()
     dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
@@ -224,7 +224,7 @@ def get_award_categories_from_json(tweets):
     simpl_dict = get_simplification_dict(word_neighbors)
     awards = merge_simplify(awards,simpl_dict)
     awards = sort_dict_alpha(awards)
-    dict_to_json(awards,"award_names_test",award=True)
+    dict_to_json(awards,"award_aliases",award=True,folderName="")
     print_keys(awards)
 
     endTime = datetime.now()
