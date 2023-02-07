@@ -103,7 +103,6 @@ def AwardNameToNominees(tweets, award):
         check_for_pattern(tweet, award, "should win", False)
         check_for_pattern(tweet, award, "should have won", False)
         check_for_pattern(tweet, award, "shouldn't have won", False)
-        # check_for_pattern(tweet, award, "should have won", False)
         check_for_pattern(tweet, award, "should have been", False)
         check_for_pattern(tweet, award, "shouldn't have been", False)
         check_for_pattern(tweet, award, "should have gotten", False)
@@ -119,7 +118,7 @@ def AwardNameToNominees(tweets, award):
     actors = get_csv_set("people.csv")
     movies = get_csv_set("movies.csv")
 
-    if award.award_category.isPerson:
+    if award.award_category.award_type == "PERSON":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors}
     else:
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies}
