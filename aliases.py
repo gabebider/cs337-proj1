@@ -169,7 +169,7 @@ def counts_to_json(award_aliases):
             count = 0
             cleaned_alias = standardize(alias)
             for tweet in tweets:
-                text = standardize(tweet['text'].lower())
+                text = tweet['text']
                 award_regex = r"\s*" + re.escape(cleaned_alias) + r".*"
                 if re.search(award_regex,text) and text not in seenTweets:
                     seenTweets.add(text)

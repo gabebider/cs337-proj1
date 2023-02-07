@@ -26,7 +26,7 @@ def AwardNameToWinners(tweets, award):
     unique_tweets = []
     unique_text = set()
     for tweet in tweets:
-        text = standardize(tweet['text'].lower())
+        text = tweet['text']
         if text not in unique_text:
             unique_text.add(text)
             unique_tweets.append(tweet)
@@ -38,7 +38,6 @@ def AwardNameToWinners(tweets, award):
 
     # standarize a lot
     def ultra_standardize(text):
-        text = standardize(text)
         text = text.replace(".", "")
         text = text.replace(",", "")
         text = text.replace("!", "")
