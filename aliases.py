@@ -162,7 +162,7 @@ def counts_to_json(award_aliases):
 
 
     for award in award_aliases:
-        print(f"STARTING AWARD!!!!!: {award}\n")
+        # print(f"STARTING AWARD!!!!!: {award}\n")
         aliases = award_aliases[award]
         for ind,alias in enumerate(aliases):
             seenTweets = set()

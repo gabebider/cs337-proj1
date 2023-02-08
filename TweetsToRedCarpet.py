@@ -79,9 +79,11 @@ def most_discussed(actorCount):
     for entries in actorCount:
         percentage = entries[1] / totalCount
         percentage = round(percentage, 3)
-        #print(entries[0] + "'s Percentage: " + str(percentage))
+        # print(entries[0] + "'s Percentage: " + str(percentage))
         percentageArray.append(percentage)
         actorPercentArray.append([entries[0], percentage])
+    # print(len(actorPercentArray))
+    
     # find three most mentioned actors by percentage
     for i in range(3):
         percent = 0

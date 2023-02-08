@@ -92,9 +92,9 @@ def AwardNameToNominees(tweets, award):
     tracker = 0
      # loop through all tweets
     for tweet in tweets:
-        if tracker % 5000 == 0:
-            print(f"Looking at tweet {tracker} of {len(tweets)}")
-        tracker += 1
+        # if tracker % 5000 == 0:
+            # print(f"[Get Award Nominees] Looking at tweet {tracker} of {len(tweets)}")
+        # tracker += 1
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])

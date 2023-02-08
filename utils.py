@@ -20,7 +20,7 @@ def standardize(text):
     ## (-)|
     text = text.replace(":","")
     text = text.replace("#","")
-    text = re.sub(r'((?i)golden globe[^\ ]*)|((?i)golden[^\ ]*)','',text)
+    text = re.sub(r'(?i)(golden globe[^\ ]*)|(golden[^\ ]*)','',text)
     text = re.sub(r"(?i)television","tv",text)
     text = re.sub(r"(?i)tv series","series",text)
     text = re.sub(r"(?i)mini ","mini",text)
