@@ -37,10 +37,7 @@ def AwardNameToNominees(tweets, award):
         if not isinstance(tweet, str):
             raise TypeError("tweet must be a string")
         
-        f = open(filePath,"a")
         tweet = tweet.lower()
-        f.write(f"\n{pattern}\n")
-        f.close()
         
         patternSearch = re.search(rf" {pattern} ",tweet)
         if patternSearch:
@@ -159,7 +156,7 @@ def test():
     with open("award_aliases.json", "r") as file:
         awards = json.load(file)
 
-    tweets = json.load(open(f'gg2013.json'))
+    tweets = preprocess(json.load(open(f'gg2013.json')))
 
     aaaa = dict()
     i = 0

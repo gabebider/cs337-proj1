@@ -30,6 +30,7 @@ def TweetsNearMedian(tweets,award_name_aliases,min_before,min_After,save_name=""
     # plt.axhline(y = horizontal_line, label = '70% of tweets')
 
     # # find median time of tweets with award name
+    print(len(tweets_with_award_name))
     median_time = tweets_with_award_name[int(len(tweets_with_award_name) / 2)]['timestamp_ms']
 
     # # add 3 minutes to the median time

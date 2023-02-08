@@ -1,136 +1,115 @@
 {
-    "best actor drama for film": {},
-    "best actor for tv drama": {
-        "jon hamm": 3,
-        "jeff daniels": 2,
-        "bryan cranston": 2,
-        "damian lewis": 2
-    },
-    "best actor in a miniseries or tv movie": {
-        "benedict cumberbatch": 4,
-        "kevin costner": 2
-    },
-    "best actor in a motion picture comedy or musical": {
-        "bradley cooper": 3,
-        "jack black": 2,
-        "hugh jackman": 2
-    },
-    "best actor in a motion picture drama": {},
-    "best actor musical or comedy": {
-        "jack black": 2,
-        "bradley cooper": 2
-    },
-    "best actor series comedy or musical": {
-        "jim parsons": 5
-    },
-    "best actress drama": {},
-    "best actress for comedy or musical": {
-        "jennifer lawrence": 6
-    },
-    "best actress in a miniseries or tv movie": {},
-    "best actress in a series drama": {
-        "claire danes": 2
-    },
-    "best actress in a tv comedy or musical": {},
-    "best actress in a tv drama": {
-        "claire danes": 2
-    },
-    "best actress motion picture drama": {},
-    "best animated film": {
-        "brave": 6,
-        "frankenweenie": 2,
-        "wreck-it ralph": 2
-    },
-    "best comedy or musical": {},
-    "best director motion picture": {
-        "ben affleck": 7,
-        "jodie foster": 2
-    },
-    "best drama series": {
-        "evin": 5,
-        "evin costner": 5,
-        "cumberbatch": 4,
-        "evin costner for": 3,
-        "evin costner for hatfields": 2,
-        "benedict": 2,
-        "costner": 2,
-        "ill": 2
-    },
-    "best foreign film": {},
-    "best miniseries or tv movie": {
-        "ame": 7,
-        "ame change": 4,
-        "ame change #goldenglobes": 3,
-        "game": 2,
-        "game change\"": 2,
-        "game change\" #goldenglobes": 2,
-        "hour": 2,
-        "the hour": 2
-    },
-    "best motion picture comedy or musical": {
-        "moonrise kingdom": 2,
-        "silver linings playbook": 2
-    },
-    "best motion picture screenplay": {},
-    "best original score": {},
-    "best original song motion picture": {
-        "dele": 4,
-        "dele for": 4,
-        "that adele": 4,
-        "swift": 4,
-        "aylor": 3,
-        "he": 3,
-        "he golden": 3,
-        "he golden globes": 3,
-        "she": 3,
-        "dele.": 3,
-        "kyfall": 2,
-        "aylor swift.": 2,
-        "he golden globes for": 2,
-        "he golden globes for a": 2,
-        "he golden globes for a \"night": 2,
-        "he golden globes for a \"night out\"": 2,
-        "mis": 2,
-        "les mis": 2,
-        "god taylor swift": 2,
-        "thank god taylor swift": 2,
-        "pissed she": 2
-    },
-    "best performance by an actress in a motion picture drama": {},
-    "best picture drama": {
-        "argo": 7
-    },
-    "best series comedy or musical": {
-        "just": 3,
-        "irls": 3,
-        "affleck": 2,
-        "or": 2,
-        "en": 2,
-        "en affleck": 2,
-        "irls #goldenglobes": 2,
-        "odern": 2,
-        "irls.": 2
-    },
-    "best supporting actor in tv": {
-        "ed harris": 2
-    },
-    "best supporting actor motion picture": {
-        "christoph waltz": 5,
-        "sarah paulson": 2
-    },
-    "best supporting actress motion picture": {
-        "anne hathaway": 5,
-        "mandy patinkin": 2
-    },
-    "best supporting actress series miniseries or tv movie": {
-        "sarah paulson": 2
-    },
-    "best tv comedy or musical": {
-        "girls": 6,
-        "modern family": 2
-    },
-    "best tv drama": {
-        "homeland": 7,
-        "breaking bad": 2
-    }
+    "best actor drama for film": [
+        "naomi watts"
+    ],
+    "best actor for tv drama": [
+        "jon hamm",
+        "bryan cranston",
+        "damian lewis"
+    ],
+    "best actor in a miniseries or tv movie": [
+        "benedict cumberbatch",
+        "taylor swift",
+        "kevin costner"
+    ],
+    "best actor in a motion picture comedy or musical": [
+        "bradley cooper",
+        "murray",
+        "jack black"
+    ],
+    "best actor in a motion picture drama": [
+        "naomi watts"
+    ],
+    "best actor musical or comedy": [
+        "bradley cooper",
+        "jack black"
+    ],
+    "best actor series comedy or musical": [
+        "jim parsons",
+        "matt leblanc"
+    ],
+    "best actress drama": [],
+    "best actress for comedy or musical": [
+        "jennifer lawrence"
+    ],
+    "best actress in a miniseries or tv movie": [],
+    "best actress in a series drama": [
+        "claire danes",
+        "connie britton"
+    ],
+    "best actress in a tv comedy or musical": [],
+    "best actress in a tv drama": [
+        "claire danes",
+        "connie britton"
+    ],
+    "best actress motion picture drama": [],
+    "best animated film": [
+        "brave",
+        "frankenweenie"
+    ],
+    "best comedy or musical": [],
+    "best director motion picture": [
+        "ben affleck",
+        "jodie foster"
+    ],
+    "best drama series": [
+        "cumberbatch",
+        "evin",
+        "evin costner",
+        "evin costner for",
+        "evin costner for hatfields"
+    ],
+    "best foreign film": [],
+    "best miniseries or tv movie": [
+        "ame",
+        "ame change"
+    ],
+    "best motion picture comedy or musical": [
+        "silver linings playbook"
+    ],
+    "best motion picture screenplay": [],
+    "best original score": [],
+    "best original song motion picture": [
+        "dele",
+        "kyfall",
+        "swift",
+        "dele for",
+        "dele for skyfall"
+    ],
+    "best performance by an actress in a motion picture drama": [],
+    "best picture drama": [
+        "lincoln",
+        "argo"
+    ],
+    "best series comedy or musical": [
+        "irls",
+        "just",
+        "affleck",
+        "or",
+        "en"
+    ],
+    "best supporting actor in tv": [
+        "mandy patinkin",
+        "ed harris"
+    ],
+    "best supporting actor motion picture": [
+        "christoph waltz",
+        "sarah paulson"
+    ],
+    "best supporting actress motion picture": [
+        "anne hathaway",
+        "mandy patinkin"
+    ],
+    "best supporting actress series miniseries or tv movie": [
+        "sarah paulson"
+    ],
+    "best tv comedy or musical": [
+        "girls",
+        "modern family"
+    ],
+    "best tv drama": [
+        "homeland",
+        "breaking bad",
+        "downton abbey"
+    ]
 }
