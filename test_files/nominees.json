@@ -1,212 +1,136 @@
 {
-    "best actor drama for film": {
-        "jessica chastain": 20,
-        "daniel day-lewis": 9
-    },
+    "best actor drama for film": {},
     "best actor for tv drama": {
-        "damian lewis": 15,
-        "jeff daniels": 3,
         "jon hamm": 3,
-        "bryan cranston": 3
+        "jeff daniels": 2,
+        "bryan cranston": 2,
+        "damian lewis": 2
     },
     "best actor in a miniseries or tv movie": {
-        "kevin costner": 15,
-        "adele": 6,
-        "benedict cumberbatch": 4
+        "benedict cumberbatch": 4,
+        "kevin costner": 2
     },
     "best actor in a motion picture comedy or musical": {
-        "hugh jackman": 30,
-        "bradley cooper": 4,
-        "jack black": 2
+        "bradley cooper": 3,
+        "jack black": 2,
+        "hugh jackman": 2
     },
-    "best actor in a motion picture drama": {
-        "jessica chastain": 19,
-        "daniel day-lewis": 9
-    },
+    "best actor in a motion picture drama": {},
     "best actor musical or comedy": {
-        "hugh jackman": 16,
         "jack black": 2,
         "bradley cooper": 2
     },
     "best actor series comedy or musical": {
-        "jim parsons": 6,
-        "quentin tarantino": 5
+        "jim parsons": 5
     },
-    "best actress drama": {
-        "jessica chastain": 18,
-        "anne hathaway": 2
-    },
+    "best actress drama": {},
     "best actress for comedy or musical": {
-        "jennifer lawrence": 40
+        "jennifer lawrence": 6
     },
-    "best actress in a miniseries or tv movie": {
-        "julianne moore": 6,
-        "maggie smith": 2,
-        "jessica lange": 2
-    },
+    "best actress in a miniseries or tv movie": {},
     "best actress in a series drama": {
-        "claire danes": 27,
-        "connie britton": 2
+        "claire danes": 2
     },
-    "best actress in a tv comedy or musical": {
-        "lena dunham": 9,
-        "amy poehler": 3
-    },
+    "best actress in a tv comedy or musical": {},
     "best actress in a tv drama": {
-        "claire danes": 27,
-        "connie britton": 2
+        "claire danes": 2
     },
-    "best actress motion picture drama": {
-        "jessica chastain": 19,
-        "daniel day-lewis": 4,
-        "ben affleck": 2
-    },
+    "best actress motion picture drama": {},
     "best animated film": {
-        "brave": 19,
+        "brave": 6,
         "frankenweenie": 2,
-        "wreck-it ralph": 2,
-        "life of pi": 2
+        "wreck-it ralph": 2
     },
     "best comedy or musical": {},
     "best director motion picture": {
-        "ben affleck": 45,
+        "ben affleck": 7,
         "jodie foster": 2
     },
     "best drama series": {
-        "costner": 13,
         "evin": 5,
         "evin costner": 5,
-        "clinton": 5,
         "cumberbatch": 4,
-        "bill clinton": 4,
         "evin costner for": 3,
         "evin costner for hatfields": 2,
         "benedict": 2,
+        "costner": 2,
         "ill": 2
     },
-    "best foreign film": {
-        "amour": 6
-    },
+    "best foreign film": {},
     "best miniseries or tv movie": {
-        "change": 12,
-        "game change": 12,
         "ame": 7,
-        "smith": 4,
         "ame change": 4,
-        "he": 3,
-        "never": 3,
-        "she": 3,
         "ame change #goldenglobes": 3,
-        "hour": 3,
-        "the hour": 3,
-        "#gamechange": 3,
-        "hope he": 2,
-        "if she": 2,
-        "who": 2,
         "game": 2,
         "game change\"": 2,
-        "game change\" #goldenglobes": 2
+        "game change\" #goldenglobes": 2,
+        "hour": 2,
+        "the hour": 2
     },
     "best motion picture comedy or musical": {
         "moonrise kingdom": 2,
         "silver linings playbook": 2
     },
     "best motion picture screenplay": {},
-    "best original score": {
-        "life of pi": 7,
-        "it": 2,
-        "skyfall": 2
-    },
+    "best original score": {},
     "best original song motion picture": {
-        "she": 11,
-        "#adele": 7,
-        "swift": 5,
-        "that adele": 5,
         "dele": 4,
         "dele for": 4,
+        "that adele": 4,
+        "swift": 4,
         "aylor": 3,
         "he": 3,
         "he golden": 3,
         "he golden globes": 3,
+        "she": 3,
         "dele.": 3,
-        "by adele": 3,
-        "who": 3,
-        "\"skyfall\"": 2,
         "kyfall": 2,
-        "and adele": 2,
-        "course adele": 2,
-        "of course adele": 2,
         "aylor swift.": 2,
-        "yes! adele": 2,
-        "from skyfall": 2,
-        "\u201cskyfall\u201d from skyfall": 2,
         "he golden globes for": 2,
         "he golden globes for a": 2,
         "he golden globes for a \"night": 2,
         "he golden globes for a \"night out\"": 2,
         "mis": 2,
         "les mis": 2,
-        "\"skyfall\" by adele": 2,
-        "when she": 2,
         "god taylor swift": 2,
         "thank god taylor swift": 2,
         "pissed she": 2
     },
-    "best performance by an actress in a motion picture drama": {
-        "jessica chastain": 19,
-        "ben affleck": 2
-    },
+    "best performance by an actress in a motion picture drama": {},
     "best picture drama": {
-        "argo": 51
+        "argo": 7
     },
     "best series comedy or musical": {
-        "affleck": 18,
-        "\"girls\"": 5,
-        "#girls": 5,
-        "@benaffleck": 3,
         "just": 3,
         "irls": 3,
-        "@girlshbo": 3,
+        "affleck": 2,
         "or": 2,
-        "theory": 2,
-        "bang theory": 2,
         "en": 2,
         "en affleck": 2,
-        "and \"girls\"": 2,
         "irls #goldenglobes": 2,
         "odern": 2,
-        "irls.": 2,
-        "dunham": 2
+        "irls.": 2
     },
     "best supporting actor in tv": {
-        "jennifer lawrence": 10,
-        "ed harris": 8,
-        "mandy patinkin": 2
+        "ed harris": 2
     },
     "best supporting actor motion picture": {
-        "christoph waltz": 28,
-        "maggie smith": 5,
+        "christoph waltz": 5,
         "sarah paulson": 2
     },
     "best supporting actress motion picture": {
-        "anne hathaway": 44,
-        "jennifer lawrence": 3,
-        "ed harris": 3,
+        "anne hathaway": 5,
         "mandy patinkin": 2
     },
     "best supporting actress series miniseries or tv movie": {
-        "maggie smith": 12,
-        "christoph waltz": 10,
         "sarah paulson": 2
     },
     "best tv comedy or musical": {
-        "girls": 23,
-        "it": 2,
+        "girls": 6,
         "modern family": 2
     },
     "best tv drama": {
-        "homeland": 29,
-        "breaking bad": 2,
-        "it": 2
+        "homeland": 7,
+        "breaking bad": 2
     }
 }

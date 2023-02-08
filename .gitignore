@@ -170,3 +170,4 @@ filter.py
 autograder_output.txt
 test/
 *_generated_answers.json
+test_tweets_time/*

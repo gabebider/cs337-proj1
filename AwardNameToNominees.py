@@ -131,7 +131,7 @@ def AwardNameToNominees(tweets, award):
         check_for_pattern(tweet, "beat",False)
         check_for_pattern(tweet, "beat",True)
         check_for_pattern(tweet, "goes to",True)
-        check_for_pattern(tweet, "(wins)|(\bwon\b(?!\shave))",False)
+        # check_for_pattern(tweet, "(wins)|(\b(?<!\shave)\bwon)",False)
         check_for_pattern(tweet, "((shouldn[']?t)|(should)) have (won|been)", False)
 
     # nominee_candidates = {k:v for k,v in nominee_candidates.items() if v>1}

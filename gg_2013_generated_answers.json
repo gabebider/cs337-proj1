@@ -5,10 +5,11 @@
     ],
     "best actor drama for film": {
         "Nominees": [
-            "daniel day lewis"
+            "naomi watts",
+            "daniel daylewis"
         ],
         "Presenters": [],
-        "Winner": "daniel day lewis"
+        "Winner": "daniel daylewis"
     },
     "best actor for tv drama": {
         "Nominees": [
@@ -31,6 +32,8 @@
     "best actor in a motion picture comedy or musical": {
         "Nominees": [
             "bradley cooper",
+            "murray",
+            "jack black",
             "hugh jackman"
         ],
         "Presenters": [],
@@ -39,10 +42,10 @@
     "best actor in a motion picture drama": {
         "Nominees": [
             "naomi watts",
-            "daniel day lewis"
+            "daniel daylewis"
         ],
         "Presenters": [],
-        "Winner": "daniel day lewis"
+        "Winner": "daniel daylewis"
     },
     "best actor musical or comedy": {
         "Nominees": [
@@ -53,6 +56,15 @@
         "Presenters": [],
         "Winner": "hugh jackman"
     },
+    "best actor series comedy or musical": {
+        "Nominees": [
+            "jim parsons",
+            "matt leblanc",
+            "don cheadle"
+        ],
+        "Presenters": [],
+        "Winner": "don cheadle"
+    },
     "best actress drama": {
         "Nominees": [
             "jessica chastain"
@@ -62,15 +74,13 @@
     },
     "best actress for comedy or musical": {
         "Nominees": [
-            "meryl streep",
             "jennifer lawrence"
         ],
         "Presenters": [],
         "Winner": "jennifer lawrence"
     },
-    "best actress in a mini-series or tv movie": {
+    "best actress in a miniseries or tv movie": {
         "Nominees": [
-            "leonardo dicaprio",
             "julianne moore"
         ],
         "Presenters": [],
@@ -86,7 +96,6 @@
     },
     "best actress in a tv comedy or musical": {
         "Nominees": [
-            "amy poehler",
             "lena dunham"
         ],
         "Presenters": [],
@@ -102,7 +111,6 @@
     },
     "best actress motion picture drama": {
         "Nominees": [
-            "naomi watts",
             "jessica chastain"
         ],
         "Presenters": [],
@@ -125,15 +133,25 @@
         "Presenters": [],
         "Winner": "girls"
     },
-    "best director - motion picture": {
+    "best director motion picture": {
         "Nominees": [
-            "steven spielberg",
-            "ben affleck"
+            "ben affleck",
+            "jodie foster"
         ],
-        "Presenters": [
-            "halle berry"
-        ],
+        "Presenters": [],
         "Winner": "ben affleck"
+    },
+    "best drama series": {
+        "Nominees": [
+            "cumberbatch",
+            "evin",
+            "evin costner",
+            "evin costner for",
+            "evin costner for hatfields",
+            "homeland"
+        ],
+        "Presenters": [],
+        "Winner": "homeland"
     },
     "best foreign language film": {
         "Nominees": [
@@ -147,6 +165,8 @@
     },
     "best miniseries or tv movie": {
         "Nominees": [
+            "ame",
+            "ame change",
             "game change"
         ],
         "Presenters": [],
@@ -168,6 +188,13 @@
         "Presenters": [],
         "Winner": "argo"
     },
+    "best motion picture screenplay": {
+        "Nominees": [
+            "django unchained"
+        ],
+        "Presenters": [],
+        "Winner": "django unchained"
+    },
     "best original score": {
         "Nominees": [
             "life of pi"
@@ -177,47 +204,37 @@
     },
     "best original song motion picture": {
         "Nominees": [
+            "dele",
+            "kyfall",
             "swift",
-            "taylor",
-            "happy taylor swift",
-            "that adele",
+            "dele for",
+            "dele for skyfall",
             "skyfall"
         ],
         "Presenters": [],
         "Winner": "skyfall"
     },
-    "best screenplay motion picture": {
+    "best performance by an actress in a motion picture drama": {
         "Nominees": [
-            "django unchained"
+            "jessica chastain"
         ],
         "Presenters": [],
-        "Winner": "django unchained"
+        "Winner": "jessica chastain"
     },
     "best series comedy or musical": {
         "Nominees": [
-            "affleck",
+            "irls",
             "just",
-            "out",
-            "for",
+            "affleck",
+            "or",
+            "en",
             "girls"
         ],
         "Presenters": [],
         "Winner": "girls"
     },
-    "best series drama": {
-        "Nominees": [
-            "swift",
-            "taylor",
-            "that adele",
-            "she",
-            "homeland"
-        ],
-        "Presenters": [],
-        "Winner": "homeland"
-    },
     "best supporting actor in tv": {
         "Nominees": [
-            "meryl streep",
             "mandy patinkin",
             "ed harris"
         ],
@@ -227,8 +244,7 @@
     "best supporting actor motion picture": {
         "Nominees": [
             "christoph waltz",
-            "sarah paulson",
-            "maggie smith"
+            "sarah paulson"
         ],
         "Presenters": [],
         "Winner": "christoph waltz"
@@ -236,7 +252,6 @@
     "best supporting actress motion picture": {
         "Nominees": [
             "anne hathaway",
-            "sally field",
             "mandy patinkin"
         ],
         "Presenters": [],
@@ -260,10 +275,9 @@
     },
     "best tv drama": {
         "Nominees": [
+            "homeland",
             "breaking bad",
-            "downton abbey",
-            "you",
-            "homeland"
+            "downton abbey"
         ],
         "Presenters": [],
         "Winner": "homeland"

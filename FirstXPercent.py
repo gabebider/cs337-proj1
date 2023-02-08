@@ -30,9 +30,9 @@ def FirstXPercent(tweets, award_name_aliases, percent:float=0.3):
     # find all tweets that mention the award name
     tweets_with_award_name = []
     for tweet in tweets:
-        text = standardize(tweet['text']).lower()
+        text = tweet['text'].lower()
         for alias in award_name_aliases:
-            alias = standardize(alias).lower()
+            alias = alias.lower()
             if alias in text:
                 tweets_with_award_name.append(tweet)
                 break
