@@ -50,6 +50,7 @@ def TweetsNearMedian(tweets,award_name_aliases,min_before,min_After,save_name=""
         plt.title('Tweets vs time')
         plt.legend()
         plt.savefig(f"test_tweets_time/{save_name}.png")
+        plt.close()
         # plt.show()
     return relevant_tweets
 
