@@ -127,6 +127,18 @@ def merge_simplify(d,simplify_dict):
     clean_aliases(new_d)
     return new_d
 
+def add_short_versions(d):
+    with open("saved_jsons/clean_aliases.json", "r") as file:
+        cleaned_award_names = json.load(file)
+    for name, award in d.items():
+        curr_aliases = set(award.aliases)
+        for alias in award.aliases:
+            clean_award_name = cleaned_award_names[alias]
+            if clean_award_name not in curr_aliases:
+                curr_aliases.add(clean_award_name)
+        d[name].aliases = list(curr_aliases)
+    return d
+
 
 def get_word_neighbors(d):
     with open("saved_jsons/clean_aliases.json", "r") as file:
@@ -215,6 +227,7 @@ def get_award_categories_from_json(tweets):
     word_neighbors = get_word_neighbors(awards)
     simpl_dict = get_simplification_dict(word_neighbors)
     awards = merge_simplify(awards,simpl_dict)
+    awards = add_short_versions(awards)
     awards = sort_dict_alpha(awards)
     dict_to_json(awards,"award_aliases",award=True,folderName="")
     print_keys(awards)
