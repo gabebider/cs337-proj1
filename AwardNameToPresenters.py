@@ -13,6 +13,7 @@ from utils import standardize, wrap_regex, build_iterative_regex
 import json
 from TweetsByTime import Tweets_By_Time
 from utils import preprocess, standardize, get_csv_set, dict_to_json
+from EliWhat import EliWhat
         
 
 def find_and_count_names_for_award(data,award_name):
@@ -22,9 +23,8 @@ def find_and_count_names_for_award(data,award_name):
     nameCountArray = []
     tweetArray = set()
     aliases = award_name.award_category.aliases
-    print("1")
-    data = Tweets_By_Time(data, aliases, 0.4)
-    print("2")
+    #data = Tweets_By_Time(data, aliases, 0.4)
+    data = EliWhat(data, aliases)
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
@@ -46,7 +46,6 @@ def find_and_count_names_for_award(data,award_name):
                         entries[1] = entries[1] + 1
                 if exists == False:
                     nameCountArray.append([name, 1])
-    print("3")
     return [nameCountArray, tweetArray]
 
 
