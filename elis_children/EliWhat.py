@@ -31,8 +31,8 @@ for tweet in tweets:
 
 # plt.plot(x_salma, y_salma, label = f'{person_1}')
 # plt.plot(x_rudd, y_rudd, label = f'{person_2}')
-# plt.legend()
-# plt.show()
+
+
 tweets_with_award_name = []
 for tweet in tweets:
     text = standardize(tweet['text']).lower()
@@ -48,6 +48,7 @@ for tweet in tweets_with_award_name:
     x_alias.append(tweet['timestamp_ms'])
     y_alias.append(alias_count)
     alias_count += 1
+
 plt.plot(x_alias, y_alias, label = 'Tweets with Award Name')
 horizontal_line = len(tweets_with_award_name) * .7
 plt.axhline(y = horizontal_line, label = '70% of tweets')
@@ -65,41 +66,6 @@ median_time_minus_3 = median_time - 3 * 60 * 1000
 # plot the dashed line
 plt.axvline(x = median_time_minus_3, color = 'r', linestyle = '--', label = 'Median Time - 3 minutes')
 
-# sort tweets by time
-tweets_with_award_name.sort(key=lambda x: x['timestamp_ms'])
-
-
-
-# range = .7
-# find the middle ((range))% of tweets from tweets that mention award name
-# start = int(len(tweets_with_award_name) * (1 - range) / 2)
-# end = int(len(tweets_with_award_name) * (1 + range) / 2)
-
-# if start < 0:
-#     start = 0
-# if end > len(tweets_with_award_name) - 1:
-#     end = len(tweets_with_award_name) - 1
-
-# find the time stamp fo the beginning and end of the middle ((range))% of tweets
-# start_time = tweets_with_award_name[start]['timestamp_ms']
-# end_time = tweets_with_award_name[end]['timestamp_ms']
-# plt.axvline(x = start_time, label = 'start time')
-# plt.axvline(x = end_time, color = 'r', label = 'end time')
-
-# tweet_x = []
-# tweet_y = []
-# y_v = 0
-# for tweet in tweets:
-#     for alias in award_name_aliases:
-#         if alias in standardize(tweet['text']).lower():
-#             tweet_x.append(tweet['timestamp_ms'])
-#             tweet_y.append(y_v)
-#             y_v += 1
-#             break
-
-# plt.plot(tweet_x, tweet_y, label='All tweets')
-
-# plt.plot(x, y, label='Tweets with Title')
 plt.xlabel('Time')
 plt.ylabel('Number of Tweets')
 # plt.title('Tweets vs time')
