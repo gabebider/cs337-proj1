@@ -67,6 +67,10 @@ def get_award_objects(year):
     
     return runner.get_awards(year)
 
+def get_runner(year):
+    runner = Runner.getInstance(year)
+    return runner
+
 def pre_ceremony():
     '''This function loads/fetches/processes any data your program
     will use, and stores that data in your DB or in a json, csv, or

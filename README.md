@@ -26,27 +26,25 @@ MOCK_AWARD_PRESENTERS=False
 MOCK_AWARD_WINNERS=False
 MOCK_AWARD_NOMINEES=False
 MOCK_HOSTS=False
+MOCK_RED_CARPET=False
 ```
 Turning these on will enable the mocks and will use the data from gg_apifake.py
 
 To Run the program:
 Supplying no arguments will run the program with the default values
-You need to either supply --output_results or --autograde in order to get output results
+You need supply --output_results in order to get console output results
 Adding --save_json will save the json files to gg_{year}_generated_answers.json in the format for the auto grader
 
 
 ```bash
-# This will run the auto grader and print the results
-python Runner.py --output_results --autograde --year 2013 --save_json
+# This will print the results and save the json files
+python Runner.py --output_results --year 2013 --save_json
 
-# This will run the auto grader and save the json files
-python Runner.py --autograde --year 2013 --save_json
-
-# This will run the auto grader and print the results
-python Runner.py --output_results --autograde --year 2013
-
-# This will save the json files in the format for the auto grader
+# This will save the json files
 python Runner.py --year 2013 --save_json
+
+# This will print the results
+python Runner.py --output_results --year 2013
 ```
 
 ## What did we do

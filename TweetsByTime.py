@@ -30,9 +30,9 @@ def Tweets_By_Time(tweets, award_name_aliases, range=0.7):
     # find all tweets that mention the award name
     tweets_with_award_name = []
     for tweet in tweets:
-        text = standardize(tweet['text'].lower())
+        text = tweet['text'].lower()
         for alias in award_name_aliases:
-            alias = standardize(alias).lower()
+            alias = alias.lower()
             if alias in text:
                 tweets_with_award_name.append(tweet)
                 break
@@ -50,7 +50,9 @@ def Tweets_By_Time(tweets, award_name_aliases, range=0.7):
 
     # find the time stamp fo the beginning and end of the middle ((range))% of tweets
     start_time = tweets_with_award_name[start]['timestamp_ms']
+    print(start_time)
     end_time = tweets_with_award_name[end]['timestamp_ms']
+    print(end_time)
 
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
 
