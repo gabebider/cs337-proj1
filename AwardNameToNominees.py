@@ -4,7 +4,7 @@ from datetime import datetime
 from Award import Award
 from AwardCategory import AwardCategory
 from collections import defaultdict
-from EliWhat import EliWhat
+from TweetsNearMedian import TweetsNearMedian
 import spacy
 from utils import standardize, get_csv_set, dict_to_json, preprocess
 from TweetsByTime import Tweets_By_Time
@@ -96,7 +96,7 @@ def AwardNameToNominees(tweets, award):
 
     
     award_aliases = award.award_category.aliases
-    relevant_tweets = EliWhat(tweets=tweets,award_name_aliases=award_aliases,minBefore=3,minAfter=1.5)
+    relevant_tweets = TweetsNearMedian(tweets=tweets,award_name_aliases=award_aliases,min_before=3,min_After=1.5)
     # remove all duplicate tweets
     unique_tweets = []
     unique_text = set()

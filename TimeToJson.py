@@ -1,5 +1,5 @@
 from TweetsByTime import Tweets_By_Time
-from EliWhat import EliWhat
+from TweetsNearMedian import TweetsNearMedian
 from utils import preprocess
 import os
 import json
@@ -14,11 +14,10 @@ def run():
     tweets = preprocess(json.load(open(f'gg2013.json')))
 
     for name,award in awards.items():
-        relevant_tweets = EliWhat(tweets,award[1],2,2)
-        print(len(relevant_tweets))
-        jsonob = json.dumps(relevant_tweets, indent = 4)
-
         file_name = name.replace(" ","_")
+        relevant_tweets = TweetsNearMedian(tweets,award[1],2,2,save_name=file_name)
+        # print(len(relevant_tweets))
+        jsonob = json.dumps(relevant_tweets, indent = 4)
         with open(f"test_tweets_time/{file_name}.json",'w') as outfile:
             outfile.write(jsonob)
 
