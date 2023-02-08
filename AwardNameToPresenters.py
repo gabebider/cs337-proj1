@@ -12,6 +12,7 @@ from AwardCategory import AwardCategory
 from utils import standardize, wrap_regex, build_iterative_regex
 import json
 from TweetsByTime import Tweets_By_Time
+from utils import preprocess, standardize, get_csv_set, dict_to_json
         
 
 def find_and_count_names_for_award(data,award_name):
@@ -19,16 +20,17 @@ def find_and_count_names_for_award(data,award_name):
     nlp = spacy.load("en_core_web_sm")
     nlp.add_pipe("merge_entities")
     nameCountArray = []
-    tweetArray = []
+    tweetArray = set()
     aliases = award_name.award_category.aliases
-    data = Tweets_By_Time(data, aliases, 0.01)
+    print("1")
+    data = Tweets_By_Time(data, aliases, 0.4)
+    print("2")
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
         # Checks if tweet is relation to a presenter and a specific award
-        ## re.search(r"\s*[Nn]omin.*", text) and
         if not text in tweetArray:
-            tweetArray.append(text)
+            tweetArray.add(text)
             addNames = []
             classifiedText = nlp(text)
             # adds name to list
@@ -44,6 +46,7 @@ def find_and_count_names_for_award(data,award_name):
                         entries[1] = entries[1] + 1
                 if exists == False:
                     nameCountArray.append([name, 1])
+    print("3")
     return [nameCountArray, tweetArray]
 
 
@@ -76,14 +79,17 @@ def find_full_names(nameCountArray):
 
 def find_potential_presenters(actorArray, tweets):
     potentialPresenters = []
-    award_regex = r'(present|presents|presenter|presenting)'
+    award_regex = r'( introduce| present)'
+    tweets = list(tweets)
     for actor in actorArray:
         name1 = actor[0].lower()
         name2 = actor[0].lower().replace(" ", "")
         pattern = f"{name1}|{name2}"
+        added = False
         for tweet in tweets:
-            if re.search(pattern, tweet.lower()):
+            if re.search(pattern, tweet.lower()) and added == False:
                 if re.search(award_regex, tweet.lower()):
+                    added = True
                     potentialPresenters.append(actor[0])
     return potentialPresenters
 
@@ -111,7 +117,6 @@ def find_potential_presenters(actorArray, tweets):
 #             presenter_array.append(entries[0])
 #     return presenter_array
 
-
 def find_presenters(tweets,award_name):
     nameCountAndTweetArray = find_and_count_names_for_award(tweets,award_name)
     fullNameCountArray = find_full_names(nameCountAndTweetArray[0])
@@ -121,21 +126,26 @@ def find_presenters(tweets,award_name):
 
     return presenters
 
-# for testing purposes
-# def getAwards():
-#     awards = []
-#     addedAwards = []
-#     aliases = get_aliases()
+#for testing purposes
+def getAwards():
+    with open("award_aliases.json", "r") as file:
+        awards = json.load(file)
 
-#     # create list of awards
-#     for cat in aliases:
-#         if cat not in addedAwards:
-#             addedAwards.append(cat)
-#             awardStruct = Award(AwardCategory(cat))
-#             awardStruct.award_category.aliases = aliases[cat]
-#             awards.append(awardStruct)
-#     return awards
+    addedAwards = []
+    awardsList = []
+    # create list of awards
+    for cat in awards:
+        if cat not in addedAwards:
+            addedAwards.append(cat)
+            awardStruct = Award(AwardCategory(cat))
+            currAlias = awards[cat][1]
+            awardStruct.award_category.aliases = currAlias
+            awardsList.append(awardStruct)
+    # for a in awardsList:
+    #     print(a.__str__() + " " + str(a.award_category.aliases))
+    return awardsList
 
-# awards = getAwards()
-# for award in awards:
-#     pres = find_presenters(json.load(open('gg2013.json')), award)
+awards = getAwards()
+for award in awards:
+    pres = find_presenters(preprocess(json.load(open('gg2013.json'))), award)
+    #exit()
