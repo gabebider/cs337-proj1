@@ -145,7 +145,8 @@ def getAwards():
     #     print(a.__str__() + " " + str(a.award_category.aliases))
     return awardsList
 
-awards = getAwards()
-for award in awards:
-    pres = find_presenters(preprocess(json.load(open('gg2013.json'))), award)
+if __name__ == "__main__":
+    awards = getAwards()
+    for award in awards:
+        pres = find_presenters(preprocess(json.load(open('gg2013.json'))), award)
     #exit()

@@ -2,49 +2,48 @@
     "actor": [
         "miniseries",
         "motion",
-        "tv",
         "drama",
-        "comedy"
-    ],
-    "tv": [
-        "comedy",
-        "drama",
-        "movie"
-    ],
-    "drama": [
-        "film"
-    ],
-    "miniseries": [],
-    "or": [
         "musical",
         "tv"
+    ],
+    "drama": [],
+    "miniseries": [],
+    "or": [
+        "comedy",
+        "musical",
+        "tv"
+    ],
+    "tv": [
+        "drama",
+        "movie",
+        "comedy"
     ],
     "movie": [],
     "motion": [
         "picture"
     ],
     "picture": [
-        "comedy",
-        "drama"
+        "drama",
+        "comedy"
     ],
     "comedy": [],
     "musical": [],
-    "film": [],
     "actress": [
-        "series",
+        "comedy",
         "miniseries",
+        "series",
         "motion",
         "drama",
-        "tv",
-        "comedy"
+        "tv"
     ],
     "animated": [
-        "feature",
-        "film"
+        "film",
+        "feature"
     ],
     "feature": [
         "film"
     ],
+    "film": [],
     "director": [
         "motion"
     ],
@@ -67,11 +66,12 @@
         "motion"
     ],
     "series": [
-        "miniseries",
-        "drama"
+        "drama",
+        "comedy",
+        "miniseries"
     ],
     "supporting": [
-        "actress",
-        "actor"
+        "actor",
+        "actress"
     ]
 }

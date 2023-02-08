@@ -204,21 +204,8 @@ def print_keys(d):
             f.write(f"\n{k}")
 
 def get_award_categories_from_json(tweets):
-    startTime = datetime.now()
-    dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("[Get Award Categories] Find Award Names process started at =", dt_string)
-
     awards = find_awards(tweets)
-
-    endFindAwardsTime = datetime.now()
-    dt_string = endFindAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("[Get Award Categories] Find Award Names process ended at =", dt_string)
-    print("    duration:",str(endFindAwardsTime-startTime))
-
-    startMergeAwardsTime = datetime.now()
-    dt_string = startMergeAwardsTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("[Get Award Categories] Merge Award Names process started at =", dt_string)
-
+    
     clean_aliases(awards,pos=True)
     awards = merge_identical(awards)
     awards = merge_substrings(awards)
@@ -232,9 +219,5 @@ def get_award_categories_from_json(tweets):
     dict_to_json(awards,"award_aliases",award=True,folderName="")
     print_keys(awards)
 
-    endTime = datetime.now()
-    dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
-    print("[Get Award Categories] Merge Award Names process ended at =",dt_string)
-    print("    duration:",str(endTime-startMergeAwardsTime))
     return awards
 
