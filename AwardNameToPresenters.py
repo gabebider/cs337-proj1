@@ -88,6 +88,7 @@ def find_potential_presenters(actorArray, tweets):
         for tweet in tweets:
             if re.search(pattern, tweet.lower()) and added == False:
                 if re.search(award_regex, tweet.lower()):
+                    print(actor)
                     added = True
                     potentialPresenters.append(actor[0])
     return potentialPresenters
@@ -121,7 +122,7 @@ def find_presenters(tweets,award_name):
     fullNameCountArray = find_full_names(nameCountAndTweetArray[0])
     presenters = find_potential_presenters(fullNameCountArray, nameCountAndTweetArray[1])
 
-    # print(award_name.award_category, ":", presenters)
+    print(award_name.award_category, ":", presenters)
 
     return presenters
 
