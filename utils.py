@@ -4,6 +4,7 @@ import csv
 from datetime import datetime
 
 def preprocess(tweets):
+    tweets = [tweet for tweet in tweets if "http" not in tweet['text']]
     for i,tweet in enumerate(tweets):
         # print(tweet['text'])
         # print(standardize(tweet['text']))
@@ -20,6 +21,7 @@ def standardize(text):
     ## (-)|
     text = text.replace(":","")
     text = text.replace("#","")
+    text = text.replace(",","")
     text = re.sub(r'(?i)(golden globe[^\ ]*)|(golden[^\ ]*)','',text)
     text = re.sub(r"(?i)television","tv",text)
     text = re.sub(r"(?i)tv series","series",text)

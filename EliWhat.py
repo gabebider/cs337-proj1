@@ -4,7 +4,7 @@ import json
 import numpy as np
 from utils import standardize
 
-def EliWhat(tweets,award_name_aliases):
+def EliWhat(tweets,award_name_aliases,minBefore,minAfter):
     # remove all RTs
     tweets = [t for t in tweets if not t['text'].startswith('RT ')]
 
@@ -60,11 +60,11 @@ def EliWhat(tweets,award_name_aliases):
     # plt.axvline(x = median_time, label = 'Median Time')
 
     # # add 3 minutes to the median time
-    end = median_time + 2 * 60 * 1000
+    end = median_time + minAfter * 60 * 1000
     # # plot the dashed line
     # plt.axvline(x = median_time_plus_2, color = 'r', linestyle = '--', label = 'Median Time + 3 minutes')
     # # subtract 3 minutes from the median time
-    start = median_time - 4 * 60 * 1000
+    start = median_time - minBefore * 60 * 1000
     # # plot the dashed line
     # plt.axvline(x = median_time_minus_4, color = 'r', linestyle = '--', label = 'Median Time - 3 minutes')
     relevant_tweets = [tweet for tweet in tweets if start <= tweet['timestamp_ms'] <= end] 
