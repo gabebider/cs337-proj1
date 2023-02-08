@@ -23,7 +23,7 @@ def find_awards(tweets):
 
     seenTweets = set()
     for tweet in tweets:
-        text = standardize(tweet['text'].lower())
+        text = tweet['text']
         bestSearch = re.search(r"\s*(?P<award_name>[Bb]est .*) goes to",text)
         if bestSearch is not None and text not in seenTweets:
             seenTweets.add(text)

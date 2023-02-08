@@ -24,7 +24,6 @@ def AwardNameToNominees(tweets, award):
         raise TypeError("award must be a list")
 
     def ultra_standardize(text):
-        text = standardize(text)
         text = text.replace(".", "")
         text = text.replace(",", "")
         text = text.replace("!", "")
@@ -82,7 +81,7 @@ def AwardNameToNominees(tweets, award):
     unique_tweets = []
     unique_text = set()
     for tweet in relevant_tweets:
-        text = standardize(tweet['text'].lower())
+        text = tweet['text']
         if text not in unique_text:
             unique_text.add(text)
             unique_tweets.append(tweet)
