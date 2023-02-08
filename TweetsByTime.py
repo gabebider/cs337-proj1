@@ -35,7 +35,7 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     for tweet in tweets:
         text = standardize(tweet['text'].lower())
         for alias in award_name_aliases:
-            alias = standardize(alias)
+            alias = standardize(alias).lower()
             if alias in text:
                 tweets_with_award_name.append(tweet)
                 break

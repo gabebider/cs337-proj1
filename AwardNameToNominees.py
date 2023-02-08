@@ -81,7 +81,7 @@ def AwardNameToNominees(tweets, award):
     unique_tweets = []
     unique_text = set()
     for tweet in relevant_tweets:
-        text = tweet['text']
+        text = tweet['text'].lower()
         if text not in unique_text:
             unique_text.add(text)
             unique_tweets.append(tweet)

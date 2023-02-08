@@ -4,9 +4,10 @@ import csv
 from datetime import datetime
 
 def preprocess(tweets):
-    ## get rid of all retweets
-    for tweet in tweets:
-        tweet['text'] = standardize(tweet['text']).lower()
+    for i,tweet in enumerate(tweets):
+        # print(tweet['text'])
+        # print(standardize(tweet['text']))
+        tweets[i]['text'] = standardize(tweet['text'])
     return tweets
 
 #! right now I'm getting rid of 'in a' - this means that we aren't going to be able to get the completely correct award name but for right now i dont really care because it makes things easier
@@ -17,10 +18,12 @@ def standardize(text):
     ## |(rt\ @[^\ ]*)
     ## |(#[^\ ]*)
     ## (-)|
-    text = re.sub(r'(golden globe[^\ ]*)|(golden[^\ ]*)|(:)|(#)','',text)
-    text = text.replace("television","tv")
-    text = text.replace("tv series","series")
-    text = text.replace("mini ","mini")
+    text = text.replace(":","")
+    text = text.replace("#","")
+    text = re.sub(r'((?i)golden globe[^\ ]*)|((?i)golden[^\ ]*)','',text)
+    text = re.sub(r"(?i)television","tv",text)
+    text = re.sub(r"(?i)tv series","series",text)
+    text = re.sub(r"(?i)mini ","mini",text)
     text = text.replace("/"," or ")
     text = re.sub(' +',' ',text).strip()
     return text

@@ -256,7 +256,7 @@ if __name__ == '__main__':
         if len(args.autograde) > 0:
             functions = args.autograde
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # os.system('cls' if os.name == 'nt' else 'clear')
 
     startTime = datetime.now()
     dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")

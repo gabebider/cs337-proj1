@@ -23,7 +23,7 @@ def find_awards(tweets):
 
     seenTweets = set()
     for tweet in tweets:
-        text = tweet['text']
+        text = tweet['text'].lower()
         bestSearch = re.search(r"\s*(?P<award_name>[Bb]est .*) goes to",text)
         if bestSearch is not None and text not in seenTweets:
             seenTweets.add(text)
@@ -40,7 +40,7 @@ def find_awards(tweets):
     for award in uniqueAwards:
         awardRegex = r"(\s*" + re.escape(award) + r".*)"
         for tweet in tweets:
-            text = standardize(tweet['text'].lower())
+            text = standardize(tweet['text']).lower()
             awardSearch = re.search(awardRegex,text)
             if awardSearch is not None and text not in seenTweets:
                 seenTweets.add(text)
