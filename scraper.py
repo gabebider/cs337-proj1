@@ -88,19 +88,7 @@ def findPeople():
 tv = findTV()
 
 
-# with open('people.csv', 'w', newline='') as myfile:
-#      wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-#      wr.writerow(people)
+with open('series.csv', 'w', newline='') as myfile:
+     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+     wr.writerow(tv)
 
-# merge TV into movies.csv if the entry is not already in movies.csv
-with open('movies.csv', 'r') as file:
-    reader = csv.reader(file)
-    movies = list(reader)[0]
-    for show in tv:
-        if show not in movies:
-            movies.append(show)
-
-
-with open('movies.csv', 'w', newline='') as myfile:
-    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-    wr.writerow(movies)
