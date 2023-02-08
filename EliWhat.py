@@ -4,9 +4,7 @@ import json
 import numpy as np
 from utils import standardize
 
-def EliWhat(tweets,Award):
-
-    award_name_aliases = Award.award_category.aliases
+def EliWhat(tweets,award_name_aliases):
     # remove all RTs
     tweets = [t for t in tweets if not t['text'].startswith('RT ')]
 
