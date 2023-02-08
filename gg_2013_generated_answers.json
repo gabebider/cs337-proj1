@@ -1,1 +1,154 @@
-{"Hosts": ["Tina Fey", "Amy Poehler"], "best actor for tv drama": {"Nominees": [], "Presenters": [], "Winner": "damian lewis"}, "best actor in a miniseries or tv movie": {"Nominees": [], "Presenters": [], "Winner": "kevin costner"}, "best actor in a motion picture drama": {"Nominees": [], "Presenters": [], "Winner": "daniel day lewis"}, "best actor in comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "hugh jackman"}, "best actor, drama for film": {"Nominees": [], "Presenters": [], "Winner": "daniel day lewis"}, "best actress drama": {"Nominees": [], "Presenters": [], "Winner": "jessica chastain"}, "best actress for comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "jennifer lawrence"}, "best actress for motion picture- drama-": {"Nominees": [], "Presenters": [], "Winner": "jessica chastain"}, "best actress in a mini-series or tv movie": {"Nominees": [], "Presenters": [], "Winner": "julianne moore"}, "best actress in a tv comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "lena dunham"}, "best actress in a tv drama": {"Nominees": [], "Presenters": [], "Winner": "claire danes"}, "best animated feature film": {"Nominees": ["frankenweenie", "hotel transylvania", "rise of the guardians", "wreck-it ralph"], "Presenters": ["sacha baron cohen"], "Winner": "brave"}, "best comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "girls"}, "best director - motion picture": {"Nominees": ["kathryn bigelow", "ang lee", "steven spielberg", "quentin tarantino"], "Presenters": ["halle berry"], "Winner": "ben affleck"}, "best foreign language film": {"Nominees": ["the intouchables", "kon tiki", "a royal affair", "rust and bone"], "Presenters": ["arnold schwarzenegger", "sylvester stallone"], "Winner": "amour"}, "best miniseries or tv movie": {"Nominees": [], "Presenters": [], "Winner": "game change"}, "best motion picture, comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "les miserables"}, "best original score": {"Nominees": [], "Presenters": [], "Winner": "life of pi"}, "best original song motion picture": {"Nominees": [], "Presenters": [], "Winner": "skyfall"}, "best motion picture drama": {"Nominees": [], "Presenters": [], "Winner": "argo"}, "best screenplay, motion picture": {"Nominees": [], "Presenters": [], "Winner": "django unchained"}, "best series drama": {"Nominees": [], "Presenters": [], "Winner": "homeland"}, "best supporting actor in tv": {"Nominees": [], "Presenters": [], "Winner": "ed harris"}, "best supporting actor, motion picture": {"Nominees": [], "Presenters": [], "Winner": "christoph waltz"}, "best supporting actress motion picture": {"Nominees": [], "Presenters": [], "Winner": "anne hathaway"}, "best supporting actress series, miniseries, or tv movie": {"Nominees": [], "Presenters": [], "Winner": "maggie smith"}, "best tv comedy or musical": {"Nominees": [], "Presenters": [], "Winner": "girls"}, "best tv drama": {"Nominees": [], "Presenters": [], "Winner": "homeland"}}
+{
+  "Hosts": ["Tina Fey", "Amy Poehler"],
+  "best actor for tv drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "damian lewis"
+  },
+  "best actor in a miniseries or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "kevin costner"
+  },
+  "best actor in a motion picture drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "daniel day lewis"
+  },
+  "best actor in comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "hugh jackman"
+  },
+  "best actor, drama for film": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "daniel day lewis"
+  },
+  "best actress drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "jessica chastain"
+  },
+  "best actress for comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "jennifer lawrence"
+  },
+  "best actress for motion picture- drama-": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "jessica chastain"
+  },
+  "best actress in a mini-series or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "julianne moore"
+  },
+  "best actress in a tv comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "lena dunham"
+  },
+  "best actress in a tv drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "claire danes"
+  },
+  "best animated feature film": {
+    "Nominees": [
+      "frankenweenie",
+      "hotel transylvania",
+      "rise of the guardians",
+      "wreck-it ralph"
+    ],
+    "Presenters": ["sacha baron cohen"],
+    "Winner": "brave"
+  },
+  "best comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "girls"
+  },
+  "best director - motion picture": {
+    "Nominees": [
+      "kathryn bigelow",
+      "ang lee",
+      "steven spielberg",
+      "quentin tarantino"
+    ],
+    "Presenters": ["halle berry"],
+    "Winner": "ben affleck"
+  },
+  "best foreign language film": {
+    "Nominees": [
+      "the intouchables",
+      "kon tiki",
+      "a royal affair",
+      "rust and bone"
+    ],
+    "Presenters": ["arnold schwarzenegger", "sylvester stallone"],
+    "Winner": "amour"
+  },
+  "best miniseries or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "game change"
+  },
+  "best motion picture, comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "les miserables"
+  },
+  "best original score": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "life of pi"
+  },
+  "best original song motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "skyfall"
+  },
+  "best motion picture drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "argo"
+  },
+  "best screenplay, motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "django unchained"
+  },
+  "best series drama": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "homeland"
+  },
+  "best supporting actor in tv": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "ed harris"
+  },
+  "best supporting actor, motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "christoph waltz"
+  },
+  "best supporting actress motion picture": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "anne hathaway"
+  },
+  "best supporting actress series, miniseries, or tv movie": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "maggie smith"
+  },
+  "best tv comedy or musical": {
+    "Nominees": [],
+    "Presenters": [],
+    "Winner": "girls"
+  },
+  "best tv drama": { "Nominees": [], "Presenters": [], "Winner": "homeland" }
+}

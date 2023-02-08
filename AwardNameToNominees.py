@@ -3,8 +3,9 @@ import re
 from Award import Award
 from AwardCategory import AwardCategory
 from collections import defaultdict
+from EliWhat import EliWhat
 import spacy
-from utils import standardize, get_csv_set, dict_to_json
+from utils import standardize, get_csv_set, dict_to_json, preprocess
 from TweetsByTime import Tweets_By_Time
 
 def AwardNameToNominees(tweets, award):
@@ -76,10 +77,12 @@ def AwardNameToNominees(tweets, award):
 
     
     award_aliases = award.award_category.aliases
-    relevant_tweets = Tweets_By_Time(tweets=tweets,award_name_aliases=award_aliases,range=0.3)
+    relevant_tweets = EliWhat(tweets=tweets,award_name_aliases=award_aliases,minBefore=3,minAfter=3)
     # remove all duplicate tweets
     unique_tweets = []
     unique_text = set()
+
+    #! change this stuff eventually
     for tweet in relevant_tweets:
         text = tweet['text'].lower()
         if text not in unique_text:
@@ -89,12 +92,9 @@ def AwardNameToNominees(tweets, award):
     tweets = unique_tweets
 
     nominee_candidates = defaultdict(int)
-    tracker = 0
+    # tracker = 0
      # loop through all tweets
     for tweet in tweets:
-        # if tracker % 5000 == 0:
-            # print(f"[Get Award Nominees] Looking at tweet {tracker} of {len(tweets)}")
-        # tracker += 1
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])
@@ -105,11 +105,11 @@ def AwardNameToNominees(tweets, award):
         check_for_pattern(tweet, award, "should have been", False)
         check_for_pattern(tweet, award, "shouldn't have been", False)
         check_for_pattern(tweet, award, "should have gotten", False)
-
-    # please don't judge me for this
-    if award.award_category.award_type == "PERSON":
-        SUPERMEGATWEET = ''.join(tweet["text"] + " " for tweet in tweets[:3000])
-        check_for_people(SUPERMEGATWEET)
+        check_for_pattern(tweet, award, "should've won", False)
+        check_for_pattern(tweet, award, "better win",False)
+        check_for_pattern(tweet, award, "was robbed",False)
+        check_for_pattern(tweet,award, "didn't win",False)
+        check_for_pattern(tweet,award, "didnt win",False)
 
     nominee_candidates = {k:v for k,v in nominee_candidates.items() if v>1}
     nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
@@ -143,15 +143,18 @@ def test():
         i += 1
 
         nom_candidates = AwardNameToNominees(tweets, aw)
-        nom_candidates = {k:v for k,v in nom_candidates.items() if v>1}
-        nom_candidates = dict(sorted(nom_candidates.items(), key=lambda x: -x[1]))
+        # nom_candidates = {k:v for k,v in nom_candidates.items() if v>1}
+        # nom_candidates = dict(sorted(nom_candidates.items(), key=lambda x: -x[1]))
         
-        if awc.isPerson:
-            nom_candidates = {k:v for k,v in nom_candidates.items() if k in actors}
-        else:
-            nom_candidates = {k:v for k,v in nom_candidates.items() if k in movies}
+        # if awc.isPerson:
+        #     nom_candidates = {k:v for k,v in nom_candidates.items() if k in actors}
+        # else:
+        #     nom_candidates = {k:v for k,v in nom_candidates.items() if k in movies}
 
         aaaa[aw.award_category.award_name] = nom_candidates
     
-    dict_to_json(aaaa,"aaaa",False,"test_files/")    
+    dict_to_json(aaaa,"aaaa",False,"test_files/")  
+
+if __name__ == "__main__":
+    test()  
   
