@@ -24,7 +24,7 @@ def find_and_count_names_for_award(data,award_name):
     tweetArray = set()
     aliases = award_name.award_category.aliases
     #data = Tweets_By_Time(data, aliases, 0.4)
-    data = EliWhat(data, aliases)
+    data = EliWhat(data, aliases, 2, 2)
     # Iterates through tweets
     for tweet in data:
         text = tweet['text']
@@ -78,7 +78,7 @@ def find_full_names(nameCountArray):
 
 def find_potential_presenters(actorArray, tweets):
     potentialPresenters = []
-    award_regex = r'( introduce| present)'
+    award_regex = r'( introduce| present)(?!.*win)'
     tweets = list(tweets)
     for actor in actorArray:
         name1 = actor[0].lower()
