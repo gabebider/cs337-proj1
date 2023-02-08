@@ -142,6 +142,7 @@ def AwardNameToNominees(tweets, award):
     
     actors = get_csv_set("people.csv")
     movies = get_csv_set("movies.csv")
+    series = get_csv_set("series.csv")
 
     if award.award_category.award_type == "PERSON":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors and v > 1}
@@ -149,6 +150,9 @@ def AwardNameToNominees(tweets, award):
     elif award.award_category.award_type == "MOVIE":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1}
         nominee_candidates = combine_nominees(nominee_candidates,movies)
+    elif award.award_category.award_type == "SERIES":
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in series and v > 1}
+        nominee_candidates = combine_nominees(nominee_candidates,series)
     else:
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1} 
         nominee_candidates = combine_nominees(nominee_candidates,None)

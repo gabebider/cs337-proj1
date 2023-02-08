@@ -35,6 +35,7 @@ def AwardNameToWinners(tweets, award):
     
     actors_set = get_csv_set("people.csv")
     movies_set = get_csv_set("movies.csv")
+    series_set = get_csv_set("series.csv")
 
     # standarize a lot
     def ultra_standardize(text):
@@ -160,6 +161,12 @@ def AwardNameToWinners(tweets, award):
         elif award.award_category.award_type == "MOVIE":
             for candidate, count in top_twenty:
                 if candidate in movies_set:
+                    winner = candidate
+                    found = True
+                    break
+        elif award.award_category.award_type == "SERIES":
+            for candidate, count in top_twenty:
+                if candidate in series_set:
                     winner = candidate
                     found = True
                     break
