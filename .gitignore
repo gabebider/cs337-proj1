@@ -169,3 +169,4 @@ filter.py
 .ds_store
 autograder_output.txt
 test/
+*_generated_answers.json
