@@ -1,34 +1,31 @@
-'''
-This file is meant to find the middle ((range))% of tweets that mention a given award name
-'''
+import logging
 from aliases import award_aliases
 from utils import standardize
 import json
 import numpy as np
 
-def Tweets_By_Time(tweets, award_name_aliases, range=.9):
+def Tweets_By_Time(tweets, award_name_aliases, range=0.7):
     '''
+    This function returns all tweets that are in the middle ((range))% of tweets that mention the award name with retweets removed
+    i.e. it finds all tweets that mention the award name
+    it takes the middle ((range))% of those tweets
+    it then finds the minimum and maximum time stamp of those tweets
+    it then returns all tweets that are between that minimum and maximum time stamp
+
     Parameters:
         tweets: list of all tweets
         award_name_aliases: list of all names for a single award 
         range: float of range of tweets to return
 
     Returns:
-        list of all tweets in the middle ((range))% of tweets that mention the award name
+        list of all tweets in the middle ((range))% of tweets that mention the award name with retweets removed
     '''
 
     if range > 1 or range < 0:
         raise ValueError("Range must be between 0 and 1")
-
-    # remove all tweets with the same text
-    seen_tweets = set()
-    unique_tweets = []
-    for tweet in tweets:
-        if tweet['text'] not in seen_tweets:
-            seen_tweets.add(tweet['text'])
-            unique_tweets.append(tweet)
     
-    tweets = unique_tweets
+    # remove all retweets
+    tweets = [tweet for tweet in tweets if not tweet['text'].startswith('RT ')]
 
     # find all tweets that mention the award name
     tweets_with_award_name = []
@@ -40,8 +37,6 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
                 tweets_with_award_name.append(tweet)
                 break
 
-    # remove any retweets
-    tweets_with_award_name = [tweet for tweet in tweets_with_award_name if not tweet['text'].startswith('RT ')]
     # sort tweets by time
     tweets_with_award_name.sort(key=lambda x: x['timestamp_ms'])
 
@@ -60,6 +55,8 @@ def Tweets_By_Time(tweets, award_name_aliases, range=.9):
     # return all tweets that are in the middle ((range))% of tweets that mention the award name
 
     relevant_tweets = [tweet for tweet in tweets if start_time <= tweet['timestamp_ms'] <= end_time]
+    if len(relevant_tweets) < 2:
+        logging.warning(f"Only {len(relevant_tweets)} tweets returned for award: {award_name_aliases[0]} when using TweetsByTime.py")
     return relevant_tweets
 
 if __name__ == '__main__':
