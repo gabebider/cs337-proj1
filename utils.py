@@ -11,7 +11,6 @@ def preprocess(tweets):
         tweets[i]['text'] = standardize(tweet['text'])
     return tweets
 
-#! right now I'm getting rid of 'in a' - this means that we aren't going to be able to get the completely correct award name but for right now i dont really care because it makes things easier
 def standardize(text):
     ## (http[^\ ]*)|
     ## (-)|
@@ -36,6 +35,10 @@ def standardize(text):
     ## i struggle with regex
     text = re.sub(r"(?i) series"," tv series",text)
     text = re.sub(r"(?i)tv tv","tv",text)
+    text = re.sub(r"(?i) tv ", " tv series ", text)
+    text = re.sub(r"(?i)tv series series", "tv series", text)
+    text = re.sub(r"(?i)tv series movie", "tv movie", text)
+
     text = text.replace("/"," or ")
     text = re.sub(' +',' ',text).strip()
     return text

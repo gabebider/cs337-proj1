@@ -12,7 +12,7 @@ class AwardCategory:
     
     def set_type(self):
         peopleTypes = ["actor","actress","director"]
-        otherTypes = ["song","series"]
+        otherTypes = ["song"]
         if any([kw in self.award_name for kw in peopleTypes]):
             self.award_type = "PERSON"
         elif any([kw in self.award_name for kw in otherTypes]):

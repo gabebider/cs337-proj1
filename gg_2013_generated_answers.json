@@ -12,7 +12,7 @@
         "Presenters": [],
         "Winner": "daniel daylewis"
     },
-    "best actor for tv drama": {
+    "best actor for tv series drama": {
         "Nominees": [
             "damian lewis",
             "jon hamm",
@@ -92,31 +92,13 @@
         "Presenters": [],
         "Winner": "julianne moore"
     },
-    "best actress in a tv comedy or musical": {
+    "best actress in a tv series comedy or musical": {
         "Nominees": [
             "lena dunham",
             "amy poehler"
         ],
         "Presenters": [],
         "Winner": "lena dunham"
-    },
-    "best actress in a tv drama": {
-        "Nominees": [
-            "claire danes",
-            "connie britton",
-            "michelle dockery"
-        ],
-        "Presenters": [],
-        "Winner": "claire danes"
-    },
-    "best actress in a tv series drama": {
-        "Nominees": [
-            "claire danes",
-            "connie britton",
-            "michelle dockery"
-        ],
-        "Presenters": [],
-        "Winner": "claire danes"
     },
     "best actress motion picture drama": {
         "Nominees": [
@@ -125,6 +107,15 @@
         ],
         "Presenters": [],
         "Winner": "jessica chastain"
+    },
+    "best actress tv series drama": {
+        "Nominees": [
+            "claire danes",
+            "connie britton",
+            "michelle dockery"
+        ],
+        "Presenters": [],
+        "Winner": "claire danes"
     },
     "best animated feature film": {
         "Nominees": [
@@ -154,9 +145,8 @@
     },
     "best drama tv series": {
         "Nominees": [
-            "cumberbatch",
-            "bill clinton",
-            "kevin",
+            "skyfall",
+            "life of pi",
             "homeland"
         ],
         "Presenters": [],
@@ -174,8 +164,7 @@
     },
     "best miniseries or tv movie": {
         "Nominees": [
-            "game change",
-            "mccoys"
+            "game change"
         ],
         "Presenters": [],
         "Winner": "game change"
@@ -237,7 +226,7 @@
         "Presenters": [],
         "Winner": "jessica chastain"
     },
-    "best supporting actor in tv": {
+    "best supporting actor in tv series": {
         "Nominees": [
             "anne hathaway",
             "ed harris",
@@ -273,32 +262,10 @@
         "Presenters": [],
         "Winner": "maggie smith"
     },
-    "best tv comedy or musical": {
+    "best tv series comedy or musical": {
         "Nominees": [
             "girls",
             "modern family"
-        ],
-        "Presenters": [],
-        "Winner": "girls"
-    },
-    "best tv drama": {
-        "Nominees": [
-            "homeland",
-            "breaking bad",
-            "downton abbey",
-            "you"
-        ],
-        "Presenters": [],
-        "Winner": "homeland"
-    },
-    "best tv series comedy or musical": {
-        "Nominees": [
-            "modern",
-            "modernfamily",
-            "just",
-            "big bang theory",
-            "ben",
-            "girls"
         ],
         "Presenters": [],
         "Winner": "girls"
