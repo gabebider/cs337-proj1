@@ -7,6 +7,7 @@ from utils import standardize
 def EliWhat(tweets,award_name_aliases,minBefore,minAfter):
     # remove all RTs
     tweets = [t for t in tweets if not t['text'].startswith('RT ')]
+    tweets = [tweet for tweet in tweets if "http" not in tweet['text']]
 
     # x_salma = []
     # y_salma = []

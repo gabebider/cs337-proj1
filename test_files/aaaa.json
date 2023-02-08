@@ -1,85 +1,165 @@
 {
+    "best actor drama for film": [
+        "jessica chastain",
+        "daniel day-lewis"
+    ],
     "best actor for tv drama": [
-        "bryan cranston",
-        "jon hamm"
+        "damian lewis",
+        "jeff daniels",
+        "jon hamm",
+        "bryan cranston"
     ],
     "best actor in a miniseries or tv movie": [
-        "benedict cumberbatch",
         "kevin costner",
-        "taylor swift"
+        "adele",
+        "benedict cumberbatch"
     ],
-    "best actor in a motion picture drama": [
-        "naomi watts"
-    ],
-    "best actor in comedy or musical": [
+    "best actor in a motion picture comedy or musical": [
+        "hugh jackman",
         "bradley cooper",
         "jack black"
     ],
-    "best actor, drama for film": [],
-    "best actress drama": [],
-    "best actress for comedy or musical": [],
-    "best actress for motion picture- drama-": [],
-    "best actress in a mini-series or tv movie": [
-        "leonardo dicaprio",
+    "best actor in a motion picture drama": [
+        "jessica chastain",
+        "daniel day-lewis"
+    ],
+    "best actor musical or comedy": [
+        "hugh jackman",
+        "ben affleck",
+        "jack black",
+        "bradley cooper"
+    ],
+    "best actor series comedy or musical": [
+        "quentin tarantino",
+        "jim parsons"
+    ],
+    "best actress drama": [
+        "jessica chastain",
+        "anne hathaway",
+        "ben affleck",
+        "adele"
+    ],
+    "best actress for comedy or musical": [
+        "jennifer lawrence",
+        "adele"
+    ],
+    "best actress in a miniseries or tv movie": [
+        "julianne moore",
+        "maggie smith",
         "jessica lange"
     ],
+    "best actress in a series drama": [
+        "claire danes",
+        "connie britton"
+    ],
     "best actress in a tv comedy or musical": [
+        "lena dunham",
         "amy poehler"
     ],
     "best actress in a tv drama": [
         "claire danes",
-        "michelle dockery",
-        "connie britton",
-        "glenn close"
+        "connie britton"
     ],
-    "best animated film": [
-        "frankenweenie",
-        "brave"
-    ],
-    "best comedy or musical": [],
-    "best director - motion picture": [
+    "best actress motion picture drama": [
+        "jessica chastain",
+        "daniel day-lewis",
         "ben affleck"
     ],
-    "best foreign film": [],
-    "best miniseries or tv movie": [],
-    "best motion picture, comedy or musical": [
-        "moonrise kingdom",
-        "silver linings playbook"
+    "best animated film": [
+        "brave",
+        "wreck-it ralph",
+        "it",
+        "frankenweenie",
+        "life of pi"
     ],
+    "best comedy or musical": [
+        "it"
+    ],
+    "best director motion picture": [
+        "ben affleck",
+        "jodie foster"
+    ],
+    "best drama series": [
+        "costner",
+        "have",
+        "should have",
+        "evin",
+        "evin costner"
+    ],
+    "best foreign film": [
+        "amour"
+    ],
+    "best miniseries or tv movie": [
+        "change",
+        "game change",
+        "ame",
+        "smith",
+        "have"
+    ],
+    "best motion picture comedy or musical": [
+        "it",
+        "silver linings playbook",
+        "moonrise kingdom"
+    ],
+    "best motion picture screenplay": [],
     "best original score": [
+        "life of pi",
+        "it",
         "skyfall"
     ],
     "best original song motion picture": [
+        "she",
+        "that adele",
+        "#adele",
+        "just",
+        "swift"
+    ],
+    "best performance by an actress in a motion picture drama": [
+        "jessica chastain",
+        "ben affleck"
+    ],
+    "best picture drama": [
+        "argo",
         "it"
     ],
-    "best picture - drama": [
-        "lincoln"
+    "best series comedy or musical": [
+        "affleck",
+        "just",
+        "#girls",
+        "@benaffleck",
+        "\"girls\""
     ],
-    "best screenplay, motion picture": [],
-    "best series drama": [],
     "best supporting actor in tv": [
+        "jennifer lawrence",
+        "ed harris",
+        "adele",
         "mandy patinkin"
     ],
-    "best supporting actor, motion picture": [
+    "best supporting actor motion picture": [
         "christoph waltz",
-        "tommy lee jones",
+        "maggie smith",
         "sarah paulson"
     ],
     "best supporting actress motion picture": [
         "anne hathaway",
+        "ed harris",
+        "jennifer lawrence",
         "sally field",
         "mandy patinkin"
     ],
-    "best supporting actress series, miniseries, or tv movie": [
+    "best supporting actress series miniseries or tv movie": [
+        "maggie smith",
+        "christoph waltz",
         "sarah paulson"
     ],
     "best tv comedy or musical": [
+        "girls",
+        "it",
         "modern family"
     ],
     "best tv drama": [
+        "homeland",
         "breaking bad",
-        "downton abbey",
-        "you",
-        "boardwalk empire"
+        "it"
     ]
 }

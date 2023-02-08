@@ -117,17 +117,18 @@ class Runner:
         dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
         print("[Get Award Nominees] process ended at =", dt_string)
         print("[Get Award Nominees] duration:",str(endTime-startTime))
-        if MOCK_AWARD_NOMINEES:
-            print("[RUNNER] Mocking award nominees")
-            nominees = gg_apifake.get_nominees(year)
-            for category in nominees.keys():
-                for award in self.awards:
-                    if award.award_category.award_name == category:
-                        award.SetNominees(nominees[category])
-        else:
-            print("[RUNNER] Not mocking award nominees")
-            for award in self.awards:
-                award.SetNominees(self.get_nominees_for_award(award))
+
+        # if MOCK_AWARD_NOMINEES:
+        #     print("[RUNNER] Mocking award nominees")
+        #     nominees = gg_apifake.get_nominees(year)
+        #     for category in nominees.keys():
+        #         for award in self.awards:
+        #             if award.award_category.award_name == category:
+        #                 award.SetNominees(nominees[category])
+        # else:
+        #     print("[RUNNER] Not mocking award nominees")
+        #     for award in self.awards:
+        #         award.SetNominees(self.get_nominees_for_award(award))
 
     def get_nominees_for_award(self, award):
         return AwardNameToNominees(self.tweets,award)
