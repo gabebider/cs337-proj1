@@ -171,3 +171,5 @@ autograder_output.txt
 test/
 *_generated_answers.json
 test_tweets_time/*
+test_files/*
+saved_jsons/*

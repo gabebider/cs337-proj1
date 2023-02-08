@@ -1,115 +1,162 @@
 {
-    "best actor drama for film": [
-        "naomi watts"
-    ],
-    "best actor for tv drama": [
-        "jon hamm",
-        "bryan cranston",
-        "damian lewis"
-    ],
-    "best actor in a miniseries or tv movie": [
-        "benedict cumberbatch",
-        "taylor swift",
-        "kevin costner"
-    ],
-    "best actor in a motion picture comedy or musical": [
-        "bradley cooper",
-        "murray",
-        "jack black"
-    ],
-    "best actor in a motion picture drama": [
-        "naomi watts"
-    ],
-    "best actor musical or comedy": [
-        "bradley cooper",
-        "jack black"
-    ],
-    "best actor series comedy or musical": [
-        "jim parsons",
-        "matt leblanc"
-    ],
-    "best actress drama": [],
-    "best actress for comedy or musical": [
-        "jennifer lawrence"
-    ],
-    "best actress in a miniseries or tv movie": [],
-    "best actress in a series drama": [
-        "claire danes",
-        "connie britton"
-    ],
-    "best actress in a tv comedy or musical": [],
-    "best actress in a tv drama": [
-        "claire danes",
-        "connie britton"
-    ],
-    "best actress motion picture drama": [],
-    "best animated film": [
-        "brave",
-        "frankenweenie"
-    ],
-    "best comedy or musical": [],
-    "best director motion picture": [
-        "ben affleck",
-        "jodie foster"
-    ],
-    "best drama series": [
-        "cumberbatch",
-        "evin",
-        "evin costner",
-        "evin costner for",
-        "evin costner for hatfields"
-    ],
-    "best foreign film": [],
-    "best miniseries or tv movie": [
-        "ame",
-        "ame change"
-    ],
-    "best motion picture comedy or musical": [
-        "silver linings playbook"
-    ],
-    "best motion picture screenplay": [],
-    "best original score": [],
-    "best original song motion picture": [
-        "dele",
-        "kyfall",
-        "swift",
-        "dele for",
-        "dele for skyfall"
-    ],
-    "best performance by an actress in a motion picture drama": [],
-    "best picture drama": [
-        "lincoln",
-        "argo"
-    ],
-    "best series comedy or musical": [
-        "irls",
-        "just",
-        "affleck",
-        "or",
-        "en"
-    ],
-    "best supporting actor in tv": [
-        "mandy patinkin",
-        "ed harris"
-    ],
-    "best supporting actor motion picture": [
-        "christoph waltz",
-        "sarah paulson"
-    ],
-    "best supporting actress motion picture": [
-        "anne hathaway",
-        "mandy patinkin"
-    ],
-    "best supporting actress series miniseries or tv movie": [
-        "sarah paulson"
-    ],
-    "best tv comedy or musical": [
-        "girls",
-        "modern family"
-    ],
-    "best tv drama": [
-        "homeland",
-        "breaking bad",
-        "downton abbey"
-    ]
+    "best actor drama for film": {
+        "naomi watts": 3,
+        "jessica chastain": 3
+    },
+    "best actor for tv drama": {
+        "damian lewis": 7,
+        "jon hamm": 5,
+        "bryan cranston": 3
+    },
+    "best actor in a miniseries or tv movie": {
+        "benedict cumberbatch": 9,
+        "kevin costner": 6,
+        "taylor swift": 2
+    },
+    "best actor in a motion picture comedy or musical": {
+        "bradley cooper": 4,
+        "hugh jackman": 3
+    },
+    "best actor in a motion picture drama": {
+        "naomi watts": 3,
+        "jessica chastain": 3
+    },
+    "best actor musical or comedy": {
+        "hugh jackman": 10,
+        "bradley cooper": 5,
+        "bill murray": 4,
+        "jack black": 2
+    },
+    "best actor series comedy or musical": {
+        "jim parsons": 8,
+        "quentin tarantino": 2,
+        "matt leblanc": 2
+    },
+    "best actress drama": {
+        "jessica chastain": 9,
+        "naomi watts": 2
+    },
+    "best actress for comedy or musical": {
+        "meryl streep": 13,
+        "jennifer lawrence": 11,
+        "will ferrell": 3
+    },
+    "best actress in a miniseries or tv movie": {
+        "julianne moore": 5,
+        "jessica lange": 2
+    },
+    "best actress in a series drama": {
+        "claire danes": 5,
+        "connie britton": 2,
+        "michelle dockery": 2
+    },
+    "best actress in a tv comedy or musical": {
+        "lena dunham": 7,
+        "amy poehler": 3
+    },
+    "best actress in a tv drama": {
+        "claire danes": 5,
+        "connie britton": 2,
+        "michelle dockery": 2
+    },
+    "best actress motion picture drama": {
+        "jessica chastain": 10,
+        "naomi watts": 3
+    },
+    "best animated film": {
+        "brave": 15,
+        "frankenweenie": 3
+    },
+    "best comedy or musical": {
+        "silver linings playbook": 2
+    },
+    "best director motion picture": {
+        "ben affleck": 9,
+        "steven spielberg": 3
+    },
+    "best drama series": {
+        "cumberbatch": 7,
+        "bill clinton": 5,
+        "kevin": 2
+    },
+    "best foreign film": {
+        "amour": 8
+    },
+    "best miniseries or tv movie": {
+        "game change": 16,
+        "mccoys": 2
+    },
+    "best motion picture comedy or musical": {
+        "silver linings playbook": 2
+    },
+    "best motion picture screenplay": {
+        "skyfall": 2
+    },
+    "best original score": {
+        "skyfall": 8,
+        "life of pi": 4,
+        "homeland": 2,
+        "it": 2,
+        "her": 2
+    },
+    "best original song motion picture": {
+        "thank god taylor swift": 16,
+        "the for a night out": 11,
+        "adele for skyfall": 5,
+        "that adele": 5,
+        "les mis": 4,
+        "happy taylor swift": 3,
+        "she": 3,
+        "anything": 2,
+        "taylorswift13": 2
+    },
+    "best performance by an actress in a motion picture drama": {
+        "jessica chastain": 10,
+        "naomi watts": 2
+    },
+    "best picture drama": {
+        "argo": 26,
+        "lincoln": 11,
+        "zero dark thirty": 2,
+        "it": 2
+    },
+    "best series comedy or musical": {
+        "modern": 4,
+        "modernfamily": 4,
+        "just": 3,
+        "big bang theory": 2,
+        "ben": 2,
+        "she": 2,
+        "got": 2
+    },
+    "best supporting actor in tv": {
+        "anne hathaway": 9,
+        "ed harris": 5,
+        "mandy patinkin": 4,
+        "meryl streep": 3
+    },
+    "best supporting actor motion picture": {
+        "christoph waltz": 18,
+        "maggie smith": 13,
+        "sarah paulson": 2
+    },
+    "best supporting actress motion picture": {
+        "anne hathaway": 11,
+        "mandy patinkin": 2,
+        "adele": 2
+    },
+    "best supporting actress series miniseries or tv movie": {
+        "maggie smith": 14,
+        "sarah paulson": 2
+    },
+    "best tv comedy or musical": {
+        "girls": 9,
+        "modern family": 5
+    },
+    "best tv drama": {
+        "homeland": 9,
+        "breaking bad": 5,
+        "downton abbey": 2,
+        "you": 2
+    }
 }

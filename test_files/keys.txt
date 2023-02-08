@@ -5,18 +5,18 @@ best actor in a miniseries or tv movie
 best actor in a motion picture comedy or musical
 best actor in a motion picture drama
 best actor musical or comedy
-best actor series comedy or musical
+best actor tv series comedy or musical
 best actress drama
 best actress for comedy or musical
 best actress in a miniseries or tv movie
-best actress in a series drama
 best actress in a tv comedy or musical
 best actress in a tv drama
+best actress in a tv series drama
 best actress motion picture drama
 best animated film
 best comedy or musical
 best director motion picture
-best drama series
+best drama tv series
 best foreign film
 best miniseries or tv movie
 best motion picture comedy or musical
@@ -25,10 +25,10 @@ best original score
 best original song motion picture
 best performance by an actress in a motion picture drama
 best picture drama
-best series comedy or musical
 best supporting actor in tv
 best supporting actor motion picture
 best supporting actress motion picture
-best supporting actress series miniseries or tv movie
+best supporting actress tv series miniseries or tv movie
 best tv comedy or musical
 best tv drama
+best tv series comedy or musical

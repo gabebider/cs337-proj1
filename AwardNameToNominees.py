@@ -31,6 +31,26 @@ def AwardNameToNominees(tweets, award):
         text = text.replace(" has ", "")
         return text
 
+    def combine_nominees(d,check_set):
+        d = dict(sorted(d.items(), key = lambda x: -len(x[0].split())))
+        new_d = defaultdict(int)
+        for nom, count in d.items():
+            merged = False
+            for nnom in new_d:
+                ## for movies, might need to check that both are in the check_set??
+                if check_set != None and nnom not in check_set:
+                    continue
+                if nom in nnom :
+                    new_d[nnom] += count
+                    merged = True
+                    break
+            if not merged:
+                new_d[nom] = count
+        
+        return dict(sorted(new_d.items(), key=lambda x: -x[1]))
+
+            
+
     def check_for_pattern(tweet, pattern, forward: bool,filePath="test_files/nomineetweets.txt"):
         if not isinstance(forward, bool):
             raise TypeError("forward must be a boolean")
@@ -44,7 +64,7 @@ def AwardNameToNominees(tweets, award):
             # TODO: add try except here 
             startInd, endInd = patternSearch.span()
             if forward:
-                subTweet = tweet[endInd+1:]
+                subTweet = tweet[endInd:]
                 # nominated_index = tweet.split().index(pattern.split()[-1])
             else:
                 subTweet = tweet[:startInd]
@@ -52,7 +72,7 @@ def AwardNameToNominees(tweets, award):
             # else:
             #     nominated_index = tweet.split().index(pattern)
             f = open(filePath,"a")
-            f.write(f"\n    {tweet}")
+            f.write(f"\n    {pattern}")
             f.close()
 
             splitSubTweet = subTweet.split()
@@ -68,22 +88,6 @@ def AwardNameToNominees(tweets, award):
 
 
 
-            # if forward:
-            #     for i in range(nominated_index + 1, len(tweet.split())):
-            #         nominee = ""
-            #         for j in range(nominated_index + 1, i + 1):
-            #             nominee += tweet.split()[j] + " "
-            #         nominee = nominee.strip()
-            #         nominee_candidates[nominee] += 1
-            # else:
-            #     for i in range(nominated_index - 1, -1, -1):
-            #         nominee = ""
-            #         for j in range(i, nominated_index):
-            #             nominee += tweet.split()[j] + " "
-            #         nominee = nominee.strip()
-            #         nominee_candidates[nominee] += 1
-
-
     def check_for_people(tweet):
         nlp = spacy.load("en_core_web_sm")
         doc = nlp(ultra_standardize(tweet))
@@ -93,7 +97,9 @@ def AwardNameToNominees(tweets, award):
 
     
     award_aliases = award.award_category.aliases
-    relevant_tweets = TweetsNearMedian(tweets=tweets,award_name_aliases=award_aliases,min_before=3,min_After=1.5)
+    relevant_tweets = TweetsNearMedian(tweets=tweets,award_name_aliases=award_aliases,min_before=2,min_After=3)
+    ## attempt to filter out winner from previous award
+    relevant_tweets = [tweet for tweet in relevant_tweets if "speech" not in tweet['text']]
     # remove all duplicate tweets
     unique_tweets = []
     unique_text = set()
@@ -139,10 +145,13 @@ def AwardNameToNominees(tweets, award):
 
     if award.award_category.award_type == "PERSON":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors and v > 1}
+        nominee_candidates = combine_nominees(nominee_candidates,actors)
     elif award.award_category.award_type == "MOVIE":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1}
+        nominee_candidates = combine_nominees(nominee_candidates,movies)
     else:
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1} 
+        nominee_candidates = combine_nominees(nominee_candidates,None)
     
     # return nominee_candidates
     

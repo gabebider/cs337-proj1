@@ -15,7 +15,7 @@ def run():
 
     for name,award in awards.items():
         file_name = name.replace(" ","_")
-        relevant_tweets = TweetsNearMedian(tweets,award[1],2,2,save_name=file_name)
+        relevant_tweets = TweetsNearMedian(tweets,award[1],2,3,save_name=file_name)
         # print(len(relevant_tweets))
         jsonob = json.dumps(relevant_tweets, indent = 4)
         with open(f"test_tweets_time/{file_name}.json",'w') as outfile:

@@ -32,8 +32,10 @@ def standardize(text):
     text = text.replace("&amp","")
     text = re.sub(r'(?i)(golden globe[^\ ]*)|(golden[^\ ]*)','',text)
     text = re.sub(r"(?i)television","tv",text)
-    text = re.sub(r"(?i)tv series","series",text)
     text = re.sub(r"(?i)mini ","mini",text)
+    ## i struggle with regex
+    text = re.sub(r"(?i) series"," tv series",text)
+    text = re.sub(r"(?i)tv tv","tv",text)
     text = text.replace("/"," or ")
     text = re.sub(' +',' ',text).strip()
     return text
