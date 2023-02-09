@@ -108,9 +108,6 @@ def clean_results(results, bad_names):
 
     results = new_results
     return results
-<<<<<<< Updated upstream
-    
-=======
 
 def AwardNameToPresenters():
 
@@ -161,4 +158,3 @@ if __name__ == "__main__":
     results = AwardNameToPresenters()
     with open('results_new_new.json', 'w') as f:
         json.dump(results, f, indent=4) 
->>>>>>> Stashed changes
