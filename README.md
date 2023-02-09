@@ -1,5 +1,5 @@
 # CS 337 - Project 1
-### By: Gabe Bider, Spencer Rothfleicsch, Eli Barlow, and Isaac Miller
+### By: Gabe Bider, Spencer Rothfleisch, Eli Barlow, and Isaac Miller
 
 
 ## How to Run
