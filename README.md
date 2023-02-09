@@ -4,9 +4,13 @@
 
 ## How to Run
 To Run:
+Create the virtual environment:
+```bash
+python3 -m venv env
+```
 Activate the virtual environment:
 ```bash
-source venv/bin/activate
+source env/bin/activate
 ```
 
 Install the requirements:
@@ -59,9 +63,9 @@ The requirements for the scraper are installed with the requirements.txt file
 
 ### Main Requirements
 - [x] - Hosts
-- [x] - Award Names
-- [ ] - Presenters
-- [x] - Nominees - some missing
+- [x] - Award Categories
+- [x] - Presenters (not 100% accurate)
+- [x] - Nominees (not 100% accurate)
 - [x] - Winners
 
 ### Extras
@@ -70,5 +74,15 @@ The requirements for the scraper are installed with the requirements.txt file
     - [x] Worst Dressed
     - [x] Most Controversial
     - [x] Three Most Discussed
+- [x] - Sentiment Analysis
+    - [x] Sentiments regarding hosts
+    - [x] most positive winner
+    - [x] least positive winner
+
+## Other notes
+- Our code groups together similar awards into one award name with a set of aliases. These can be found in `award_aliases.json`. Because of this, it is possible that code may not work will all the subparts when mocking Award Categories.
+- The files `TimeToJson.py` and `IntervalTester.py` create plots in the folder `test_tweets_time/` that provide interesting visualizations about where tweets about certain awards fall on a chronological scale (we used these to identify presenters and nominees)
+- The files in `saved_jsons/` are for internal use of the award category recognition function.
+- The main Runner takes on average 4.5 minutes to run on a Macbook Pro M1 chip (with video/other programs running in the background). The extra sections add around 30 seconds in total.
 
 ## [Our GitHub Repository](https://github.com/gabebider/cs337-proj1)
