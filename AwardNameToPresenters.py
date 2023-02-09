@@ -21,7 +21,7 @@ from TweetsNearMedian import TweetsNearMedian
 # Step 4: Use NER to find the names of the presenters
 # Step 5: Return the names of the presenters
 
-def presenters_for_award(award: Award, tweets, black_list):
+def AwardNameToPresenters(award: Award, tweets, black_list):
     '''
     Finds the presenters for a given award
 
