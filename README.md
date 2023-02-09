@@ -33,6 +33,7 @@ MOCK_AWARD_WINNERS=False
 MOCK_AWARD_NOMINEES=False
 MOCK_HOSTS=False
 MOCK_RED_CARPET=False
+MOCK_SENTIMENT=False
 ```
 Turning these on will enable the mocks and will use the data from gg_apifake.py
 
