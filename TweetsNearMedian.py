@@ -5,6 +5,27 @@ import numpy as np
 from utils import standardize
 
 def TweetsNearMedian(tweets,award_name_aliases,min_before,min_After,save_name=""):
+    '''
+        Returns a list of tweets within a certain time frame of the median time of tweets with the award name
+
+        Parameters
+        ----------
+        tweets : list
+            A list of tweets (dicts)
+        award_name_aliases : list
+            A list of aliases for the award name
+        min_before : float
+            The number of minutes before the median time to include tweets
+        min_After : float
+            The number of minutes after the median time to include tweets
+        save_name : str
+            The name of the file to save the plot to
+        Returns
+        -------
+        list
+            A list of tweets within a certain time frame of the median time of tweets with the award name
+
+    '''
     # remove all RTs
     tweets = [t for t in tweets if not t['text'].startswith('RT ')]
     tweets = [tweet for tweet in tweets if "http" not in tweet['text']]
