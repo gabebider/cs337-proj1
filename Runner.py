@@ -366,6 +366,8 @@ if __name__ == '__main__':
 
         print("Sentiment Results:")
         sentiment_results = runner.export_sentiment()
+        for sent in sentiment_results:
+            print(sentiment_results[sent])
     
     if args.save_json:
         awards = runner.get_awards(year)
