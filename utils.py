@@ -73,7 +73,7 @@ def build_iterative_regex(aliases):
 
 def get_csv_set(csv_file):
     csvSet = set()
-    with open(csv_file, 'r') as file:
+    with open(csv_file, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         for row in reader:
             for name in row:

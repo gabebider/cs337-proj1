@@ -13,6 +13,7 @@ from AwardNameToWinners import AwardNameToWinners
 import json
 from utils import preprocess
 from TweetsToRedCarpet import find_redcarpet
+from TweetsToSentiment import find_sentiments
 # Import gg_apifake.py from the autograder directory
 sys.path.append(os.path.join(os.path.dirname(__file__), 'autograder'))
 import gg_apifake
@@ -27,6 +28,7 @@ MOCK_AWARD_WINNERS = config('MOCK_AWARD_WINNERS', cast=bool, default=False)
 MOCK_AWARD_NOMINEES = config('MOCK_AWARD_NOMINEES', cast=bool, default=False)
 MOCK_HOSTS = config('MOCK_HOSTS', cast=bool, default=False)
 MOCK_RED_CARPET = config('MOCK_RED_CARPET', cast=bool, default=False)
+MOCK_SENTIMENT = config('MOCK_SENTIMENT', cast=bool, default=False)
 
 
 class Runner:
@@ -181,7 +183,20 @@ class Runner:
         dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
         print("[Get Red Carpet] process ended at =", dt_string)
         print("[Get Red Carpet] duration:",str(endTime-startTime))
+
+    def get_sentiments(self, year):
+        startTime = datetime.now()
+        dt_string = startTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Sentiments] process started at =", dt_string)
+        if MOCK_SENTIMENT:
+            print("[RUNNER] Mocking sentiments")
+        else:
+            self.sentiment_results = find_sentiments(self.tweets, self.export_hosts(), self.awards)
         
+        endTime = datetime.now()
+        dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
+        print("[Get Sentiments] process ended at =", dt_string)
+        print("[Get Sentiments] duration:",str(endTime-startTime))
 
     def get_hosts(self, year):
         startTime = datetime.now()
@@ -250,6 +265,9 @@ class Runner:
     
     def export_red_carpet(self):
         return self.red_carpet_results
+    
+    def export_sentiment(self):
+        return self.sentiment_results
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -297,7 +315,9 @@ if __name__ == '__main__':
         "MOCK_AWARD_NOMINEES": MOCK_AWARD_NOMINEES,
         "MOCK_AWARD_PRESENTERS": MOCK_AWARD_PRESENTERS,
         "MOCK_AWARD_WINNERS": MOCK_AWARD_WINNERS,
-        "MOCK_HOSTS": MOCK_HOSTS
+        "MOCK_HOSTS": MOCK_HOSTS,
+        "MOCK_RED_CARPET": MOCK_RED_CARPET,
+        "MOCK_SENTIMENT": MOCK_SENTIMENT
     }
     for key in mocks.keys():
             print("[RUNNER] {}: {}".format(key, mocks[key]))
@@ -326,6 +346,7 @@ if __name__ == '__main__':
     if args.output_results:
         awards = runner.get_awards(year)
         runner.get_red_carpet(year)
+        runner.get_sentiments(year)
                 
         print("Hosts: " + str(runner.export_hosts()) + "\n")
         for award in awards:
@@ -338,6 +359,9 @@ if __name__ == '__main__':
         print("\tWorst Dressed: " + str(red_carpet_results["Worst Dressed"]))
         print("\tMost Controversial: " + str(red_carpet_results["Most Controversial"]))
         print("\n")
+
+        print("Sentiment Results:")
+        sentiment_results = runner.export_sentiment()
     
     if args.save_json:
         awards = runner.get_awards(year)
