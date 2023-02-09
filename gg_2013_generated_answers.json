@@ -7,9 +7,13 @@
         "Nominees": [
             "george clooney",
             "joaquin phoenix",
-            "ben affleck"
+            "ben affleck",
+            "hugh jackman"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "kathryn bigelow",
+            "tina fey"
+        ],
         "Winner": "daniel daylewis"
     },
     "best actor for tv series drama": {
@@ -19,10 +23,13 @@
             "jon hamm",
             "jeff daniels"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "paul rudd",
+            "salma hayek"
+        ],
         "Winner": "damian lewis"
     },
-    "best actor in miniseries or tv movie": {
+    "best actor in a miniseries or tv movie": {
         "Nominees": [
             "kevin costner",
             "benedict cumberbatch",
@@ -30,10 +37,13 @@
             "johnny depp",
             "mark wahlberg"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jessica alba",
+            "tina fey"
+        ],
         "Winner": "kevin costner"
     },
-    "best actor in motion picture comedy or musical": {
+    "best actor in a motion picture comedy or musical": {
         "Nominees": [
             "hugh jackman",
             "ben affleck",
@@ -41,16 +51,23 @@
             "bradley cooper",
             "jodie foster"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jennifer garner",
+            "halle berry"
+        ],
         "Winner": "hugh jackman"
     },
-    "best actor in motion picture drama": {
+    "best actor in a motion picture drama": {
         "Nominees": [
             "george clooney",
             "joaquin phoenix",
-            "ben affleck"
+            "ben affleck",
+            "hugh jackman"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "kathryn bigelow",
+            "tina fey"
+        ],
         "Winner": "daniel daylewis"
     },
     "best actor musical or comedy": {
@@ -58,10 +75,12 @@
             "hugh jackman",
             "ben affleck",
             "bill murray",
-            "bradley cooper",
-            "mel gibson"
+            "bradley cooper"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jennifer garner",
+            "lea michele"
+        ],
         "Winner": "hugh jackman"
     },
     "best actor tv series comedy or musical": {
@@ -71,15 +90,22 @@
             "robert pattinson",
             "matt leblanc"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "lucy liu",
+            "jeremy irons"
+        ],
         "Winner": "don cheadle"
     },
     "best actress drama": {
         "Nominees": [
             "jessica chastain",
-            "naomi watts"
+            "naomi watts",
+            "anne hathaway"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "tina fey",
+            "helen mirren"
+        ],
         "Winner": "jessica chastain"
     },
     "best actress for comedy or musical": {
@@ -88,45 +114,71 @@
             "julianne moore",
             "kristen wiig"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "will ferrell",
+            "taylor swift"
+        ],
         "Winner": "jennifer lawrence"
     },
-    "best actress in miniseries or tv movie": {
+    "best actress in a miniseries or tv movie": {
         "Nominees": [
             "julianne moore",
             "jessica lange",
             "sienna miller",
             "maggie smith"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "tina fey",
+            "taylor swift"
+        ],
         "Winner": "julianne moore"
     },
-    "best actress in tv series comedy or musical": {
+    "best actress in a tv series comedy or musical": {
         "Nominees": [
             "lena dunham",
-            "amy poehler"
+            "amy poehler",
+            "anne hathaway"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jason bateman",
+            "tina fey"
+        ],
         "Winner": "lena dunham"
+    },
+    "best actress motion picture drama": {
+        "Nominees": [
+            "jessica chastain",
+            "naomi watts",
+            "anne hathaway"
+        ],
+        "Presenters": [
+            "helen mirren",
+            "tina fey"
+        ],
+        "Winner": "jessica chastain"
     },
     "best actress tv series drama": {
         "Nominees": [
             "anne hathaway",
             "jennifer lawrence"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "claire danes",
+            "lea michele"
+        ],
         "Winner": "claire danes"
     },
     "best animated feature film": {
         "Nominees": [
             "brave",
-            "ted",
             "it",
+            "ted",
             "us",
             "x"
         ],
         "Presenters": [
-            "sacha baron cohen"
+            "claire danes",
+            "tim burton"
         ],
         "Winner": "brave"
     },
@@ -134,11 +186,14 @@
         "Nominees": [
             "us",
             "it",
-            "see",
             "her",
-            "war"
+            "you",
+            "see"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "dustin hoffman",
+            "jeremy renner"
+        ],
         "Winner": "girls"
     },
     "best director motion picture": {
@@ -146,10 +201,13 @@
             "ben affleck",
             "steven spielberg",
             "lena dunham",
-            "paul thomas anderson",
-            "jodie foster"
+            "josh brolin",
+            "paul thomas anderson"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "halle berry",
+            "jennifer garner"
+        ],
         "Winner": "ben affleck"
     },
     "best drama tv series": {
@@ -158,45 +216,54 @@
             "v",
             "ed",
             "mo",
-            "des"
+            "you"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jennifer lopez",
+            "jason statham"
+        ],
         "Winner": "homeland"
     },
     "best foreign language film": {
         "Nominees": [
             "amour",
-            "us",
             "it",
-            "war",
-            "next"
+            "us",
+            "you",
+            "war"
         ],
         "Presenters": [
-            "arnold schwarzenegger",
-            "sylvester stallone"
+            "sylvester stallone",
+            "arnold schwarzenegger"
         ],
         "Winner": "amour"
     },
     "best miniseries or tv movie": {
         "Nominees": [
             "w",
-            "v",
+            "love",
             "ed",
             "game change",
             "mo"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "tina fey",
+            "kate hudson"
+        ],
         "Winner": "game change"
     },
     "best motion picture drama": {
         "Nominees": [
             "argo",
             "it",
-            "rush",
+            "us",
             "jack reacher",
-            "see"
+            "you"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "julia roberts",
+            "julia"
+        ],
         "Winner": "argo"
     },
     "best motion picture screenplay": {
@@ -205,40 +272,52 @@
             "us",
             "django unchained",
             "her",
-            "war"
+            "you"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "amanda seyfried",
+            "jeremy irons"
+        ],
         "Winner": "django unchained"
     },
     "best original score": {
         "Nominees": [
-            "it",
             "life of pi",
+            "it",
             "us",
-            "skyfall",
-            "ted"
+            "her",
+            "skyfall"
         ],
-        "Presenters": [],
-        "Winner": "life"
+        "Presenters": [
+            "jennifer lopez",
+            "paul rudd"
+        ],
+        "Winner": "life of pi"
     },
     "best original song motion picture": {
         "Nominees": [
+            "the for a night out",
             "if she",
-            "adele for skyfall",
-            "taylor swift for",
-            "of course adele",
-            "nbc skyfall skyfall"
+            "skyfall by adele",
+            "nbc \u201cskyfall\u201d from skyfall",
+            "that adele"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "taylor swift",
+            "daniel craig"
+        ],
         "Winner": "skyfall"
     },
-    "best performance actress in motion picture drama": {
+    "best performance by an actress in a motion picture drama": {
         "Nominees": [
             "jessica chastain",
-            "naomi watts",
-            "anne hathaway"
+            "anne hathaway",
+            "naomi watts"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "tina fey",
+            "helen mirren"
+        ],
         "Winner": "jessica chastain"
     },
     "best supporting actor in tv series": {
@@ -247,9 +326,12 @@
             "tommy lee jones",
             "meryl streep",
             "max greenfield",
-            "kevin costner"
+            "jonah hill"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "will ferrell",
+            "kristen bell"
+        ],
         "Winner": "ed harris"
     },
     "best supporting actor motion picture": {
@@ -260,7 +342,10 @@
             "james cameron",
             "dennis quaid"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "kate hudson",
+            "tina fey"
+        ],
         "Winner": "christoph waltz"
     },
     "best supporting actress motion picture": {
@@ -268,9 +353,13 @@
             "anne hathaway",
             "jennifer lawrence",
             "adele",
+            "helena bonham carter",
             "mandy patinkin"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "sally field",
+            "megan fox"
+        ],
         "Winner": "anne hathaway"
     },
     "best supporting actress tv series miniseries or tv movie": {
@@ -280,7 +369,10 @@
             "jennifer lawrence",
             "jessica chastain"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "kerry washington",
+            "tina fey"
+        ],
         "Winner": "maggie smith"
     },
     "best tv series comedy or musical": {
@@ -291,7 +383,10 @@
             "ed",
             "modern family"
         ],
-        "Presenters": [],
+        "Presenters": [
+            "jennifer garner",
+            "paul rudd"
+        ],
         "Winner": "girls"
     }
 }

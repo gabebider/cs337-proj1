@@ -96,7 +96,7 @@ class Runner:
         
 
     def get_presenter_for_award(self, award):
-        return AwardNameToPresenters(self.tweets, award, self.blacklist)
+        return AwardNameToPresenters(award, self.tweets, self.blacklist)
 
     def get_award_nominees(self, year):
         startTime = datetime.now()
@@ -212,7 +212,8 @@ class Runner:
         else:
             print("[RUNNER] Not mocking hosts")
             self.hosts = find_host(self.tweets)
-            self.blacklist = set(self.hosts)
+    
+        self.blacklist = set(self.hosts)
 
         endTime = datetime.now()
         dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
