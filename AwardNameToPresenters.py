@@ -28,7 +28,7 @@ def presenters_for_award(award: Award, tweets, black_list):
     Parameters:
         award: Award object
         tweets: list of tweets
-        black_list: list of names to ignore
+        black_list: list of names to ignore (should be the winner and nominees of the award)
     Returns:
         list of presenters
     '''
