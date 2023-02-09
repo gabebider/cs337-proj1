@@ -1,0 +1,184 @@
+{
+    "best actor drama for film": {
+        "george clooney": 6,
+        "mel gibson": 2,
+        "daniel craig": 1,
+        "billy bob thornton": 1
+    },
+    "best actor for tv series drama": {
+        "paul rudd": 5,
+        "salma hayek": 4,
+        "hugh laurie": 1,
+        "rosario dawson": 1,
+        "kate hudson": 1
+    },
+    "best actor in a miniseries or tv movie": {
+        "jessica alba": 19,
+        "adele": 2,
+        "kiefer sutherland": 1,
+        "taylor swift": 1,
+        "kate hudson": 1
+    },
+    "best actor in a motion picture comedy or musical": {
+        "jennifer garner": 3,
+        "megan fox": 1
+    },
+    "best actor in a motion picture drama": {
+        "george clooney": 6,
+        "daniel craig": 1,
+        "mel gibson": 1,
+        "billy bob thornton": 1
+    },
+    "best actor musical or comedy": {
+        "jennifer garner": 8
+    },
+    "best actor tv series comedy or musical": {
+        "lucy liu": 19,
+        "kerry washington": 1,
+        "burt reynolds": 1,
+        "taylor swift": 1,
+        "jessica alba": 1
+    },
+    "best actress drama": {
+        "george clooney": 6
+    },
+    "best actress for comedy or musical": {
+        "kristen wiig": 3,
+        "will ferrell": 3,
+        "taylor swift": 1,
+        "adele": 1,
+        "tom": 1
+    },
+    "best actress in a miniseries or tv movie": {
+        "kate hudson": 3,
+        "halle berry": 1,
+        "mel gibson": 1
+    },
+    "best actress motion picture drama": {
+        "george clooney": 2,
+        "adele": 2,
+        "mel gibson": 1,
+        "halle berry": 1,
+        "clint eastwood": 1
+    },
+    "best actress tv series drama": {
+        "lea michele": 6,
+        "james franco": 1,
+        "lucy liu": 1
+    },
+    "best animated film": {
+        "tommy lee": 1
+    },
+    "best comedy or musical": {
+        "dustin hoffman": 4,
+        "jeremy renner": 1,
+        "lea michele": 1
+    },
+    "best director motion picture": {
+        "halle berry": 5,
+        "jennifer garner": 1,
+        "billy bob thornton": 1,
+        "josh brolin": 1,
+        "mel gibson": 1
+    },
+    "best drama tv series": {
+        "jennifer lopez": 7,
+        "kerry washington": 1,
+        "george clooney": 1,
+        "adele": 1,
+        "mel gibson": 1,
+        "jeremy renner": 1
+    },
+    "best foreign film": {
+        "sylvester stallone": 3,
+        "arnold schwarzenegger": 1,
+        "lucy liu": 1
+    },
+    "best miniseries or tv movie": {
+        "kate hudson": 3,
+        "sam": 1,
+        "jessica alba": 1,
+        "halle berry": 1
+    },
+    "best motion picture comedy or musical": {
+        "amanda seyfried": 2,
+        "jeremy renner": 2,
+        "dustin hoffman": 1,
+        "halle berry": 1,
+        "eddie redmayne": 1
+    },
+    "best motion picture screenplay": {
+        "amanda seyfried": 2,
+        "robert pattinson": 2,
+        "robin williams": 1,
+        "paul rudd": 1,
+        "adele": 1,
+        "will ferrell": 1
+    },
+    "best original score": {
+        "jennifer lopez": 3,
+        "rosie perez": 1,
+        "mel gibson": 1,
+        "lea michele": 1,
+        "kate hudson": 1
+    },
+    "best original song motion picture": {
+        "adele": 47,
+        "taylor swift": 6,
+        "daniel craig": 2,
+        "kate hudson": 2,
+        "jason statham": 2,
+        "jennifer lopez": 2,
+        "kerry washington": 1
+    },
+    "best performance by an actress in a motion picture drama": {
+        "mel gibson": 3,
+        "george clooney": 2,
+        "adele": 2,
+        "matt damon": 1,
+        "halle berry": 1,
+        "clint eastwood": 1
+    },
+    "best picture drama": {
+        "julia roberts": 6,
+        "george clooney": 2,
+        "jessica alba": 1,
+        "jennifer garner": 1
+    },
+    "best supporting actor in tv series": {
+        "kristen bell": 7,
+        "will ferrell": 7,
+        "kristen wiig": 5,
+        "john krasinski": 4,
+        "jamie foxx": 4,
+        "taylor swift": 2,
+        "eddie redmayne": 1
+    },
+    "best supporting actor motion picture": {
+        "kerry washington": 5,
+        "kate hudson": 4
+    },
+    "best supporting actress motion picture": {
+        "will ferrell": 3,
+        "kristen wiig": 2,
+        "ryan gosling": 2,
+        "megan fox": 1,
+        "kristen bell": 1,
+        "kate hudson": 1,
+        "jennifer garner": 1,
+        "adele": 1
+    },
+    "best supporting actress tv series miniseries or tv movie": {
+        "kate hudson": 8,
+        "kerry washington": 6,
+        "dennis quaid": 2,
+        "james cameron": 1,
+        "isla fisher": 1,
+        "rose byrne": 1,
+        "megan fox": 1,
+        "lea michele": 1
+    },
+    "best tv series comedy or musical": {
+        "jennifer garner": 1
+    }
+}
