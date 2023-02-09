@@ -115,6 +115,9 @@ class Runner:
             for award in self.awards:
                 award.SetNominees(self.get_nominees_for_award(award))
 
+        for award in self.awards:
+            self.blacklist |= set(award.nominees)
+
         endTime = datetime.now()
         dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
         print("[Get Award Nominees] process ended at =", dt_string)
@@ -133,7 +136,7 @@ class Runner:
         #         award.SetNominees(self.get_nominees_for_award(award))
 
     def get_nominees_for_award(self, award):
-        return AwardNameToNominees(self.tweets,award)
+        return AwardNameToNominees(self.tweets,award,self.blacklist)
 
     def get_awards(self, year):
         return self.awards
@@ -209,6 +212,7 @@ class Runner:
         else:
             print("[RUNNER] Not mocking hosts")
             self.hosts = find_host(self.tweets)
+            self.blacklist = set(self.hosts)
 
         endTime = datetime.now()
         dt_string = endTime.strftime("%d/%m/%Y %H:%M:%S")
@@ -372,8 +376,8 @@ if __name__ == '__main__':
         }
         for award in awards:
             # TODO - Remove winner if Larry says so
-            if award.winner not in award.nominees:
-                award.nominees.append(award.winner)
+            # if award.winner not in award.nominees:
+            #     award.nominees.append(award.winner)
             data[award.award_category.award_name] = {
                 "Nominees": award.nominees,
                 "Presenters": award.presenters,

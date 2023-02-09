@@ -20,18 +20,18 @@ def standardize(text):
     ## |(#[^\ ]*)
     ## (-)|
     text = unidecode(text)
-    text = text.replace(":","")
-    text = text.replace("#","")
-    text = text.replace(",","")
-    text = text.replace("-","")
-    text = text.replace(".","")
-    text = text.replace("'", " ")
-    text = text.replace(":","")
-    text = text.replace("!", "")
-    text = text.replace("?", "")
     text = text.replace("@", "")
     text = text.replace("\"", "")
     text = text.replace("&amp","")
+    bad_words = {'a','our','your','their','an','i' ,'you','we','us','her', 'and', 'are', 'as', 'at', 'be', 'by', 'from', 'has', 'he', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'with'}
+    punctuation = {':',"#",',','-','.','!','?'}
+    for p in punctuation:
+        text = text.replace(p,"")
+    for bad_word in bad_words:
+        # print(text)
+        text = text.replace(f" {bad_word} ","  ")
+        # print(text)
+    text = text.replace("'"," ")
     text = re.sub(r'(?i)(golden globe[^\ ]*)|(golden[^\ ]*)','',text)
     text = re.sub(r"(?i)television","tv",text)
     text = re.sub(r"(?i)mini ","mini",text)

@@ -12,7 +12,7 @@ import spacy
 from utils import standardize, get_csv_set, dict_to_json, preprocess, build_iterative_regex
 from TweetsByTime import Tweets_By_Time
 
-def AwardNameToNominees(tweets, award):
+def AwardNameToNominees(tweets, award,blacklist):
     '''
     Finds the nominees for each award category
 
@@ -36,6 +36,16 @@ def AwardNameToNominees(tweets, award):
             return 'female'
         else:
             return 'unknown'
+
+    def filter_tweets_for_good_words(tweets):
+        good_words = ["nominated","nominate","nominee","robbed","stolen","rob","lost","can't believe","hope","should","did","didn't","think","would","deserved","should","better"]
+        bad_words = ["present","presents","presenting"]
+        for alias in award.award_category.aliases:
+            good_words.append(alias)
+
+        good_words_regex = build_iterative_regex(good_words)
+        bad_words_regex = build_iterative_regex(bad_words)
+        return [tweet for tweet in tweets if re.search(good_words_regex, tweet['text']) and not re.search(bad_words_regex, tweet['text'])]
 
     if not isinstance(award, Award):
         raise TypeError("award must be a list")
@@ -104,14 +114,20 @@ def AwardNameToNominees(tweets, award):
 
 
     def check_for_people(tweet):
-        with open("testytesty.txt",'a') as f:
+        nlp = spacy.load("en_core_web_sm")
+        doc = nlp(ultra_standardize(tweet))
+        for ent in doc.ents:
+            if ent.label_ == "PERSON":
+                nominee_candidates[ent.text] += 1
 
-            nlp = spacy.load("en_core_web_sm")
-            doc = nlp(ultra_standardize(tweet))
-            for ent in doc.ents:
-                if ent.label_ == "PERSON":
-                    nominee_candidates[ent.text] += 1
-                    f.write(f'\n{ent.text}')
+
+    def check_for_media(tweet,media_set):
+        with open("test_files/check_media.txt","a") as f:
+            for media in media_set:
+                if media in tweet.lower():
+                    nominee_candidates[media] += 1
+                    f.write(f"\n {media}")
+        
 
     
     award_aliases = award.award_category.aliases
@@ -121,6 +137,7 @@ def AwardNameToNominees(tweets, award):
     # remove all duplicate tweets
     unique_tweets = []
     unique_text = set()
+
 
     #! change this stuff eventually
     for tweet in relevant_tweets:
@@ -134,26 +151,13 @@ def AwardNameToNominees(tweets, award):
     nominee_candidates = defaultdict(int)
     # tracker = 0
     # loop through all tweets
-    to_smush = []
-    good_words = ["nominated","nominate","nominee","robbed","stolen","rob","lost","can't believe","hope","should","did","didn't","think","would","deserved","should","better"]
-
-    for alias in award.award_category.aliases:
-        good_words.append(alias)
-
-    good_word_regex = build_iterative_regex(good_words)
+    to_smush = [tweet['text'] for tweet in filter_tweets_for_good_words(tweets)]
 
     for tweet in tweets:
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])
 
-        good = re.search(good_word_regex,tweet)
-        # print(s)
-        # print(tweet)
-        if good is not None:
-            # print(tweet)
-            # exit()
-            to_smush.append(tweet)
 
         weight = 2
         # check all aliases for award names
@@ -185,37 +189,47 @@ def AwardNameToNominees(tweets, award):
 
     if award.award_category.award_type == "PERSON":
 
-
+        hosts = blacklist
         SUPERMEGATWEET = "".join([tweet + " " for tweet in to_smush])
         # SUPERMEGATWEET = SUPERMEGATWEET[:10000]
         check_for_people(SUPERMEGATWEET)
 
-        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors and v > 1}
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors and v > 1 and k not in hosts}
         nominee_candidates = combine_nominees(nominee_candidates,actors)
-
-        # with open("gender.txt",'a') as f:
-        #     for key in nominee_candidates.keys():
-        #         f.write(f'\n{key.split()[0]}: {gender_classifier(key.split()[0])}')
 
         if "actor" in award.award_category.award_name:
             nominee_candidates = {k:v for k,v in nominee_candidates.items() if gender_classifier(k.split()[0]) != 'female'}
         elif "actress" in award.award_category.award_name:
             nominee_candidates = {k:v for k,v in nominee_candidates.items() if gender_classifier(k.split()[0]) != 'male'}
+
     elif award.award_category.award_type == "MOVIE":
+        
+        for tweet in to_smush:
+            check_for_media(tweet,movies)
+
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1}
         nominee_candidates = combine_nominees(nominee_candidates,movies)
+
+
+
     elif award.award_category.award_type == "SERIES":
+        
+        for tweet in to_smush:
+            check_for_media(tweet,series)
+
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in series and v > 1}
         nominee_candidates = combine_nominees(nominee_candidates,series)
+
+
     else:
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1} 
         nominee_candidates = combine_nominees(nominee_candidates,None)
 
     nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
     
-    return nominee_candidates
+    # return nominee_candidates
     
-    # return [nom for i,nom in enumerate(nominee_candidates.keys()) if i < 5]
+    return [nom for i,nom in enumerate(nominee_candidates.keys()) if i < 5]
 
 def test():
     startTime = datetime.now()
@@ -239,7 +253,7 @@ def test():
 
         with open("test_files/nomineetweets.txt","a") as f:
             f.write(f"\n\n\n[{key}]")
-        nom_candidates = AwardNameToNominees(tweets, aw)
+        nom_candidates = AwardNameToNominees(tweets, aw,{'amy poehler','tina fey'})
 
         aaaa[aw.award_category.award_name] = nom_candidates
     
