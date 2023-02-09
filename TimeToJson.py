@@ -1,9 +1,10 @@
-from TweetsByTime import Tweets_By_Time
+
 from TweetsNearMedian import TweetsNearMedian
 from utils import preprocess
 import os
 import json
 
+# This creates some cool plots try it if you have time :)
 def run():
 
     os.system("rm test_tweets_time/*")

@@ -10,7 +10,6 @@ from collections import defaultdict
 from TweetsNearMedian import TweetsNearMedian
 import spacy
 from utils import standardize, get_csv_set, dict_to_json, preprocess, build_iterative_regex
-from TweetsByTime import Tweets_By_Time
 
 def AwardNameToNominees(tweets, award,blacklist):
     '''

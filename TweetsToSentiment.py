@@ -64,6 +64,9 @@ def find_sentiments(tweets, hosts, awardsList):
         elif winnersSentiment[winners][1] < worstSent:
             worstSent = winnersSentiment[winners][1]
             worstName = winnersSentiment[winners][0]
-    results[bestName] = "The best sentiment from tweeters was for winner " + bestName.capitalize() + " with a sentiment score of " + str(bestSent)
-    results[worstName] = "The worst sentiment from tweeters was for winner " + worstName.capitalize() + " with a sentiment score of " + str(worstSent)
+    
+    bestName = ''.join([name.capitalize() + " " for name in bestName.split()]).strip()
+    worstName = ''.join([name.capitalize() + " " for name in worstName.split()]).strip()
+    results[bestName] = "The best sentiment from tweeters was for winner " + bestName + " with a sentiment score of " + str(bestSent)
+    results[worstName] = "The worst sentiment from tweeters was for winner " + worstName + " with a sentiment score of " + str(worstSent)
     return results

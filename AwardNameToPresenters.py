@@ -5,13 +5,10 @@ from datetime import datetime
 from collections import defaultdict
 import spacy
 import numpy as np
-from aliases import award_aliases
-from aliases import get_aliases
 from Award import Award
 from AwardCategory import AwardCategory
 from utils import standardize, wrap_regex, build_iterative_regex
 import json
-from TweetsByTime import Tweets_By_Time
 from utils import preprocess, standardize, get_csv_set, dict_to_json
 from TweetsNearMedian import TweetsNearMedian
 

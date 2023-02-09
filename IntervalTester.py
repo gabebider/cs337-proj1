@@ -4,6 +4,7 @@ import json
 import numpy as np
 from utils import standardize, preprocess
 
+## more fun graphs
 def TweetsNearMedian(tweets,award_name_aliases,min_before,min_After,save_name=""):
     # remove all RTs
     tweets = [t for t in tweets if not t['text'].startswith('RT ')]
