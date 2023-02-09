@@ -21,10 +21,10 @@ from TweetsNearMedian import TweetsNearMedian
 # Step 4: Use NER to find the names of the presenters
 # Step 5: Return the names of the presenters
 
-# CALL MEEEEEE
 def presenters_for_award(award: Award, tweets, black_list):
     '''
     Finds the presenters for a given award
+
     Parameters:
         award: Award object
         tweets: list of tweets
@@ -41,21 +41,26 @@ def presenters_for_award(award: Award, tweets, black_list):
     return presenters
 
 
-# Step 1: Get the time interval for the start of the award
-# Step 2: Find the tweets in that time interval
 def tweets_for_time_interval(tweets, award_name_aliases: list, min_before: float, min_after: float):
+    '''
+        Finds the tweets in a given time interval
+    '''
     return TweetsNearMedian(tweets, award_name_aliases, min_before=min_before, min_After=min_after)
 
-# Step 3: Filter those tweets to only include the tweets that mention the good words we found
 def filter_tweets_for_good_words(tweets):
+    '''
+        Filters tweets to only include the tweets that mention the good words we found
+    '''
     good_words = ["dress", "teleprompter", "looks", "love", "like", "funny", "next", "presenting", "gorgeous", "stunning", "beautiful", "hilarious", "dressed", "looking"]
     bad_words = ["acceptance"]
     good_words_regex = build_iterative_regex(good_words)
     bad_words_regex = build_iterative_regex(bad_words)
     return [tweet for tweet in tweets if re.search(good_words_regex, tweet['text']) and not re.search(bad_words_regex, tweet['text'])]
 
-# Step 4: Use NER to find the names of the presenters
 def filter_tweets_for_presenters(tweets):
+    '''
+        Use NER to find names in the tweets
+    '''
     nlp = spacy.load("en_core_web_sm")
     nlp.add_pipe("merge_entities")
     presenters = {}
@@ -73,7 +78,12 @@ def filter_tweets_for_presenters(tweets):
 
 # Step 5: Return the names of the best presenters
 def pick_best_presenters(presenters):
-    # TODO - pick the best presenters
+    '''
+        Returns the names of the best presenters
+        If there is only one presenter, return that presenter
+        If there are two presenters, return the two presenters if the second presenter is mentioned at least 60% as much as the first presenter
+
+    '''
     if len(presenters) == 0:
         return []
     elif len(presenters) == 1:
@@ -81,11 +91,14 @@ def pick_best_presenters(presenters):
     elif len(presenters) >= 2:
         new_presenters = []
         new_presenters.append(list(presenters.keys())[0])
-        if presenters[list(presenters.keys())[0]] * 0.6 < presenters[list(presenters.keys())[1]]:
-            new_presenters.append(list(presenters.keys())[0])
+        if presenters[list(presenters.keys())[1]] * 0.6 < presenters[list(presenters.keys())[0]]:
+            new_presenters.append(list(presenters.keys())[1])
         return new_presenters
 
 def clean_results(results, bad_names):
+    '''
+        Removes the names of the winners and nominees from the results
+    '''
     keys = list(results.keys())
     actors = get_csv_set("people.csv")
     new_results = {}
@@ -95,22 +108,4 @@ def clean_results(results, bad_names):
 
     results = new_results
     return results
-
-#for testing purposes
-def getAwards():
-    with open("award_aliases.json", "r") as file:
-        awards = json.load(file)
-
-    addedAwards = []
-    awardsList = []
-    # create list of awards
-    for cat in awards:
-        if cat not in addedAwards:
-            addedAwards.append(cat)
-            awardStruct = Award(AwardCategory(cat))
-            currAlias = awards[cat][1]
-            awardStruct.award_category.aliases = currAlias
-            awardsList.append(awardStruct)
-    # for a in awardsList:
-    #     print(a.__str__() + " " + str(a.award_category.aliases))
-    return awardsList
+    
