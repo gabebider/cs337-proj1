@@ -1,5 +1,6 @@
 import re
 import json
+from unidecode import unidecode
 import csv
 from datetime import datetime
 
@@ -18,6 +19,7 @@ def standardize(text):
     ## |(rt\ @[^\ ]*)
     ## |(#[^\ ]*)
     ## (-)|
+    text = unidecode(text)
     text = text.replace(":","")
     text = text.replace("#","")
     text = text.replace(",","")

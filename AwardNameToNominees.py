@@ -135,7 +135,8 @@ def AwardNameToNominees(tweets, award):
     # tracker = 0
     # loop through all tweets
     to_smush = []
-    good_words = ["nominated","nominate","nominee","robbed","stolen","rob","lost","can't believe","hope"]
+    good_words = ["nominated","nominate","nominee","robbed","stolen","rob","lost","can't believe","hope","should","did","didn't","think","would","deserved","should","better"]
+
     for alias in award.award_category.aliases:
         good_words.append(alias)
 
@@ -146,10 +147,10 @@ def AwardNameToNominees(tweets, award):
         # just the text please
         tweet = ultra_standardize(tweet['text'])
 
-        s =re.search(good_word_regex,tweet)
+        good = re.search(good_word_regex,tweet)
         # print(s)
         # print(tweet)
-        if s is not None:
+        if good is not None:
             # print(tweet)
             # exit()
             to_smush.append(tweet)

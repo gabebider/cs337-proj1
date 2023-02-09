@@ -13,7 +13,7 @@ data = json.load(open('autograder/gg2013answers.json'))
 values = data['award_data'].values()
 
 for value in values:
-    for presenter in value['presenters']:
+    for presenter in value['nominees']:
         presenters.append(presenter)
 
 counter = Counter()
@@ -29,5 +29,5 @@ for tweet in tweets:
 # sort the counter by value
 counter = {k: v for k, v in sorted(counter.items(), key=lambda item: item[1], reverse=True)}
 
-with open("test.json", "w") as f:
+with open("nominee_words.json", "w") as f:
     json.dump(counter, f)
