@@ -107,4 +107,4 @@ def find_host(tweets):
     # now = datetime.now()
     # dt_string2 = now.strftime("%d/%m/%Y %H:%M:%S")
     # print("Find Host process ended at =", dt_string2)
-    return hosts
+    return [host.lower() for host in hosts]

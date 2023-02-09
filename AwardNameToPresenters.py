@@ -29,11 +29,13 @@ def AwardNameToPresenters(award: Award, tweets, black_list):
     Returns:
         list of presenters
     '''
+    people = get_csv_set("people.csv")    
     aliases = award.award_category.aliases
     new_tweets = tweets_for_time_interval(tweets, aliases, min_before=2, min_after=1)
     new_tweets = filter_tweets_for_good_words(new_tweets)
     presenters = filter_tweets_for_presenters(new_tweets)
     presenters = clean_results(presenters, black_list)
+    presenters = combine_presenters(presenters,people)
     presenters = pick_best_presenters(presenters)
     return presenters
 
@@ -88,7 +90,7 @@ def pick_best_presenters(presenters):
     elif len(presenters) >= 2:
         new_presenters = []
         new_presenters.append(list(presenters.keys())[0])
-        if presenters[list(presenters.keys())[1]] * 0.6 < presenters[list(presenters.keys())[0]]:
+        if presenters[list(presenters.keys())[1]] * 0.75 < presenters[list(presenters.keys())[0]]:
             new_presenters.append(list(presenters.keys())[1])
         return new_presenters
 
@@ -105,4 +107,22 @@ def clean_results(results, bad_names):
 
     results = new_results
     return results
+
+def combine_presenters(d,check_set):
+    d = dict(sorted(d.items(), key = lambda x: -len(x[0].split())))
+    new_d = defaultdict(int)
+    for nom, count in d.items():
+        merged = False
+        for nnom in new_d:
+            ## for movies, might need to check that both are in the check_set??
+            if check_set != None and nnom not in check_set:
+                continue
+            if nom in nnom :
+                new_d[nnom] += count
+                merged = True
+                break
+        if not merged:
+            new_d[nom] = count
+    
+    return dict(sorted(new_d.items(), key=lambda x: -x[1]))
     

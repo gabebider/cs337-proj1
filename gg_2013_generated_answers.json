@@ -1,7 +1,7 @@
 {
     "Host": [
-        "Tina Fey",
-        "Amy Poehler"
+        "tina fey",
+        "amy poehler"
     ],
     "best actor drama for film": {
         "Nominees": [
@@ -12,7 +12,7 @@
         ],
         "Presenters": [
             "kathryn bigelow",
-            "tina fey"
+            "billy bob thornton"
         ],
         "Winner": "daniel daylewis"
     },
@@ -39,7 +39,7 @@
         ],
         "Presenters": [
             "jessica alba",
-            "tina fey"
+            "taylor swift"
         ],
         "Winner": "kevin costner"
     },
@@ -66,7 +66,7 @@
         ],
         "Presenters": [
             "kathryn bigelow",
-            "tina fey"
+            "billy bob thornton"
         ],
         "Winner": "daniel daylewis"
     },
@@ -103,8 +103,8 @@
             "anne hathaway"
         ],
         "Presenters": [
-            "tina fey",
-            "helen mirren"
+            "helen mirren",
+            "matt damon"
         ],
         "Winner": "jessica chastain"
     },
@@ -128,20 +128,19 @@
             "maggie smith"
         ],
         "Presenters": [
-            "tina fey",
-            "taylor swift"
+            "taylor swift",
+            "kate hudson"
         ],
         "Winner": "julianne moore"
     },
     "best actress in a tv series comedy or musical": {
         "Nominees": [
             "lena dunham",
-            "amy poehler",
             "anne hathaway"
         ],
         "Presenters": [
             "jason bateman",
-            "tina fey"
+            "zooey deschanel"
         ],
         "Winner": "lena dunham"
     },
@@ -153,7 +152,7 @@
         ],
         "Presenters": [
             "helen mirren",
-            "tina fey"
+            "matt damon"
         ],
         "Winner": "jessica chastain"
     },
@@ -236,8 +235,8 @@
             "the league"
         ],
         "Presenters": [
-            "tina fey",
-            "kate hudson"
+            "kate hudson",
+            "taylor swift"
         ],
         "Winner": "game change"
     },
@@ -245,13 +244,13 @@
         "Nominees": [
             "argo",
             "lincoln",
-            "saw",
             "life of pi",
-            "zero dark thirty"
+            "zero dark thirty",
+            "jack reacher"
         ],
         "Presenters": [
             "julia roberts",
-            "julia"
+            "jennifer garner"
         ],
         "Winner": "argo"
     },
@@ -302,8 +301,8 @@
             "naomi watts"
         ],
         "Presenters": [
-            "tina fey",
-            "helen mirren"
+            "helen mirren",
+            "matt damon"
         ],
         "Winner": "jessica chastain"
     },
@@ -331,7 +330,7 @@
         ],
         "Presenters": [
             "kate hudson",
-            "tina fey"
+            "kerry washington"
         ],
         "Winner": "christoph waltz"
     },
@@ -358,7 +357,7 @@
         ],
         "Presenters": [
             "kerry washington",
-            "tina fey"
+            "kate hudson"
         ],
         "Winner": "maggie smith"
     },

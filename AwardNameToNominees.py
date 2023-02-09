@@ -120,7 +120,7 @@ def AwardNameToNominees(tweets, award,blacklist):
                 nominee_candidates[ent.text] += 1
 
     def is_stopword(name):
-        stop_words = {'a','our','your','their','an','i' ,'you','we','us','her', 'are', 'as', 'at', 'be', 'by', 'from', 'has', 'he', 'is', 'it', 'its', 'of','that', 'with'}
+        stop_words = {'a','our','your','their','an','i','see','saw','sees','you','we','us','her', 'are', 'as', 'at', 'be', 'by', 'from', 'has', 'he', 'is', 'it', 'its', 'of','that', 'with'}
         for letter in "abcdefghijklmnopqrstuvwxyz":
             stop_words.add(letter)
         for stopword in stop_words:
@@ -133,8 +133,6 @@ def AwardNameToNominees(tweets, award,blacklist):
             if media in tweet.lower() and media in nominee_candidates and not is_stopword(media):
                 nominee_candidates[media] += 1
         
-
-    
     award_aliases = award.award_category.aliases
     relevant_tweets = TweetsNearMedian(tweets=tweets,award_name_aliases=award_aliases,min_before=2,min_After=3)
     ## attempt to filter out winner from previous award
@@ -222,9 +220,8 @@ def AwardNameToNominees(tweets, award,blacklist):
         
         for tweet in to_smush:
             check_for_media(tweet,series)
-        print(nominee_candidates)
+
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in series and v > 1 and not is_stopword(k)}
-        print(nominee_candidates)
         nominee_candidates = combine_nominees(nominee_candidates,series)
 
 
