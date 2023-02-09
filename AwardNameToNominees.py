@@ -1,4 +1,7 @@
 import json
+import nltk
+nltk.download('names')
+from nltk.corpus import names
 import re
 from datetime import datetime
 from Award import Award
@@ -6,7 +9,7 @@ from AwardCategory import AwardCategory
 from collections import defaultdict
 from TweetsNearMedian import TweetsNearMedian
 import spacy
-from utils import standardize, get_csv_set, dict_to_json, preprocess
+from utils import standardize, get_csv_set, dict_to_json, preprocess, build_iterative_regex
 from TweetsByTime import Tweets_By_Time
 
 def AwardNameToNominees(tweets, award):
@@ -22,6 +25,18 @@ def AwardNameToNominees(tweets, award):
     -------
     nominees : list[str] (the names of the nominees)
     '''
+
+    male_names = names.words('male.txt')
+    female_names = names.words('female.txt')
+
+    def gender_classifier(name):
+        if name.lower().capitalize() in male_names:
+            return 'male'
+        elif name.lower().capitalize() in female_names:
+            return 'female'
+        else:
+            return 'unknown'
+
     if not isinstance(award, Award):
         raise TypeError("award must be a list")
 
@@ -51,7 +66,7 @@ def AwardNameToNominees(tweets, award):
 
             
 
-    def check_for_pattern(tweet, pattern, forward: bool,filePath="test_files/nomineetweets.txt"):
+    def check_for_pattern(tweet, pattern, forward: bool,filePath="test_files/nomineetweets.txt",weight=1):
         if not isinstance(forward, bool):
             raise TypeError("forward must be a boolean")
         if not isinstance(tweet, str):
@@ -71,29 +86,32 @@ def AwardNameToNominees(tweets, award):
             #     nominated_index = tweet.split().index(pattern.split()[0])
             # else:
             #     nominated_index = tweet.split().index(pattern)
-            f = open(filePath,"a")
-            f.write(f"\n    {pattern}")
-            f.close()
+            # f = open(filePath,"a")
+            # f.write(f"\n    {tweet}")
+            # f.close()
 
             splitSubTweet = subTweet.split()
 
             if forward:
                 for i in range(0,len(splitSubTweet)):
                     nominee = "".join([splitSubTweet[j] + " " for j in range(i+1)])
-                    nominee_candidates[nominee.strip()] += 1
+                    nominee_candidates[nominee.strip()] += weight
             else:
                 for i in range(len(splitSubTweet)-1,-1,-1):
                     nominee = "".join([splitSubTweet[j] + " " for j in range(i,len(splitSubTweet))])
-                    nominee_candidates[nominee.strip()] += 1
+                    nominee_candidates[nominee.strip()] += weight
 
 
 
     def check_for_people(tweet):
-        nlp = spacy.load("en_core_web_sm")
-        doc = nlp(ultra_standardize(tweet))
-        for ent in doc.ents:
-            if ent.label_ == "PERSON":
-                nominee_candidates[ent.text] += 1
+        with open("testytesty.txt",'a') as f:
+
+            nlp = spacy.load("en_core_web_sm")
+            doc = nlp(ultra_standardize(tweet))
+            for ent in doc.ents:
+                if ent.label_ == "PERSON":
+                    nominee_candidates[ent.text] += 1
+                    f.write(f'\n{ent.text}')
 
     
     award_aliases = award.award_category.aliases
@@ -116,37 +134,73 @@ def AwardNameToNominees(tweets, award):
     nominee_candidates = defaultdict(int)
     # tracker = 0
     # loop through all tweets
+    to_smush = []
+    good_words = ["nominated","nominate","nominee","robbed","stolen","rob","lost","can't believe","hope","should","did","didn't","think","would","deserved","should","better"]
+
+    for alias in award.award_category.aliases:
+        good_words.append(alias)
+
+    good_word_regex = build_iterative_regex(good_words)
+
     for tweet in tweets:
         
         # just the text please
         tweet = ultra_standardize(tweet['text'])
+
+        good = re.search(good_word_regex,tweet)
+        # print(s)
+        # print(tweet)
+        if good is not None:
+            # print(tweet)
+            # exit()
+            to_smush.append(tweet)
+
+        weight = 2
         # check all aliases for award names
-        check_for_pattern(tweet, "should win", False)
-        check_for_pattern(tweet, "should have gotten", False)
-        check_for_pattern(tweet, "should've won", False)
-        check_for_pattern(tweet, "better win",False)
-        check_for_pattern(tweet, "was robbed",False)
-        check_for_pattern(tweet, "didn[']?t win",False)
-        check_for_pattern(tweet, "was nominated",False)
-        check_for_pattern(tweet, "belongs to",True)
-        check_for_pattern(tweet, "deserves to win",False)
-        check_for_pattern(tweet, "was going to win",False)
-        check_for_pattern(tweet, "beat",False)
-        check_for_pattern(tweet, "beat",True)
-        check_for_pattern(tweet, "goes to",True)
-        # check_for_pattern(tweet, "(wins)|(\b(?<!\shave)\bwon)",False)
-        check_for_pattern(tweet, "((shouldn[']?t)|(should)) have (won|been)", False)
+        check_for_pattern(tweet, "should win", False,weight)
+        check_for_pattern(tweet, "should have gotten", False,weight)
+        check_for_pattern(tweet, "should've won", False,weight)
+        check_for_pattern(tweet, "better win",False,weight)
+        check_for_pattern(tweet, "was robbed",False,weight)
+        check_for_pattern(tweet, "didn[']?t win",False,weight)
+        check_for_pattern(tweet, "was nominated",False,weight)
+        check_for_pattern(tweet, "belongs to",True,weight)
+        check_for_pattern(tweet, "deserves to win",False,weight)
+        check_for_pattern(tweet, "was going to win",False,weight)
+        check_for_pattern(tweet, "beat",False,weight)
+        check_for_pattern(tweet, "beat",True,weight)
+        check_for_pattern(tweet, "goes to",True,weight)
+        check_for_pattern(tweet, "(wins)|(\b(?<!\shave)\bwon)",False,weight)
+        check_for_pattern(tweet, "((shouldn[']?t)|(should)) have (won|been)", False,weight)
+
+
 
     # nominee_candidates = {k:v for k,v in nominee_candidates.items() if v>1}
-    nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
+    
     
     actors = get_csv_set("people.csv")
     movies = get_csv_set("movies.csv")
     series = get_csv_set("series.csv")
+    # print(to_smush)
 
     if award.award_category.award_type == "PERSON":
+
+
+        SUPERMEGATWEET = "".join([tweet + " " for tweet in to_smush])
+        # SUPERMEGATWEET = SUPERMEGATWEET[:10000]
+        check_for_people(SUPERMEGATWEET)
+
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in actors and v > 1}
         nominee_candidates = combine_nominees(nominee_candidates,actors)
+
+        # with open("gender.txt",'a') as f:
+        #     for key in nominee_candidates.keys():
+        #         f.write(f'\n{key.split()[0]}: {gender_classifier(key.split()[0])}')
+
+        if "actor" in award.award_category.award_name:
+            nominee_candidates = {k:v for k,v in nominee_candidates.items() if gender_classifier(k.split()[0]) != 'female'}
+        elif "actress" in award.award_category.award_name:
+            nominee_candidates = {k:v for k,v in nominee_candidates.items() if gender_classifier(k.split()[0]) != 'male'}
     elif award.award_category.award_type == "MOVIE":
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1}
         nominee_candidates = combine_nominees(nominee_candidates,movies)
@@ -156,10 +210,12 @@ def AwardNameToNominees(tweets, award):
     else:
         nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1} 
         nominee_candidates = combine_nominees(nominee_candidates,None)
+
+    nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))
     
-    # return nominee_candidates
+    return nominee_candidates
     
-    return [nom for i,nom in enumerate(nominee_candidates.keys()) if i < 5]
+    # return [nom for i,nom in enumerate(nominee_candidates.keys()) if i < 5]
 
 def test():
     startTime = datetime.now()

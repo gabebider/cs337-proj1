@@ -14,139 +14,98 @@ import json
 from TweetsByTime import Tweets_By_Time
 from utils import preprocess, standardize, get_csv_set, dict_to_json
 from TweetsNearMedian import TweetsNearMedian
-        
 
-def find_and_count_names_for_award(data,award_name):
-    # loads name processor
-    nlp = spacy.load("en_core_web_sm")
-    nlp.add_pipe("merge_entities")
-    nameCountArray = []
-    tweetArray = set()
-    aliases = award_name.award_category.aliases
-    #data = Tweets_By_Time(data, aliases, 0.4)
-    data = TweetsNearMedian(data, aliases, 2, 2)
-    # Iterates through tweets
-    for tweet in data:
-        text = tweet['text']
-        # Checks if tweet is relation to a presenter and a specific award
-        if not text in tweetArray:
-            tweetArray.add(text)
-            addNames = []
-            classifiedText = nlp(text)
-            # adds name to list
-            for name in classifiedText.ents:
-                if name.label_ == "PERSON":
-                    addNames.append(name.text)
-            # updates count if name exists or adds name if does not exist yet
-            for name in addNames:
-                exists = False
-                for entries in nameCountArray:
-                    if entries[0] == name:
-                        exists = True
-                        entries[1] = entries[1] + 1
-                if exists == False:
-                    nameCountArray.append([name, 1])
-    return [nameCountArray, tweetArray]
+# Step 1: Get the time interval for the start of the award
+# Step 2: Find the tweets in that time interval
+# Step 3: Filter those tweets to only include the tweets that mention the good words we found
+# Step 4: Use NER to find the names of the presenters
+# Step 5: Return the names of the presenters
 
+def presenters_for_award(award: Award, tweets, black_list):
+    '''
+    Finds the presenters for a given award
 
-def find_full_names(nameCountArray):
-
-    fullNameArray = []
-    singleNameArray = []
-    finalNamesArray = []
-
-    for names in nameCountArray:
-        if re.search(r".* .*", names[0]):
-            fullNameArray.append([names[0], names[1]])
-        else:
-            singleNameArray.append([names[0], names[1]])
-    with open('people.csv', 'r', encoding='utf-8') as actorCSV:
-        reader = csv.reader(actorCSV)
-        actorsArray = list(next(reader))
-        # find full names that are actors
-        for actor in fullNameArray:
-            if actor[0] in actorsArray:
-                finalNamesArray.append([actor[0], actor[1]])
-    for name in singleNameArray:
-        for x in range(len(finalNamesArray)):
-            if name[0] in finalNamesArray[x][0]:
-                if finalNamesArray[x][1] > name[1]:
-                    finalNamesArray[x][1] = finalNamesArray[x][1] + name[1]
-    # remove duplicate names
-    finalNamesArray = [x[0] for x in itertools.groupby(finalNamesArray)]
-    return finalNamesArray
-
-def find_potential_presenters(actorArray, tweets):
-    potentialPresenters = []
-    award_regex = r'( introduce| present)(?!.*win)'
-    tweets = list(tweets)
-    for actor in actorArray:
-        name1 = actor[0].lower()
-        name2 = actor[0].lower().replace(" ", "")
-        pattern = f"{name1}|{name2}"
-        added = False
-        for tweet in tweets:
-            if re.search(pattern, tweet.lower()) and added == False:
-                if re.search(award_regex, tweet.lower()):
-                    print(actor)
-                    added = True
-                    potentialPresenters.append(actor[0])
-    return potentialPresenters
-
-# def find_name_std(actorCount):
-#     totalCount = 0
-#     # find total
-#     for entries in actorCount:
-#         totalCount = totalCount + entries[1]
-#     # display each percentage
-#     percentageArray = []
-#     actorPercentArray = []
-#     presenter_array = []
-#     for entries in actorCount:
-#         percentage = entries[1] / totalCount
-#         percentage = round(percentage, 3)
-#         print(entries[0] + "'s Percentage: " + str(percentage))
-#         percentageArray.append(percentage)
-#         actorPercentArray.append([entries[0], percentage])
-#     # use standard deviation to determine if count is significantly different (outside 95% of data) to determine who the presenters are
-#     mean = np.mean(percentageArray)
-#     stanDev = np.std(percentageArray)
-#     for entries in actorPercentArray:
-#         print(entries[0] + "'s Standard Deviation: " + str((entries[1] - mean) / stanDev))
-#         if abs(entries[1] - mean) > 2 * stanDev:
-#             presenter_array.append(entries[0])
-#     return presenter_array
-
-def find_presenters(tweets,award_name):
-    nameCountAndTweetArray = find_and_count_names_for_award(tweets,award_name)
-    fullNameCountArray = find_full_names(nameCountAndTweetArray[0])
-    presenters = find_potential_presenters(fullNameCountArray, nameCountAndTweetArray[1])
-
-    print(award_name.award_category, ":", presenters)
-
+    Parameters:
+        award: Award object
+        tweets: list of tweets
+        black_list: list of names to ignore (should be the winner and nominees of the award)
+    Returns:
+        list of presenters
+    '''
+    aliases = award.award_category.aliases
+    new_tweets = tweets_for_time_interval(tweets, aliases, min_before=2, min_after=1)
+    new_tweets = filter_tweets_for_good_words(new_tweets)
+    presenters = filter_tweets_for_presenters(new_tweets)
+    presenters = clean_results(presenters, black_list)
+    presenters = pick_best_presenters(presenters)
     return presenters
 
-#for testing purposes
-def getAwards():
-    with open("award_aliases.json", "r") as file:
-        awards = json.load(file)
 
-    addedAwards = []
-    awardsList = []
-    # create list of awards
-    for cat in awards:
-        if cat not in addedAwards:
-            addedAwards.append(cat)
-            awardStruct = Award(AwardCategory(cat))
-            currAlias = awards[cat][1]
-            awardStruct.award_category.aliases = currAlias
-            awardsList.append(awardStruct)
-    # for a in awardsList:
-    #     print(a.__str__() + " " + str(a.award_category.aliases))
-    return awardsList
+def tweets_for_time_interval(tweets, award_name_aliases: list, min_before: float, min_after: float):
+    '''
+        Finds the tweets in a given time interval
+    '''
+    return TweetsNearMedian(tweets, award_name_aliases, min_before=min_before, min_After=min_after)
 
-if __name__ == "__main__":
-    awards = getAwards()
-    for award in awards:
-        pres = find_presenters(preprocess(json.load(open('gg2013.json'))), award)
-    #exit()
+def filter_tweets_for_good_words(tweets):
+    '''
+        Filters tweets to only include the tweets that mention the good words we found
+    '''
+    good_words = ["dress", "teleprompter", "looks", "love", "like", "funny", "next", "presenting", "gorgeous", "stunning", "beautiful", "hilarious", "dressed", "looking"]
+    bad_words = ["acceptance"]
+    good_words_regex = build_iterative_regex(good_words)
+    bad_words_regex = build_iterative_regex(bad_words)
+    return [tweet for tweet in tweets if re.search(good_words_regex, tweet['text']) and not re.search(bad_words_regex, tweet['text'])]
+
+def filter_tweets_for_presenters(tweets):
+    '''
+        Use NER to find names in the tweets
+    '''
+    nlp = spacy.load("en_core_web_sm")
+    nlp.add_pipe("merge_entities")
+    presenters = {}
+    for tweet in tweets:
+        classified_text = nlp(tweet['text'])
+        for name in classified_text.ents:
+            if name.label_ == "PERSON":
+                if name.text.lower() in presenters:
+                    presenters[name.text.lower()] += 1
+                else:
+                    presenters[name.text.lower()] = 1
+    # Sort the presenters by the number of times they were mentioned and make them a dict
+    presenters = dict(sorted(presenters.items(), key=lambda item: item[1], reverse=True))
+    return presenters
+
+# Step 5: Return the names of the best presenters
+def pick_best_presenters(presenters):
+    '''
+        Returns the names of the best presenters
+        If there is only one presenter, return that presenter
+        If there are two presenters, return the two presenters if the second presenter is mentioned at least 60% as much as the first presenter
+
+    '''
+    if len(presenters) == 0:
+        return []
+    elif len(presenters) == 1:
+        return [list(presenters.keys())[0]]
+    elif len(presenters) >= 2:
+        new_presenters = []
+        new_presenters.append(list(presenters.keys())[0])
+        if presenters[list(presenters.keys())[1]] * 0.6 < presenters[list(presenters.keys())[0]]:
+            new_presenters.append(list(presenters.keys())[1])
+        return new_presenters
+
+def clean_results(results, bad_names):
+    '''
+        Removes the names of the winners and nominees from the results
+    '''
+    keys = list(results.keys())
+    actors = get_csv_set("people.csv")
+    new_results = {}
+    for name in keys:
+        if not name in bad_names and name in actors:
+            new_results[name] = results[name]
+
+    results = new_results
+    return results
+    

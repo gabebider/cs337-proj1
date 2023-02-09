@@ -1,5 +1,6 @@
 import re
 import json
+from unidecode import unidecode
 import csv
 from datetime import datetime
 
@@ -18,11 +19,13 @@ def standardize(text):
     ## |(rt\ @[^\ ]*)
     ## |(#[^\ ]*)
     ## (-)|
+    text = unidecode(text)
     text = text.replace(":","")
     text = text.replace("#","")
     text = text.replace(",","")
     text = text.replace("-","")
     text = text.replace(".","")
+    text = text.replace("'", " ")
     text = text.replace(":","")
     text = text.replace("!", "")
     text = text.replace("?", "")
@@ -65,6 +68,7 @@ def dict_to_json(dictionary,jsonName,award=False,folderName="test_files/"):
 
 def build_iterative_regex(aliases):
     regexes = []
+    regexes.append(r'(?i)')
     for alias in aliases:
         regexes.append(wrap_regex(alias))
         regexes.append(r"|")
