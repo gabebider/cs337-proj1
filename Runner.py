@@ -7,7 +7,7 @@ from datetime import datetime
 from AwardCategory import AwardCategory
 from AwardNameToNominees import AwardNameToNominees
 from TweetsToHost import find_host
-from AwardNameToPresenters_old import find_presenters
+from AwardNameToPresenters import AwardNameToPresenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
@@ -96,7 +96,7 @@ class Runner:
         
 
     def get_presenter_for_award(self, award):
-        return find_presenters(self.tweets,award)
+        return AwardNameToPresenters(self.tweets, award, self.blacklist)
 
     def get_award_nominees(self, year):
         startTime = datetime.now()
