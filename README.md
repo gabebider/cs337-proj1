@@ -1,6 +1,8 @@
 # CS 337 - Project 1
 ### By: Gabe Bider, Spencer Rothfleicsch, Eli Barlow, and Isaac Miller
 
+
+## How to Run
 To Run:
 Activate the virtual environment:
 ```bash
@@ -46,6 +48,12 @@ python Runner.py --year 2013 --save_json
 # This will print the results
 python Runner.py --output_results --year 2013
 ```
+
+## Scraping Data
+In order to scrape our data from IMDB, we made a file scraper.py
+
+The requirements for the scraper are installed with the requirements.txt file
+
 
 ## What did we do
 

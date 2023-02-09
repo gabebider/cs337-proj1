@@ -7,7 +7,7 @@ from datetime import datetime
 from AwardCategory import AwardCategory
 from AwardNameToNominees import AwardNameToNominees
 from TweetsToHost import find_host
-from AwardNameToPresenters import find_presenters
+from AwardNameToPresenters_old import find_presenters
 from TweetsToAwardNames import get_award_categories_from_json
 from AwardNameToWinners import AwardNameToWinners
 import json
@@ -314,8 +314,8 @@ if __name__ == '__main__':
     runner = Runner.getInstance(year)
     runner.get_hosts(year)
     runner.get_award_categories(year)
-    runner.get_all_award_presenters(year)
     runner.get_award_nominees(year)
+    runner.get_all_award_presenters(year)
     runner.get_award_winners(year)
 
     endTime = datetime.now()
