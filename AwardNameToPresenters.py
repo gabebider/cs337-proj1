@@ -22,12 +22,21 @@ from TweetsNearMedian import TweetsNearMedian
 # Step 5: Return the names of the presenters
 
 # CALL MEEEEEE
-def presenters_for_award_alias(aliases, tweets, bad_names):
-    
+def presenters_for_award(award: Award, tweets, black_list):
+    '''
+    Finds the presenters for a given award
+    Parameters:
+        award: Award object
+        tweets: list of tweets
+        black_list: list of names to ignore
+    Returns:
+        list of presenters
+    '''
+    aliases = award.award_category.aliases
     new_tweets = tweets_for_time_interval(tweets, aliases, min_before=2, min_after=1)
     new_tweets = filter_tweets_for_good_words(new_tweets)
     presenters = filter_tweets_for_presenters(new_tweets)
-    presenters = clean_results(presenters, bad_names)
+    presenters = clean_results(presenters, black_list)
     presenters = pick_best_presenters(presenters)
     return presenters
 
@@ -63,16 +72,13 @@ def filter_tweets_for_presenters(tweets):
     return presenters
 
 # Step 5: Return the names of the best presenters
-
-
-
 def pick_best_presenters(presenters):
     # TODO - pick the best presenters
     if len(presenters) == 0:
         return []
     elif len(presenters) == 1:
         return [list(presenters.keys())[0]]
-    elif len(presenters) == 2:
+    elif len(presenters) >= 2:
         new_presenters = []
         new_presenters.append(list(presenters.keys())[0])
         if presenters[list(presenters.keys())[0]] * 0.6 < presenters[list(presenters.keys())[1]]:
@@ -83,43 +89,28 @@ def clean_results(results, bad_names):
     keys = list(results.keys())
     actors = get_csv_set("people.csv")
     new_results = {}
-    for key in keys:
-        for name in results[key]:
-            if not name in bad_names and name in actors:
-                if key in new_results:
-                    new_results[key][name] = results[key][name]
-                else:
-                    new_results[key] = {}
-                    new_results[key][name] = results[key][name]
+    for name in keys:
+        if not name in bad_names and name in actors:
+            new_results[name] = results[name]
 
     results = new_results
     return results
-    
-# def AwardNameToPresenters(award: Award, tweets, winner_and_nominees):
-#     results = {}
-#     aliases = award.award_category.aliases
-#     presenters_for_award_alias(aliases, tweets, winner_and_nominees)
-    
-#     #Sort all of the inner dicts of results by the number of times they were mentioned
-#     for key in results:
-#         results[key] = dict(sorted(results[key].items(), key=lambda item: item[1], reverse=True))
-            
 
-#     # Step 1: Get the time interval for the start of the award
-#     # Step 2: Find the tweets in that time interval
-#     # Step 3: Filter those tweets to only include the tweets that mention the good words we found
-#     # Step 4: Use NER to find the names of the presenters
-#     # Step 5: Return the names of the presenters
+#for testing purposes
+def getAwards():
+    with open("award_aliases.json", "r") as file:
+        awards = json.load(file)
 
-#     results = clean_results(results, winner_and_nominees)
-
-#     presenters = []
-#     for key in results:
-        
-#     return results
-
-if __name__ == "__main__":
-    tweets = preprocess(json.load(open('gg2013.json')))
-    results = AwardNameToPresenters(  )
-    with open('results_new.json', 'w') as f:
-        json.dump(results, f, indent=4) 
+    addedAwards = []
+    awardsList = []
+    # create list of awards
+    for cat in awards:
+        if cat not in addedAwards:
+            addedAwards.append(cat)
+            awardStruct = Award(AwardCategory(cat))
+            currAlias = awards[cat][1]
+            awardStruct.award_category.aliases = currAlias
+            awardsList.append(awardStruct)
+    # for a in awardsList:
+    #     print(a.__str__() + " " + str(a.award_category.aliases))
+    return awardsList
