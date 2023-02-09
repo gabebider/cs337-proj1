@@ -171,10 +171,8 @@
     "best animated feature film": {
         "Nominees": [
             "brave",
-            "it",
-            "ted",
-            "us",
-            "x"
+            "frankenweenie",
+            "life of pi"
         ],
         "Presenters": [
             "claire danes",
@@ -184,11 +182,8 @@
     },
     "best comedy or musical motion picture": {
         "Nominees": [
-            "us",
-            "it",
-            "her",
-            "you",
-            "see"
+            "silver linings playbook",
+            "moonrise kingdom"
         ],
         "Presenters": [
             "dustin hoffman",
@@ -212,11 +207,8 @@
     },
     "best drama tv series": {
         "Nominees": [
-            "w",
-            "v",
-            "ed",
-            "mo",
-            "you"
+            "life",
+            "homeland"
         ],
         "Presenters": [
             "jennifer lopez",
@@ -227,10 +219,7 @@
     "best foreign language film": {
         "Nominees": [
             "amour",
-            "it",
-            "us",
-            "you",
-            "war"
+            "up"
         ],
         "Presenters": [
             "sylvester stallone",
@@ -240,11 +229,11 @@
     },
     "best miniseries or tv movie": {
         "Nominees": [
-            "w",
-            "love",
-            "ed",
             "game change",
-            "mo"
+            "the hour",
+            "political animals",
+            "breaking bad",
+            "the league"
         ],
         "Presenters": [
             "tina fey",
@@ -255,10 +244,10 @@
     "best motion picture drama": {
         "Nominees": [
             "argo",
-            "it",
-            "us",
-            "jack reacher",
-            "you"
+            "lincoln",
+            "saw",
+            "life of pi",
+            "zero dark thirty"
         ],
         "Presenters": [
             "julia roberts",
@@ -268,11 +257,10 @@
     },
     "best motion picture screenplay": {
         "Nominees": [
-            "it",
-            "us",
             "django unchained",
-            "her",
-            "you"
+            "lincoln",
+            "zero dark thirty",
+            "skyfall"
         ],
         "Presenters": [
             "amanda seyfried",
@@ -283,10 +271,9 @@
     "best original score": {
         "Nominees": [
             "life of pi",
-            "it",
-            "us",
-            "her",
-            "skyfall"
+            "skyfall",
+            "cloud atlas",
+            "argo"
         ],
         "Presenters": [
             "jennifer lopez",
@@ -377,11 +364,9 @@
     },
     "best tv series comedy or musical": {
         "Nominees": [
-            "w",
-            "v",
             "girls",
-            "ed",
-            "modern family"
+            "modern family",
+            "smash"
         ],
         "Presenters": [
             "jennifer garner",

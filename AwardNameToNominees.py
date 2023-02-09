@@ -119,13 +119,19 @@ def AwardNameToNominees(tweets, award,blacklist):
             if ent.label_ == "PERSON":
                 nominee_candidates[ent.text] += 1
 
+    def is_stopword(name):
+        stop_words = {'a','our','your','their','an','i' ,'you','we','us','her', 'are', 'as', 'at', 'be', 'by', 'from', 'has', 'he', 'is', 'it', 'its', 'of','that', 'with'}
+        for letter in "abcdefghijklmnopqrstuvwxyz":
+            stop_words.add(letter)
+        for stopword in stop_words:
+            if name.strip() == stopword:
+                return True
+        return False
 
     def check_for_media(tweet,media_set):
-        with open("test_files/check_media.txt","a") as f:
-            for media in media_set:
-                if media in tweet.lower():
-                    nominee_candidates[media] += 1
-                    f.write(f"\n {media}")
+        for media in media_set:
+            if media in tweet.lower() and media in nominee_candidates and not is_stopword(media):
+                nominee_candidates[media] += 1
         
 
     
@@ -189,6 +195,7 @@ def AwardNameToNominees(tweets, award,blacklist):
     if award.award_category.award_type == "PERSON":
 
         hosts = blacklist
+        # this seems silly but saves a huge amount of time
         SUPERMEGATWEET = "".join([tweet + " " for tweet in to_smush])
         # SUPERMEGATWEET = SUPERMEGATWEET[:10000]
         check_for_people(SUPERMEGATWEET)
@@ -206,7 +213,7 @@ def AwardNameToNominees(tweets, award,blacklist):
         for tweet in to_smush:
             check_for_media(tweet,movies)
 
-        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1}
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in movies and v > 1 and not is_stopword(k) and not k in series}
         nominee_candidates = combine_nominees(nominee_candidates,movies)
 
 
@@ -215,13 +222,14 @@ def AwardNameToNominees(tweets, award,blacklist):
         
         for tweet in to_smush:
             check_for_media(tweet,series)
-
-        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in series and v > 1}
+        print(nominee_candidates)
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k in series and v > 1 and not is_stopword(k)}
+        print(nominee_candidates)
         nominee_candidates = combine_nominees(nominee_candidates,series)
 
 
     else:
-        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1} 
+        nominee_candidates = {k:v for k,v in nominee_candidates.items() if k not in actors and k not in movies and v > 1 and not is_stopword(k)} 
         nominee_candidates = combine_nominees(nominee_candidates,None)
 
     nominee_candidates = dict(sorted(nominee_candidates.items(), key=lambda x: -x[1]))

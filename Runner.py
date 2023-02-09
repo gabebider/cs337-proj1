@@ -193,6 +193,11 @@ class Runner:
         print("[Get Sentiments] process started at =", dt_string)
         if MOCK_SENTIMENT:
             print("[RUNNER] Mocking sentiments")
+            self.sentiment_results = dict()
+            self.sentiment_results['tina fey'] = "The general sentiment of host " + "Tina Fey" + " was positive, with a sentiment score of " + str(1912)
+            self.sentiment_results['amy poehler'] = "The general sentiment of host " + "Amy Poehler" + " was positive, with a sentiment score of " + str(1788)
+            self.sentiment_results['winner 1'] = "The best sentiment from tweeters was for winner Anne Hathaway with a sentiment score of 339"
+            self.sentiment_results['winner 2'] = "The worst sentiment from tweeters was for winner Girls with a sentiment score of 2"
         else:
             self.sentiment_results = find_sentiments(self.tweets, self.export_hosts(), self.awards)
         
